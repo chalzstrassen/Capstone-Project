@@ -3,20 +3,20 @@
 ## Rails
 ### Models
 * User
-* Blog
-* Post
+* Book
+* Collection
 
 ### Controllers
-* UsersController (create, new)
-* SessionsController (create, new, destroy)
-* BlogsController (create, new, show)
-* PostsController (create, new, show)
+* API::UsersController (create, new)
+* API::SessionsController (create, new, destroy)
+* API::BooksController (create, new, show, index)
+* API::CollectionsController (create, new, show, edit, index, destroy)
 
 ### Views
-* users/new.html.erb
-* session/new.html.erb
-* blogs/new.html.erb
-* blogs/show.html.erb
+* static_pages/root.html.erb
+* books/show.json.jbuilder
+* books/_book.json.jbuilder
+
 
 ## Backbone
 ### Models
