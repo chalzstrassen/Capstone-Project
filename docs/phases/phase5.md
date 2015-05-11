@@ -4,8 +4,8 @@
 ### Models
 
 ### Controllers
-Api::BlogsController (search)
-Api::PostsController (search)
+Api::BooksController (search)
+Api::CollectionsController (search for books within the collection on 'show')
 
 ### Views
 
@@ -15,8 +15,7 @@ Api::PostsController (search)
 ### Collections
 
 ### Views
-* BlogSearchItem
-* SearchShow (composite view, contains BlogsIndex and PostsIndex subviews)
+* CollShow (composite View, contains SearchShow)
+* SearchShow (composite view, contains BooksIndex subviews)
 
 ## Gems/Libraries
-

@@ -1,13 +1,11 @@
-# Phase 4: User Feeds
+# Phase 4: Searching within Users' Library and Collections
 
 ## Rails
 ### Models
 
 ### Controllers
-Api::PostsController (feed)
-
+Api::BooksController (search)
 ### Views
-posts/feed.json.jbuilder
 
 ## Backbone
 ### Models
@@ -15,6 +13,7 @@ posts/feed.json.jbuilder
 ### Collections
 
 ### Views
-* FeedShow (composite view, contains PostsIndex subview)
+* BookSearchItem
+* SearchShow (composite view, contains BooksIndex subview)
 
 ## Gems/Libraries

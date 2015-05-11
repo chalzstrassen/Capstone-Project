@@ -1,4 +1,4 @@
-# Phase 3: Editing and Displaying Posts
+# Phase 3: Uploading/Downloading books' PDF and Editing Collections
 
 ## Rails
 ### Models
@@ -14,8 +14,8 @@
 
 ### Views
 * PostForm
+* CollForm
 
 ## Gems/Libraries
 * Filepicker
-* Markdown-js
-* Bootstrap Markdown
+* rMagick

@@ -34,8 +34,9 @@ Anyone can:
 ### Phase 1: User Authentication, User's library page (~1 day)
 I will implement user authentication in Rails based on the practices learned at
 App Academy. Once user authentication is running, I will build a Library page
-for the user. I will style the Library page so that the page will have section
-containers that Backbone views will populate.
+for the user and complete basic resources the app will need. I will style the
+Library page so that the page will have section containers that Backbone views
+will populate.
 [Details][phase-one]
 
 ### Phase 2: Viewing Collections and Books (~2 days)

@@ -1,4 +1,4 @@
-# Phase 1: User Authentication, Basic Blogs and Posts
+# Phase 1: User Authentication, Users' Library Page
 
 ## Rails
 ### Models
@@ -7,16 +7,15 @@
 * Collection
 
 ### Controllers
-* API::UsersController (create, new)
-* API::SessionsController (create, new, destroy)
+* UsersController (create, new)
+* SessionsController (create, new, destroy)
 * API::BooksController (create, new, show, index)
 * API::CollectionsController (create, new, show, edit, index, destroy)
 
 ### Views
+* users/new.html.erb
+* session/new.html.erb
 * static_pages/root.html.erb
-* books/show.json.jbuilder
-* books/_book.json.jbuilder
-
 
 ## Backbone
 ### Models
