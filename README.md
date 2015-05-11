@@ -5,10 +5,9 @@
 [heroku]: TBD
 
 ## Minimum Viable Product
-Enwritt is a Scribd clone built on Rails and Backbone. Users can:
-
+Enwritt is a Scribd clone built on Rails and Backbone.
 <!-- This is a Markdown checklist. Use it to keep track of your progress! -->
-
+Users can:
 - [ ] Create accounts
 - [ ] Create sessions (log in)
 - [ ] Have a library listing all purchased books and collections
@@ -16,11 +15,12 @@ Enwritt is a Scribd clone built on Rails and Backbone. Users can:
 - [ ] Create collections
 - [ ] Purchase/Sell Books
 - [ ] Add books to collections
-- [ ] Read purchased books if signed in
+- [ ] Download purchased books as PDF
+- [ ] Narrow search for books within collection/library
+
+Anyone can:
 - [ ] Preview books
 - [ ] Search for books by title and author
-- [ ] Narrow search for books within collection/library
-- [ ] Download purchased books as PDF
 
 ## Design Docs
 * [View Wireframes][views]
@@ -31,59 +31,57 @@ Enwritt is a Scribd clone built on Rails and Backbone. Users can:
 
 ## Implementation Timeline
 
-### Phase 1: User Authentication, Blog Creation (~1 day)
+### Phase 1: User Authentication, User's library page (~1 day)
 I will implement user authentication in Rails based on the practices learned at
-App Academy. By the end of this phase, users will be able to create blogs using
-a simple text form in a Rails view. The most important part of this phase will
-be pushing the app to Heroku and ensuring that everything works before moving on
-to phase 2.
-
+App Academy. Once user authentication is running, I will build a Library page
+for the user. I will style the Library page so that the page will have section
+containers that Backbone views will populate.
 [Details][phase-one]
 
-### Phase 2: Viewing Blogs and Posts (~2 days)
-I will add API routes to serve blog and post data as JSON, then add Backbone
+### Phase 2: Viewing Collections and Books (~2 days)
+I will add API routes to serve collections and books as JSON, then add Backbone
 models and collections that fetch data from those routes. By the end of this
-phase, users will be able to create blogs and view both blogs and posts, all
-inside a single Backbone app.
+phase, users will be able to create collections, publish books and see their
+own library populated with data about their collections and books.
 
 [Details][phase-two]
 
-### Phase 3: Editing and Displaying Posts (~2 days)
-I plan to use third-party libraries to add functionality to the `PostForm` and
-`PostShow` views in this phase. First I'll need to add a Markdown editor to the
-`PostForm`, and make sure that the Markdown is properly escaped and formatted in
-the `PostShow` view. I also plan to integrate Filepicker for file upload so
-users can add images to blog posts.
+### Phase 3: Uploading/Downloading books' PDF and Editing Collections (~2 days)
+I will implement third-party libraries to allow users to upload books as PDF.
+While authoring a book, users can attach an image as a cover image for the book.
+I will implement file upload fields for "Book New" form so users can upload both
+the PDF for book content and the image for the cover.
 
 [Details][phase-three]
 
-### Phase 4: User Feeds (~1-2 days)
-I'll start by adding a `feed` route that uses the `current_user`'s
-`subscribed_blogs` association to serve a list of blog posts ordered
-chronologically. On the Backbone side, I'll make a `FeedShow` view whose `posts`
-collection fetches from the new route.  Ultimately, this will be the page users
-see after logging in.
+### Phase 4: Searching for Anyone (~1-2 days)
+I will implement a search view that anyone can type in. The search functionality
+can take the options to search by title, author, year of publishing and genres.
+The view will be composed of a textbox in which users type in, a set of
+checkboxes that users can check to narrow the search to specific fields, and a
+search results view that contain a list of mathing results.  
 
 [Details][phase-four]
 
-### Phase 5: Searching for Blogs and Posts (~2 days)
-I'll need to add `search` routes to both the Blogs and Posts controllers. On the
-Backbone side, there will be a `SearchResults` composite view has `BlogsIndex`
-and `PostsIndex` subviews. These views will use plain old `blogs` and `posts`
-collections, but they will fetch from the new `search` routes.
+### Phase 5: Searching within Users' Library and Collections (~2 days)
+I will implement a search box specific to the users' library and collection. The
+search will only look for books within the users' library or collection. The
+search bar will be part of the "Book Index" view to search within the library.
+For "Collection show", a search bar will be implemented so users can search for
+books within the collection.
 
 [Details][phase-five]
 
 ### Bonus Features (TBD)
-- [ ] "Like" button and counter for posts
-- [ ] Custom blog urls
+- [ ] Sales counter
+- [ ] Author profiles
 - [ ] Pagination/infinite scroll
-- [ ] Activity history (e.g. likes, reblogs, taggings)
-- [ ] Post types (image posts, quote posts, etc)
-- [ ] Reblogging
-- [ ] Multiple sessions/session management
+- [ ] Rating/Reviews
+- [ ] Recently viewed
+- [ ] Author rankings
+- [ ] Wishlists
 - [ ] User avatars
-- [ ] Typeahead search bar
+- [ ] Gifting
 
 [phase-one]: ./docs/phases/phase1.md
 [phase-two]: ./docs/phases/phase2.md
