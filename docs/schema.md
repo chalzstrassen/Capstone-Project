@@ -1,39 +1,35 @@
 # Schema Information
 
-## blogs
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-owner_id    | integer   | not null, foreign key (references users)
-title       | string    | not null
-
-## followings
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-blog_id     | integer   | not null, foreign key (references blogs)
-follower_id | integer   | not null, foreign key (references users)
-
-## posts
+## books
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
 author_id   | integer   | not null, foreign key (references users)
 title       | string    | not null
-body        | string    |
+synopsis    | text      | not null
+genre       | string    | not null
 
-## tags
+## collections
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-label       | string    | not null, unique
+user_id     | integer   | not null, foreign key (references users)
+name        | string    | not null
+description | text      | not null
 
-## taggings
+## collects
+column name   | data type | details
+--------------|-----------|-----------------------
+id            | integer   | not null, primary key
+collection_id | integer   | not null, foreign key (references collections)
+book_id       | integer   | not null, foreign key (references books)
+
+## sales
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-post_id     | integer   | not null, foreign key (references posts)
-tag_id      | integer   | not null, foreign key (references tags)
+buyer_id    | integer   | not null, foreign key (references users)
+book_id     | integer   | not null, foreign key (references books)
 
 ## users
 column name     | data type | details
@@ -42,4 +38,3 @@ id              | integer   | not null, primary key
 email           | string    | not null, unique
 password_digest | string    | not null
 session_token   | string    | not null, unique
-
