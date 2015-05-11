@@ -74,14 +74,14 @@ books within the collection.
 
 ### Bonus Features (TBD)
 - [ ] Sales counter
+- [ ] User avatars
 - [ ] Author profiles
+- [ ] Author rankings
 - [ ] Pagination/infinite scroll
 - [ ] Rating/Reviews
 - [ ] Recently viewed
-- [ ] Author rankings
 - [ ] Wishlists
-- [ ] User avatars
-- [ ] Gifting
+- [ ] Recommendations
 
 [phase-one]: ./docs/phases/phase1.md
 [phase-two]: ./docs/phases/phase2.md
