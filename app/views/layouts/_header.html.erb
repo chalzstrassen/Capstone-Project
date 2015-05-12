@@ -1,3 +1,13 @@
 <header>
   <span id="magnifying-glass"></span>
+  <a href="#" class="logo">Enwritt</a>
+  <% if logged_in? %>
+    <form class="sign-out" method="POST" action="<%= session_url %>">
+      <%= csrf_token %>
+      <input type="hidden" name="_method" value="delete">
+      <button>Sign out</button>
+    </form>
+  <% else %>
+    <a href="<%= new_session_url %>">Sign in</a>
+  <% end %>
 </header>

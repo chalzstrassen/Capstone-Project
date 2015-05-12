@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
 
   validates :session_token, :email, :password_digest, presence: true
   validates :session_token, :email, uniqueness: true
+  validates :password, length: {minimum: 6, allow_nil: true}
+
+  attr_reader :password
 
   def self.find_by_credentials(email, password)
     user = User.find_by_email(email)

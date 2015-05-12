@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
       login!(user)
       redirect_to user_url(user)
     else
-      flash.now[:errors] = user.errors.fullmessages
+      flash.now[:errors] = ["User cannot be found."]
       render :new
     end
   end
