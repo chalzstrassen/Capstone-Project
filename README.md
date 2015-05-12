@@ -1,8 +1,6 @@
 # Enwritt
 
-[Heroku link] TBD
-
-[heroku]: TBD
+[Heroku link](enwritt.herokuapp.com)
 
 ## Minimum Viable Product
 Enwritt is a Scribd clone built on Rails and Backbone.
