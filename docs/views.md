@@ -3,11 +3,11 @@
 ## New Session
 ![new-session]
 
-## Feed Show (landing page)
-![feed-show]
+## Library Show (landing page)
+![library-show]
 
-## Blog Show
-![blog-show]
+## Book Show
+![book-show]
 
 ## Post Show
 ![post-show]
@@ -18,9 +18,9 @@
 ## Search Results
 ![search-results]
 
-[new-session]: ./wireframes/new_session.png
-[feed-show]: ./wireframes/feed_show.png
-[blog-show]: ./wireframes/blog_show.png
+[new-session]: ./wireframes/session_new.png
+[library-show]: ./wireframes/library_show.png
+[book-show]: ./wireframes/book_show.png
 [post-show]: ./wireframes/post_show.png
 [post-form]: ./wireframes/post_form.png
 [search-results]: ./wireframes/search_results.png
