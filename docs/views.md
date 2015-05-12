@@ -9,8 +9,11 @@
 ## Book Show
 ![book-show]
 
-## Post Show
-![post-show]
+## Book New
+![book-new]
+
+## Collection Show/Edit
+![collection-show]
 
 ## Post Form
 ![post-form]
@@ -21,6 +24,7 @@
 [new-session]: ./wireframes/session_new.png
 [library-show]: ./wireframes/library_show.png
 [book-show]: ./wireframes/book_show.png
-[post-show]: ./wireframes/post_show.png
-[post-form]: ./wireframes/post_form.png
+[book-new]: ./wireframes/book_new.png
+[collection-show]: ./wireframes/collection_show_edit.png
+[collection-new]: ./wireframes/collection_new.png
 [search-results]: ./wireframes/search_results.png
