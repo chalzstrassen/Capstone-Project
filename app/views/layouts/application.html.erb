@@ -10,6 +10,12 @@
 <% if flash[:notice] %>
   <%= flash[:notice] %>
 <% end %>
+
+<% if flash.now[:errors] %>
+  <% flash.now[:errors].each do |error| %>
+    <p class="error"><%= error %></p>
+  <% end %>
+<% end %>
 <%= yield %>
 
 </body>

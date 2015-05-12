@@ -1,0 +1,13 @@
+<h1>User Sign in</h1>
+
+<form action="<%= session_url %>" method="POST">
+  <%= csrf_token %>
+  <label>Email
+    <input type="text" name="user[email]">
+  </label>
+  <br>
+  <label>Password
+    <input type="password" name="user[password]">
+  </label>
+  <button>Sign in!</button>
+</form>

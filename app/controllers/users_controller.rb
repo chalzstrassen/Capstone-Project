@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:notice] = "Successfully created your account! Here's your library."
+      login!(@user)
       redirect_to @user
     else
       render :new
