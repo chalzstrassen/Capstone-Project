@@ -1,8 +1,9 @@
 module Api
   class BooksController < ApiController
     skip_before_action :require_signed_in!, only: [:show, :index]
+
     def index
-      @book = Book.all
+      @books = Book.all
       render :index
     end
 
@@ -22,8 +23,10 @@ module Api
     end
 
   private
+
     def book_params
-      params.require(:book).
+      params.require(:book).permit(:title, :genre, :synopsis)
     end
+
   end
 end
