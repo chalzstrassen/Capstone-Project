@@ -15,6 +15,7 @@
 ### Models
 * Book
 * Collection
+* Collect (Join between Book and Collection)
 
 ### Collections
 * Books

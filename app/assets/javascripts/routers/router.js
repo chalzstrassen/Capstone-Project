@@ -1,0 +1,12 @@
+Enwritt.Routers.Router = Backbone.Router.extend({
+  initialize: function (options) {
+    this.$rootEl = options.$rootEl
+  },
+  routes: {
+    '': 'showLibraryRegions'
+  },
+  libraryItems: function () {
+    
+  }
+
+});

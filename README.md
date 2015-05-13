@@ -34,15 +34,16 @@ I will implement user authentication in Rails based on the practices learned at
 App Academy. Once user authentication is running, I will build a Library page
 for the user and complete basic resources the app will need. I will style the
 Library page so that the page will have section containers that Backbone views
-will populate. I will not implement sales at this point. Users can create books,
-add books created by other users, and organize books into collections.
+will populate. I will not implement sales at this point.
 [Details][phase-one]
 
 ### Phase 2: Viewing Collections and Books (~1 day)
 I will add API routes to serve collections and books as JSON, then add Backbone
 models and collections that fetch data from those routes. By the end of this
-phase, users will be able to create collections, publish books and see their
-own library populated with data about their collections and books.
+phase, users will be able to create collections, add books to their collections
+and see their own library populated with data about their collections and
+books. Users can now create books, add books created by other users, and
+organize books into collections.
 
 [Details][phase-two]
 

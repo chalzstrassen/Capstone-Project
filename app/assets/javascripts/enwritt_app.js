@@ -4,7 +4,8 @@ window.Enwritt = {
   Views: {},
   Routers: {},
   initialize: function() {
-    alert('Hello from Backbone!');
+    new Enwritt.Routers.Router({$rootEl: $('#library')});
+    Backbone.history.start();
   }
 };
 

@@ -9,8 +9,8 @@
 ### Controllers
 * UsersController (create, new)
 * SessionsController (create, new, destroy)
-* API::BooksController (create, new, show, index)
-* API::CollectionsController (create, new, show, edit, index, destroy)
+* API::BooksController (create, show, index)
+* API::CollectionsController (create, show, update, index, destroy)
 
 ### Views
 * users/new.html.erb
