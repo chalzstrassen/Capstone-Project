@@ -8,3 +8,13 @@
 
   user1 = User.create!(email: "jack@gmail.com", password: "password")
   user2 = User.create!(email: "jill@yahoo.com", password: "coffee")
+
+  book1 = user1.authored_books.create!(
+    title: "Beer from Hell",
+    genre: "Fiction",
+    synopsis: "Tucker goes to hell and becomes a bartender who interacts with other infamous and notorious historical figures. Hilarity ensues.")
+
+  book2 = user1.authored_books.create!(
+    title: "App Academy Sickness",
+    genre: "Nonfiction",
+    synopsis: "Real student accounts of incidents not witnessed by their instructors in the office. All very hilarious.")
