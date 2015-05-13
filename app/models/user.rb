@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
            foreign_key: :author_id,
            primary_key: :id)
 
+  has_many :collections
+
   attr_reader :password
 
   def self.find_by_credentials(email, password)

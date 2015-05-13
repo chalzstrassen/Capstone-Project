@@ -1,4 +1,4 @@
-window.CharlesCapstoneProject = {
+window.Enwritt = {
   Models: {},
   Collections: {},
   Views: {},
@@ -9,5 +9,5 @@ window.CharlesCapstoneProject = {
 };
 
 $(document).ready(function(){
-  CharlesCapstoneProject.initialize();
+  Enwritt.initialize();
 });

@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require underscore
 //= require backbone
-//= require charles_capstone_project
+//= require enwritt_app
 //= require_tree ../templates
 //= require_tree ./models
 //= require_tree ./collections

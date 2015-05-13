@@ -18,3 +18,15 @@
     title: "App Academy Sickness",
     genre: "Nonfiction",
     synopsis: "Real student accounts of incidents not witnessed by their instructors in the office. All very hilarious.")
+
+  book3 = user1.authored_books.create!(
+    title: "Firetrux",
+    genre: "Photobook",
+    synopsis: "Follow Firetrux and his friends as they adventure through whereever they want to adventure in. From canyons to rivers, hear more about the travails and exploits of Firetrux.")
+
+  collection1 = user2.collections.create!(
+    name: "App Academy Recommendations",
+    description: "These books are recommended by people from App Academy."
+  )
+
+  collection1.add_book(book2)
