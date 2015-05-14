@@ -3,7 +3,7 @@ window.Enwritt = {
   Collections: {},
   Views: {},
   Routers: {},
-  initialize: function() {
+  initialize: function(options) {
     new Enwritt.Routers.Router({$rootEl: $('#library')});
     Backbone.history.start();
   }

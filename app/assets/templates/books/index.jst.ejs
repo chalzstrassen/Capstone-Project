@@ -1,0 +1,6 @@
+<h3>All Books in Library</h3>
+<ul class="books-list">
+<% books.each(function (book) { %>
+  <li>Title: <%= book.escape("title") %>, Author: <%= book.escape("author")["email_address"] %></li>
+<% }) %>
+</ul>

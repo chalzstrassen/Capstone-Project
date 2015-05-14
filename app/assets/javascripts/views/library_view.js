@@ -1,19 +1,17 @@
-Enwritt.Views.LibraryView = Backbone.Marionette.LayoutView.extend({
+Enwritt.Views.LibraryView = Backbone.CompositeView.extend({
   template: JST['shared/library'],
-  regions: {
-    collections: "#collections",
-    booksIndex: "#books-index",
-    authoredBooks: "#authored-books"
-  },
 
   initialize: function (options) {
     this.$el = options.$el;
+    this.addCollectionsIndex();
   },
-
-  render: function () {
-    var content = this.template();
-    this.$el.html(content);
-
-    return this;
+  addCollectionsIndex: function () {
+    var collection = new Enwritt.Collections.Collections();
+    collection.fetch();
+    var collectionsIndex = new Enwritt.Views.CollectionsIndex({
+      collection: collection
+    });
+    console.log(this);
+    this.addSubview('#collections', collectionsIndex);
   }
 });

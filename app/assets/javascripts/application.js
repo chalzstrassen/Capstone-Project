@@ -14,11 +14,11 @@
 //= require jquery_ujs
 //= require underscore
 //= require backbone
-//= require backbone.marionette
 //= require backbone.modaldialog
 //= require enwritt_app
 //= require_tree ../templates
 //= require_tree ./models
+//= require_tree ./utils
 //= require_tree ./collections
 //= require_tree ./views
 //= require_tree ./routers
