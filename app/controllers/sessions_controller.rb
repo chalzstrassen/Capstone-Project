@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
     if user
       user.reset_session_token!
       login!(user)
-      redirect_to user_url(user)
+      redirect_to root_url
     else
       flash.now[:errors] = ["User cannot be found."]
       render :new

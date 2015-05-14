@@ -3,7 +3,7 @@ Enwritt.Routers.Router = Backbone.Router.extend({
     this.$rootEl = options.$rootEl
   },
   routes: {
-    '': 'libraryItems'
+    'library': 'libraryItems'
   },
   libraryItems: function () {
     var collCollection = new Enwritt.Collections.Collections();
@@ -19,7 +19,7 @@ Enwritt.Routers.Router = Backbone.Router.extend({
 
     				this.$rootEl.html(libView.render().$el);
     			}
-    		}
+    		});
     	}
     });
   }

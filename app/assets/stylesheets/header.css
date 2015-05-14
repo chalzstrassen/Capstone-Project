@@ -1,4 +1,4 @@
-html, body, header, a, form, input, button {
+html, body, header, a, form, input, button, h3, {
   padding: 0;
   margin: 0;
   border: 0;
@@ -12,14 +12,30 @@ html, body, header, a, form, input, button {
 header {
   font-family: sans-serif;
   width: 100%;
-  margin: auto;
-  height: 15px;
+  height: 20px;
   padding: 5px;
   display: block;
   background: pink;
   position: relative;
 }
-.sign-out {
+.group:after {
+  content: "";
+  display: block;
+  clear:both;
+}
+h3 {
+  float:left;
+  font-size: 14px;
+  padding: 5px;
+  position: absolute;
+  bottom: -10px;
+  left: 100px;
+}
+.logo {
+  float: left;
+  margin: 0 5px;
+}
+.auth {
   float:right;
   margin-right: 10px;
 }
@@ -27,11 +43,13 @@ header {
 {
  font-size: 20px;
  display: inline-block;
- width: 7px;
- height: 7px;
+ width: 10px;
+ height: 10px;
  border: 1px solid #aaa;
  position: relative;
  border-radius: 5px;
+ float: left;
+ margin: 0 5px;
 }
 #magnifying-glass::before
 {
