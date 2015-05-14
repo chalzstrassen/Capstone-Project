@@ -1,0 +1,5 @@
+<ul class='collections-list'>
+  <% collections.each(function (collection) { %>
+    <li>Collection name: <%= collection.escape("name") %>, count: <%= collection.escape("collects_count") %></li>
+  <% }); %>
+</ul>
