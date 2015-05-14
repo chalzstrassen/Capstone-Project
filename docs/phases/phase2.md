@@ -24,8 +24,7 @@
 ### Views
 * BookShow
 * CollectionShow
-* Library (composite view, contains BooksIndexItem subviews and
-   CollsIndexItem subviews)
+* Library (composite view, contains BooksIndex, AuthBooksIndex and CollsIndex subviews)
 * BooksIndexItem
 * CollsIndexItem
 
