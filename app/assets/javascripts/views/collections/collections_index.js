@@ -1,7 +1,6 @@
 Enwritt.Views.CollectionsIndex = Backbone.View.extend({
   template: JST['collections'],
-  initialize: function (options) {
-    this.$el = $(options.el);
+  initialize: function () {
     this.listenTo(this.collection, "sync", this.render);
   },
   render: function () {

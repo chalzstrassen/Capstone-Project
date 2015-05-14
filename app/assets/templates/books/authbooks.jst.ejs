@@ -1,0 +1,10 @@
+<% if (books.length === 0) { %>
+<h2>You have not written any books.</h2>
+<% } else { %>
+<h2>Authored Books</h2>
+<ul class="authored-list">
+  <% books.each(function (book) { %>
+    <li>Title: <%= book.escape("title") %>, Published: <%= book.escape("published") %></li>
+  <% }) %>
+</ul>
+<% } %>

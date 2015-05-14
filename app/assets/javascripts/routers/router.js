@@ -3,14 +3,13 @@ Enwritt.Routers.Router = Backbone.Router.extend({
     this.$rootEl = options.$rootEl
   },
   routes: {
-    'library': 'libraryLayout'
+    '': 'libraryLayout'
   },
 
   libraryLayout: function () {
-    var collCollection = new Enwritt.Collections.Collections();
-    collCollection.fetch();
+    var view = new Enwritt.Views.LibraryView();
 
-    var view = new Enwritt.
+    this._swapView(view);
   },
 
   _swapView: function (view) {

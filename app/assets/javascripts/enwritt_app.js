@@ -8,7 +8,3 @@ window.Enwritt = {
     Backbone.history.start();
   }
 };
-
-$(document).ready(function(){
-  Enwritt.initialize();
-});

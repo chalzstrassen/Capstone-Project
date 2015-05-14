@@ -1,5 +1,10 @@
+<% if (collections.length === 0) { %>
+<p>You have not created any collections.</p>
+<% } else { %>
+<h2>Your Collections</h2>
 <ul class='collections-list'>
   <% collections.each(function (collection) { %>
     <li>Collection name: <%= collection.escape("name") %>, count: <%= collection.escape("collects_count") %></li>
   <% }); %>
 </ul>
+<% } %>
