@@ -7,10 +7,11 @@
   <label>Name
   <input class="form-text"
     type="text"
+    name="name"
     value="<%= collection.escape("name") %>">
   </label><br>
   <label>Description
-    <textarea class="form-textarea" disabled>
+    <textarea class="form-textarea" name="description">
       <%= collection.escape("description") %>
     </textarea>
   </label>
