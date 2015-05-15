@@ -1,0 +1,33 @@
+#library {
+	display: block;
+	width: 900px;
+	height: 500px;
+	margin: auto;
+	border: 5px solid black;
+	padding: 10px;
+}
+
+#collections {
+	display: block;
+	width: 870px;
+	height: 250px;
+	float: left;
+	border: 5px solid red;
+	margin: auto;
+}
+
+#books-index {
+	display: block;
+	width: 440px;
+	float: left;
+	margin-right: 5px;
+	border: 2px solid pink;
+}
+
+#authored-books {
+	display: block;
+	width: 440px;
+	float: left;
+	margin-left: 5px;
+	border: 2px solid magenta;
+}

@@ -50,6 +50,7 @@ h3 {
  border-radius: 5px;
  float: left;
  margin: 0 5px;
+ background: #eee;
 }
 #magnifying-glass::before
 {
