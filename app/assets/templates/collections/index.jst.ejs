@@ -4,7 +4,7 @@
 <h2>Your Collections</h2>
 <ul class='collections-list'>
   <% collections.each(function (collection) { %>
-    <li>Collection name: <%= collection.escape("name") %>, count: <%= collection.escape("collects_count") %></li>
+    <li class="collection-item" data-id="<%= collection.id %>">Collection name: <%= collection.escape("name") %>, count: <%= collection.escape("collects_count") %></li>
   <% }); %>
 </ul>
 <% } %>
