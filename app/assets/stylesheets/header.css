@@ -16,20 +16,16 @@ header {
   padding: 5px;
   display: block;
   background: #2d8;
-  position: relative;
 }
 .group:after {
   content: "";
   display: block;
-  clear:both;
+  clear: both;
 }
 h3 {
   float:left;
   font-size: 14px;
-  padding: 5px;
-  position: absolute;
-  bottom: -10px;
-  left: 100px;
+  margin: 5px 10px;
 }
 .logo {
   float: left;
