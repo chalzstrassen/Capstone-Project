@@ -2,7 +2,7 @@ class Collection < ActiveRecord::Base
   validates :user_id, :name, :description, presence: true
 
   belongs_to :user
-  has_many :collects
+  has_many :collects, dependent: :destroy
   has_many :books, through: :collects, source: :book
 
   def add_book(book)

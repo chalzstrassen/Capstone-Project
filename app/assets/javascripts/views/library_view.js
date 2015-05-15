@@ -34,9 +34,6 @@ Enwritt.Views.LibraryView = Backbone.CompositeView.extend({
     this.addSubview('#authored-books', authBooksView);
   },
 
-  removeViews: function (event) {
-    
-  },
   render: function () {
     var content = this.template();
     this.$el.html(content);

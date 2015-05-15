@@ -1,0 +1,23 @@
+<% if (collection.isNew()) { %>
+<h1 class="tab">Create a Collection</h1>
+<% } else { %>
+<h1 class="tab"><%= collection.escape("name") %></h1>
+<% } %>
+<form id="collection-form">
+  <label>Name
+  <input class="form-text"
+    type="text"
+    value="<%= collection.escape("name") %>">
+  </label><br>
+  <label>Description
+    <textarea class="form-textarea" disabled>
+      <%= collection.escape("description") %>
+    </textarea>
+  </label>
+  <% if (collection.isNew()) { %>
+  <button class="collection-button">Create</button>
+  <% } else { %>
+  <button class="collection-delete">Delete</button>
+  <button class="collection-button">Update</button>
+  <% } %>
+</form>
