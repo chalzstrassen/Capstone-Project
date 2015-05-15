@@ -32719,3 +32719,1053 @@ Completed 200 OK in 135ms (Views: 134.7ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/assets/header.self-1f11abe452e6eb937a044a051d58862241000e60953d9936e4ca74a6d146c031.css?body=1" for ::1 at 2015-05-15 15:16:25 -0400
+
+
+Started GET "/" for ::1 at 2015-05-15 15:22:40 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by StaticPagesController#root as HTML
+Redirected to http://localhost:3000/session/new
+Filter chain halted as :require_signed_in! rendered or redirected
+Completed 302 Found in 9ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/session/new" for ::1 at 2015-05-15 15:22:40 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (1.9ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+Completed 200 OK in 336ms (Views: 335.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/session" for ::1 at 2015-05-15 15:22:59 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"v1WplRGSHP+6x4fWueFoqA+zlMwK8hiKFbGDpEliyJGVfIoIWp6w2WtAxtCqdhXgulqyH4TzvR1A1RL+eVmo4Q==", "user"=>{"email"=>"jill@yahoo.com", "password"=>"[FILTERED]"}}
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "jill@yahoo.com"]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.6ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'H7kuIn+FruQPaZRMuYdqwg==' AND "users"."id" != 2) LIMIT 1
+  [1m[36mUser Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."email" = 'jill@yahoo.com' AND "users"."id" != 2) LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_token", "H7kuIn+FruQPaZRMuYdqwg=="], ["updated_at", "2015-05-15 19:22:59.736972"], ["id", 2]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 120ms (ActiveRecord: 7.3ms)
+
+
+Started GET "/" for ::1 at 2015-05-15 15:22:59 -0400
+Processing by StaticPagesController#root as HTML
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "H7kuIn+FruQPaZRMuYdqwg=="]]
+  Rendered layouts/_header.html.erb (2.5ms)
+Completed 200 OK in 95ms (Views: 93.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/collections" for ::1 at 2015-05-15 15:22:59 -0400
+Processing by Api::CollectionsController#index as JSON
+  [1m[36mUser Load (8.8ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "H7kuIn+FruQPaZRMuYdqwg=="]]
+  [1m[35mCollection Load (0.8ms)[0m  SELECT "collections".* FROM "collections" WHERE "collections"."user_id" = $1  [["user_id", 2]]
+  Rendered api/collections/index.json.jbuilder (93.6ms)
+Completed 200 OK in 140ms (Views: 94.4ms | ActiveRecord: 11.6ms)
+
+
+Started GET "/api/books" for ::1 at 2015-05-15 15:23:00 -0400
+Processing by Api::BooksController#index as JSON
+  [1m[36mBook Load (1.1ms)[0m  [1mSELECT "books".* FROM "books"[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "H7kuIn+FruQPaZRMuYdqwg=="]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered api/books/index.json.jbuilder (15.5ms)
+Completed 200 OK in 22ms (Views: 15.1ms | ActiveRecord: 4.1ms)
+
+
+Started GET "/api/authored" for ::1 at 2015-05-15 15:23:00 -0400
+Processing by Api::BooksController#authored as JSON
+  [1m[35mUser Load (1.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "H7kuIn+FruQPaZRMuYdqwg=="]]
+  [1m[36mBook Load (0.3ms)[0m  [1mSELECT "books".* FROM "books" WHERE "books"."author_id" = $1[0m  [["author_id", 2]]
+  Rendered api/books/authored.json.jbuilder (2.4ms)
+Completed 200 OK in 11ms (Views: 5.1ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/" for ::1 at 2015-05-15 15:29:49 -0400
+Processing by StaticPagesController#root as HTML
+  Rendered static_pages/root.html.erb within layouts/application (0.1ms)
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "H7kuIn+FruQPaZRMuYdqwg=="]]
+  Rendered layouts/_header.html.erb (1.7ms)
+Completed 200 OK in 250ms (Views: 249.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/header.self-1f11abe452e6eb937a044a051d58862241000e60953d9936e4ca74a6d146c031.css?body=1" for ::1 at 2015-05-15 15:29:49 -0400
+
+
+Started GET "/assets/jquery.serializejson.self-c480e85ec7f2b02efd59ab693b310ece9aaac9ce35b2b7f9fc817a27d5ee0a79.js?body=1" for ::1 at 2015-05-15 15:29:49 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for ::1 at 2015-05-15 15:29:49 -0400
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2015-05-15 15:29:49 -0400
+
+
+Started GET "/assets/main.self-784c720ca6677e7afaf47178db0304a48b9bbe48b86050d07f02eda206ecc8c6.css?body=1" for ::1 at 2015-05-15 15:29:49 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for ::1 at 2015-05-15 15:29:49 -0400
+
+
+Started GET "/assets/underscore.self-7752a8498b0c515609cfb1c62bbf3e50cc27fce6445e6f00283b1ef344283aa1.js?body=1" for ::1 at 2015-05-15 15:29:49 -0400
+
+
+Started GET "/assets/backbone.self-f5f741e7991113473236eb4da601cd50b44bdaea52f3b792a481c588bcd901a4.js?body=1" for ::1 at 2015-05-15 15:29:49 -0400
+
+
+Started GET "/assets/backbone.modaldialog.self-c687f9358a6687fac9e382fa0edec391f1f2f779781b5febeaa4a99a8aac18df.js?body=1" for ::1 at 2015-05-15 15:29:49 -0400
+
+
+Started GET "/assets/enwritt_app.self-3f79f630f8fc0bcaeddfbf73b4ba52dea5931afe7a0a842b971caf672621ff26.js?body=1" for ::1 at 2015-05-15 15:29:49 -0400
+
+
+Started GET "/assets/books/authbooks.self-d4ad85a0918b15a96f6b8637af23ec2a706f69c7ebd5da294717ae481e18bde8.js?body=1" for ::1 at 2015-05-15 15:29:49 -0400
+
+
+Started GET "/assets/books.self-cf9a9de31c99c71fe4640a654fd9007f4fc8735a8c6d7b3d0aba4835b5a03a44.js?body=1" for ::1 at 2015-05-15 15:29:49 -0400
+
+
+Started GET "/assets/collections/form.self-bee8f2e6ab56d7f873455c91569c5fbf1f10a9a7b931762a55502909c24de8c6.js?body=1" for ::1 at 2015-05-15 15:29:49 -0400
+
+
+Started GET "/assets/collections.self-77f7c57e324e3c103ff5493c804f800016ac79e8b7197a6694e4dbc9ca198446.js?body=1" for ::1 at 2015-05-15 15:29:49 -0400
+
+
+Started GET "/assets/shared/library.self-ea7d238ceae22c9d0b318cd19ceb8d7fb9d58015dbd6fcf980cf4acd9f20510f.js?body=1" for ::1 at 2015-05-15 15:29:49 -0400
+
+
+Started GET "/assets/models/book.self-540b3776ced0516ee2becbc4b55a4a248e4cecef208e8c4d7f654fa9a7bab730.js?body=1" for ::1 at 2015-05-15 15:29:49 -0400
+
+
+Started GET "/assets/models/collection.self-2e3ca035d43ee364a899436e9b0cdd49c2c42aaa73d2fed753836567958dec89.js?body=1" for ::1 at 2015-05-15 15:29:49 -0400
+
+
+Started GET "/assets/utils/composite_view.self-f66b6c655266c80542f8c00a4d7dd95d165b76b75795c186b1b0dc9cfa1fb799.js?body=1" for ::1 at 2015-05-15 15:29:49 -0400
+
+
+Started GET "/assets/collections/auth_books.self-b95f56b6325db785f57a6c647cb32c6c7e4ed216aa26d6c660ed67f7d1bc3aae.js?body=1" for ::1 at 2015-05-15 15:29:49 -0400
+
+
+Started GET "/assets/collections/books.self-b8c9de9df7655b197b6e825464f901b03661f6d47e7ea87c44cd4335c0002035.js?body=1" for ::1 at 2015-05-15 15:29:49 -0400
+
+
+Started GET "/assets/collections/collections.self-8e5284eeb5946679d7cb54e0293a20c0779c80b67c544c4baa351fcde5c95308.js?body=1" for ::1 at 2015-05-15 15:29:49 -0400
+
+
+Started GET "/assets/views/books/authbooks_view.self-0dda2dca0082194e5e18f463df0a8949847f4e3e95cbcf44a7f1f9dd916d1150.js?body=1" for ::1 at 2015-05-15 15:29:49 -0400
+
+
+Started GET "/assets/views/books/books_index.self-ff7d4058579ba3713cb3df3cbc4bcd33f05541e79771a4b5af4fbf41883d5264.js?body=1" for ::1 at 2015-05-15 15:29:49 -0400
+
+
+Started GET "/assets/views/collections/coll_form_view.self-0a77b2b80b9d74749b28f1758a31ed01543bb7c95431b686397801e28f8c320e.js?body=1" for ::1 at 2015-05-15 15:29:49 -0400
+
+
+Started GET "/assets/views/collections/collections_index.self-7bb1816722337eccf48607acf57cb0511ea66993a07b20eb56785a450bfd235f.js?body=1" for ::1 at 2015-05-15 15:29:49 -0400
+
+
+Started GET "/assets/views/library_view.self-38c22c359b9ce2171f19b02541c8071473bdf33cf44ef5eb04d39bf42ee9af1b.js?body=1" for ::1 at 2015-05-15 15:29:49 -0400
+
+
+Started GET "/assets/routers/router.self-8b25a73e301e3b773d8cabee79262fa91befa0268c2d792849216ea2c6ac12bb.js?body=1" for ::1 at 2015-05-15 15:29:49 -0400
+
+
+Started GET "/assets/sessions.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for ::1 at 2015-05-15 15:29:49 -0400
+
+
+Started GET "/assets/static_pages.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for ::1 at 2015-05-15 15:29:49 -0400
+
+
+Started GET "/assets/users.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for ::1 at 2015-05-15 15:29:49 -0400
+
+
+Started GET "/assets/application.self-e088abdec24c652728c331cc53f5d2286e096b6080fa2bacfba79c56847e932e.js?body=1" for ::1 at 2015-05-15 15:29:49 -0400
+
+
+Started GET "/api/collections" for ::1 at 2015-05-15 15:29:49 -0400
+Processing by Api::CollectionsController#index as JSON
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "H7kuIn+FruQPaZRMuYdqwg=="]]
+  [1m[35mCollection Load (2.8ms)[0m  SELECT "collections".* FROM "collections" WHERE "collections"."user_id" = $1  [["user_id", 2]]
+  Rendered api/collections/index.json.jbuilder (4.8ms)
+Completed 200 OK in 11ms (Views: 4.3ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/api/books" for ::1 at 2015-05-15 15:29:49 -0400
+Processing by Api::BooksController#index as JSON
+  [1m[36mBook Load (0.5ms)[0m  [1mSELECT "books".* FROM "books"[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "H7kuIn+FruQPaZRMuYdqwg=="]]
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered api/books/index.json.jbuilder (8.1ms)
+Completed 200 OK in 16ms (Views: 11.1ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/api/authored" for ::1 at 2015-05-15 15:29:49 -0400
+Processing by Api::BooksController#authored as JSON
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "H7kuIn+FruQPaZRMuYdqwg=="]]
+  [1m[36mBook Load (0.4ms)[0m  [1mSELECT "books".* FROM "books" WHERE "books"."author_id" = $1[0m  [["author_id", 2]]
+  Rendered api/books/authored.json.jbuilder (1.0ms)
+Completed 200 OK in 5ms (Views: 2.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for ::1 at 2015-05-15 15:30:29 -0400
+Processing by StaticPagesController#root as HTML
+  Rendered static_pages/root.html.erb within layouts/application (0.0ms)
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "H7kuIn+FruQPaZRMuYdqwg=="]]
+  Rendered layouts/_header.html.erb (1.0ms)
+Completed 200 OK in 214ms (Views: 213.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/main.self-784c720ca6677e7afaf47178db0304a48b9bbe48b86050d07f02eda206ecc8c6.css?body=1" for ::1 at 2015-05-15 15:30:29 -0400
+
+
+Started GET "/assets/header.self-1f11abe452e6eb937a044a051d58862241000e60953d9936e4ca74a6d146c031.css?body=1" for ::1 at 2015-05-15 15:30:29 -0400
+
+
+Started GET "/assets/jquery.serializejson.self-c480e85ec7f2b02efd59ab693b310ece9aaac9ce35b2b7f9fc817a27d5ee0a79.js?body=1" for ::1 at 2015-05-15 15:30:29 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for ::1 at 2015-05-15 15:30:29 -0400
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2015-05-15 15:30:29 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for ::1 at 2015-05-15 15:30:29 -0400
+
+
+Started GET "/assets/underscore.self-7752a8498b0c515609cfb1c62bbf3e50cc27fce6445e6f00283b1ef344283aa1.js?body=1" for ::1 at 2015-05-15 15:30:29 -0400
+
+
+Started GET "/assets/backbone.self-f5f741e7991113473236eb4da601cd50b44bdaea52f3b792a481c588bcd901a4.js?body=1" for ::1 at 2015-05-15 15:30:29 -0400
+
+
+Started GET "/assets/backbone.modaldialog.self-c687f9358a6687fac9e382fa0edec391f1f2f779781b5febeaa4a99a8aac18df.js?body=1" for ::1 at 2015-05-15 15:30:29 -0400
+
+
+Started GET "/assets/enwritt_app.self-3f79f630f8fc0bcaeddfbf73b4ba52dea5931afe7a0a842b971caf672621ff26.js?body=1" for ::1 at 2015-05-15 15:30:29 -0400
+
+
+Started GET "/assets/books/authbooks.self-d4ad85a0918b15a96f6b8637af23ec2a706f69c7ebd5da294717ae481e18bde8.js?body=1" for ::1 at 2015-05-15 15:30:29 -0400
+
+
+Started GET "/assets/books.self-cf9a9de31c99c71fe4640a654fd9007f4fc8735a8c6d7b3d0aba4835b5a03a44.js?body=1" for ::1 at 2015-05-15 15:30:29 -0400
+
+
+Started GET "/assets/collections/form.self-bee8f2e6ab56d7f873455c91569c5fbf1f10a9a7b931762a55502909c24de8c6.js?body=1" for ::1 at 2015-05-15 15:30:29 -0400
+
+
+Started GET "/assets/collections.self-77f7c57e324e3c103ff5493c804f800016ac79e8b7197a6694e4dbc9ca198446.js?body=1" for ::1 at 2015-05-15 15:30:29 -0400
+
+
+Started GET "/assets/shared/library.self-ea7d238ceae22c9d0b318cd19ceb8d7fb9d58015dbd6fcf980cf4acd9f20510f.js?body=1" for ::1 at 2015-05-15 15:30:29 -0400
+
+
+Started GET "/assets/models/book.self-540b3776ced0516ee2becbc4b55a4a248e4cecef208e8c4d7f654fa9a7bab730.js?body=1" for ::1 at 2015-05-15 15:30:29 -0400
+
+
+Started GET "/assets/models/collection.self-2e3ca035d43ee364a899436e9b0cdd49c2c42aaa73d2fed753836567958dec89.js?body=1" for ::1 at 2015-05-15 15:30:29 -0400
+
+
+Started GET "/assets/utils/composite_view.self-f66b6c655266c80542f8c00a4d7dd95d165b76b75795c186b1b0dc9cfa1fb799.js?body=1" for ::1 at 2015-05-15 15:30:29 -0400
+
+
+Started GET "/assets/collections/auth_books.self-b95f56b6325db785f57a6c647cb32c6c7e4ed216aa26d6c660ed67f7d1bc3aae.js?body=1" for ::1 at 2015-05-15 15:30:29 -0400
+
+
+Started GET "/assets/collections/books.self-b8c9de9df7655b197b6e825464f901b03661f6d47e7ea87c44cd4335c0002035.js?body=1" for ::1 at 2015-05-15 15:30:29 -0400
+
+
+Started GET "/assets/collections/collections.self-8e5284eeb5946679d7cb54e0293a20c0779c80b67c544c4baa351fcde5c95308.js?body=1" for ::1 at 2015-05-15 15:30:29 -0400
+
+
+Started GET "/assets/views/books/authbooks_view.self-0dda2dca0082194e5e18f463df0a8949847f4e3e95cbcf44a7f1f9dd916d1150.js?body=1" for ::1 at 2015-05-15 15:30:30 -0400
+
+
+Started GET "/assets/views/books/books_index.self-ff7d4058579ba3713cb3df3cbc4bcd33f05541e79771a4b5af4fbf41883d5264.js?body=1" for ::1 at 2015-05-15 15:30:30 -0400
+
+
+Started GET "/assets/views/collections/coll_form_view.self-a4e4ad9ef8654dfe3ed7e5bac5ec9cea5be6f7fc8f004b8d72320fb0dc16ecf8.js?body=1" for ::1 at 2015-05-15 15:30:30 -0400
+
+
+Started GET "/assets/routers/router.self-8b25a73e301e3b773d8cabee79262fa91befa0268c2d792849216ea2c6ac12bb.js?body=1" for ::1 at 2015-05-15 15:30:30 -0400
+
+
+Started GET "/assets/views/library_view.self-38c22c359b9ce2171f19b02541c8071473bdf33cf44ef5eb04d39bf42ee9af1b.js?body=1" for ::1 at 2015-05-15 15:30:30 -0400
+
+
+Started GET "/assets/views/collections/collections_index.self-7bb1816722337eccf48607acf57cb0511ea66993a07b20eb56785a450bfd235f.js?body=1" for ::1 at 2015-05-15 15:30:30 -0400
+
+
+Started GET "/assets/sessions.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for ::1 at 2015-05-15 15:30:30 -0400
+
+
+Started GET "/assets/static_pages.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for ::1 at 2015-05-15 15:30:30 -0400
+
+
+Started GET "/assets/users.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for ::1 at 2015-05-15 15:30:30 -0400
+
+
+Started GET "/assets/application.self-e088abdec24c652728c331cc53f5d2286e096b6080fa2bacfba79c56847e932e.js?body=1" for ::1 at 2015-05-15 15:30:30 -0400
+
+
+Started GET "/api/collections" for ::1 at 2015-05-15 15:30:30 -0400
+Processing by Api::CollectionsController#index as JSON
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "H7kuIn+FruQPaZRMuYdqwg=="]]
+  [1m[35mCollection Load (3.8ms)[0m  SELECT "collections".* FROM "collections" WHERE "collections"."user_id" = $1  [["user_id", 2]]
+  Rendered api/collections/index.json.jbuilder (6.0ms)
+Completed 200 OK in 30ms (Views: 18.2ms | ActiveRecord: 4.5ms)
+
+
+Started GET "/api/books" for ::1 at 2015-05-15 15:30:30 -0400
+Processing by Api::BooksController#index as JSON
+  [1m[36mBook Load (0.9ms)[0m  [1mSELECT "books".* FROM "books"[0m
+  [1m[35mUser Load (0.8ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "H7kuIn+FruQPaZRMuYdqwg=="]]
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered api/books/index.json.jbuilder (10.6ms)
+Completed 200 OK in 16ms (Views: 12.3ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/api/authored" for ::1 at 2015-05-15 15:30:30 -0400
+Processing by Api::BooksController#authored as JSON
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "H7kuIn+FruQPaZRMuYdqwg=="]]
+  [1m[36mBook Load (0.3ms)[0m  [1mSELECT "books".* FROM "books" WHERE "books"."author_id" = $1[0m  [["author_id", 2]]
+  Rendered api/books/authored.json.jbuilder (1.0ms)
+Completed 200 OK in 4ms (Views: 2.3ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/api/collections" for ::1 at 2015-05-15 15:30:50 -0400
+Processing by Api::CollectionsController#create as JSON
+  Parameters: {"name"=>"mo funzone", "description"=>"These books are very fun to read\r\n      \r\n    ", "collection"=>{"name"=>"mo funzone", "description"=>"These books are very fun to read\r\n      \r\n    "}}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "H7kuIn+FruQPaZRMuYdqwg=="]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "collections" ("name", "description", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["name", "mo funzone"], ["description", "These books are very fun to read\r\n      \r\n    "], ["user_id", 2], ["created_at", "2015-05-15 19:30:50.301227"], ["updated_at", "2015-05-15 19:30:50.301227"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 7ms (Views: 0.4ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/api/collections" for ::1 at 2015-05-15 15:30:50 -0400
+Processing by Api::CollectionsController#index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "H7kuIn+FruQPaZRMuYdqwg=="]]
+  [1m[36mCollection Load (1.7ms)[0m  [1mSELECT "collections".* FROM "collections" WHERE "collections"."user_id" = $1[0m  [["user_id", 2]]
+  Rendered api/collections/index.json.jbuilder (4.5ms)
+Completed 200 OK in 11ms (Views: 6.1ms | ActiveRecord: 2.1ms)
+  [1m[36mCollection Load (1.3ms)[0m  [1mSELECT "collections".* FROM "collections"[0m
+
+
+Started DELETE "/session" for ::1 at 2015-05-15 15:32:19 -0400
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"BR/7gxm3sj4Z7zxPosG0+4Doc4AScSN4hj0PlffmwDMvNtgeUrseGMhofUmxVsmzNQFVU5xwhu/TWZ7Px92gQw=="}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "H7kuIn+FruQPaZRMuYdqwg=="]]
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 3ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/session/new" for ::1 at 2015-05-15 15:32:19 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+Completed 200 OK in 104ms (Views: 103.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/header.self-1f11abe452e6eb937a044a051d58862241000e60953d9936e4ca74a6d146c031.css?body=1" for ::1 at 2015-05-15 15:32:19 -0400
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2015-05-15 15:32:19 -0400
+
+
+Started GET "/assets/jquery.serializejson.self-c480e85ec7f2b02efd59ab693b310ece9aaac9ce35b2b7f9fc817a27d5ee0a79.js?body=1" for ::1 at 2015-05-15 15:32:19 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for ::1 at 2015-05-15 15:32:19 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for ::1 at 2015-05-15 15:32:19 -0400
+
+
+Started GET "/assets/main.self-784c720ca6677e7afaf47178db0304a48b9bbe48b86050d07f02eda206ecc8c6.css?body=1" for ::1 at 2015-05-15 15:32:19 -0400
+
+
+Started GET "/assets/underscore.self-7752a8498b0c515609cfb1c62bbf3e50cc27fce6445e6f00283b1ef344283aa1.js?body=1" for ::1 at 2015-05-15 15:32:19 -0400
+
+
+Started GET "/assets/backbone.self-f5f741e7991113473236eb4da601cd50b44bdaea52f3b792a481c588bcd901a4.js?body=1" for ::1 at 2015-05-15 15:32:19 -0400
+
+
+Started GET "/assets/backbone.modaldialog.self-c687f9358a6687fac9e382fa0edec391f1f2f779781b5febeaa4a99a8aac18df.js?body=1" for ::1 at 2015-05-15 15:32:19 -0400
+
+
+Started GET "/assets/enwritt_app.self-3f79f630f8fc0bcaeddfbf73b4ba52dea5931afe7a0a842b971caf672621ff26.js?body=1" for ::1 at 2015-05-15 15:32:19 -0400
+
+
+Started GET "/assets/books/authbooks.self-d4ad85a0918b15a96f6b8637af23ec2a706f69c7ebd5da294717ae481e18bde8.js?body=1" for ::1 at 2015-05-15 15:32:19 -0400
+
+
+Started GET "/assets/books.self-cf9a9de31c99c71fe4640a654fd9007f4fc8735a8c6d7b3d0aba4835b5a03a44.js?body=1" for ::1 at 2015-05-15 15:32:19 -0400
+
+
+Started GET "/assets/collections/form.self-bee8f2e6ab56d7f873455c91569c5fbf1f10a9a7b931762a55502909c24de8c6.js?body=1" for ::1 at 2015-05-15 15:32:19 -0400
+
+
+Started GET "/assets/collections.self-77f7c57e324e3c103ff5493c804f800016ac79e8b7197a6694e4dbc9ca198446.js?body=1" for ::1 at 2015-05-15 15:32:19 -0400
+
+
+Started GET "/assets/shared/library.self-ea7d238ceae22c9d0b318cd19ceb8d7fb9d58015dbd6fcf980cf4acd9f20510f.js?body=1" for ::1 at 2015-05-15 15:32:19 -0400
+
+
+Started GET "/assets/models/book.self-540b3776ced0516ee2becbc4b55a4a248e4cecef208e8c4d7f654fa9a7bab730.js?body=1" for ::1 at 2015-05-15 15:32:19 -0400
+
+
+Started GET "/assets/models/collection.self-2e3ca035d43ee364a899436e9b0cdd49c2c42aaa73d2fed753836567958dec89.js?body=1" for ::1 at 2015-05-15 15:32:19 -0400
+
+
+Started GET "/assets/utils/composite_view.self-f66b6c655266c80542f8c00a4d7dd95d165b76b75795c186b1b0dc9cfa1fb799.js?body=1" for ::1 at 2015-05-15 15:32:19 -0400
+
+
+Started GET "/assets/collections/auth_books.self-b95f56b6325db785f57a6c647cb32c6c7e4ed216aa26d6c660ed67f7d1bc3aae.js?body=1" for ::1 at 2015-05-15 15:32:19 -0400
+
+
+Started GET "/assets/collections/books.self-b8c9de9df7655b197b6e825464f901b03661f6d47e7ea87c44cd4335c0002035.js?body=1" for ::1 at 2015-05-15 15:32:19 -0400
+
+
+Started GET "/assets/collections/collections.self-8e5284eeb5946679d7cb54e0293a20c0779c80b67c544c4baa351fcde5c95308.js?body=1" for ::1 at 2015-05-15 15:32:20 -0400
+
+
+Started GET "/assets/views/books/authbooks_view.self-0dda2dca0082194e5e18f463df0a8949847f4e3e95cbcf44a7f1f9dd916d1150.js?body=1" for ::1 at 2015-05-15 15:32:20 -0400
+
+
+Started GET "/assets/views/books/books_index.self-ff7d4058579ba3713cb3df3cbc4bcd33f05541e79771a4b5af4fbf41883d5264.js?body=1" for ::1 at 2015-05-15 15:32:20 -0400
+
+
+Started GET "/assets/views/collections/coll_form_view.self-a4e4ad9ef8654dfe3ed7e5bac5ec9cea5be6f7fc8f004b8d72320fb0dc16ecf8.js?body=1" for ::1 at 2015-05-15 15:32:20 -0400
+
+
+Started GET "/assets/views/collections/collections_index.self-7bb1816722337eccf48607acf57cb0511ea66993a07b20eb56785a450bfd235f.js?body=1" for ::1 at 2015-05-15 15:32:20 -0400
+
+
+Started GET "/assets/views/library_view.self-38c22c359b9ce2171f19b02541c8071473bdf33cf44ef5eb04d39bf42ee9af1b.js?body=1" for ::1 at 2015-05-15 15:32:20 -0400
+
+
+Started GET "/assets/routers/router.self-8b25a73e301e3b773d8cabee79262fa91befa0268c2d792849216ea2c6ac12bb.js?body=1" for ::1 at 2015-05-15 15:32:20 -0400
+
+
+Started GET "/assets/sessions.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for ::1 at 2015-05-15 15:32:20 -0400
+
+
+Started GET "/assets/static_pages.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for ::1 at 2015-05-15 15:32:20 -0400
+
+
+Started GET "/assets/users.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for ::1 at 2015-05-15 15:32:20 -0400
+
+
+Started GET "/assets/application.self-e088abdec24c652728c331cc53f5d2286e096b6080fa2bacfba79c56847e932e.js?body=1" for ::1 at 2015-05-15 15:32:20 -0400
+
+
+Started GET "/session/new" for ::1 at 2015-05-15 15:35:52 -0400
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (0.2ms)
+  Rendered layouts/_header.html.erb (0.2ms)
+Completed 200 OK in 101ms (Views: 100.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/header.self-1f11abe452e6eb937a044a051d58862241000e60953d9936e4ca74a6d146c031.css?body=1" for ::1 at 2015-05-15 15:35:52 -0400
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2015-05-15 15:35:53 -0400
+
+
+Started GET "/assets/main.self-784c720ca6677e7afaf47178db0304a48b9bbe48b86050d07f02eda206ecc8c6.css?body=1" for ::1 at 2015-05-15 15:35:53 -0400
+
+
+Started GET "/assets/jquery.serializejson.self-c480e85ec7f2b02efd59ab693b310ece9aaac9ce35b2b7f9fc817a27d5ee0a79.js?body=1" for ::1 at 2015-05-15 15:35:53 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for ::1 at 2015-05-15 15:35:53 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for ::1 at 2015-05-15 15:35:53 -0400
+
+
+Started GET "/assets/underscore.self-7752a8498b0c515609cfb1c62bbf3e50cc27fce6445e6f00283b1ef344283aa1.js?body=1" for ::1 at 2015-05-15 15:35:53 -0400
+
+
+Started GET "/assets/backbone.self-f5f741e7991113473236eb4da601cd50b44bdaea52f3b792a481c588bcd901a4.js?body=1" for ::1 at 2015-05-15 15:35:53 -0400
+
+
+Started GET "/assets/backbone.modaldialog.self-c687f9358a6687fac9e382fa0edec391f1f2f779781b5febeaa4a99a8aac18df.js?body=1" for ::1 at 2015-05-15 15:35:53 -0400
+
+
+Started GET "/assets/enwritt_app.self-3f79f630f8fc0bcaeddfbf73b4ba52dea5931afe7a0a842b971caf672621ff26.js?body=1" for ::1 at 2015-05-15 15:35:53 -0400
+
+
+Started GET "/assets/books/authbooks.self-d4ad85a0918b15a96f6b8637af23ec2a706f69c7ebd5da294717ae481e18bde8.js?body=1" for ::1 at 2015-05-15 15:35:53 -0400
+
+
+Started GET "/assets/books.self-cf9a9de31c99c71fe4640a654fd9007f4fc8735a8c6d7b3d0aba4835b5a03a44.js?body=1" for ::1 at 2015-05-15 15:35:53 -0400
+
+
+Started GET "/assets/collections/form.self-bee8f2e6ab56d7f873455c91569c5fbf1f10a9a7b931762a55502909c24de8c6.js?body=1" for ::1 at 2015-05-15 15:35:53 -0400
+
+
+Started GET "/assets/collections.self-77f7c57e324e3c103ff5493c804f800016ac79e8b7197a6694e4dbc9ca198446.js?body=1" for ::1 at 2015-05-15 15:35:53 -0400
+
+
+Started GET "/assets/shared/library.self-ea7d238ceae22c9d0b318cd19ceb8d7fb9d58015dbd6fcf980cf4acd9f20510f.js?body=1" for ::1 at 2015-05-15 15:35:53 -0400
+
+
+Started GET "/assets/models/book.self-540b3776ced0516ee2becbc4b55a4a248e4cecef208e8c4d7f654fa9a7bab730.js?body=1" for ::1 at 2015-05-15 15:35:53 -0400
+
+
+Started GET "/assets/models/collection.self-2e3ca035d43ee364a899436e9b0cdd49c2c42aaa73d2fed753836567958dec89.js?body=1" for ::1 at 2015-05-15 15:35:53 -0400
+
+
+Started GET "/assets/utils/composite_view.self-f66b6c655266c80542f8c00a4d7dd95d165b76b75795c186b1b0dc9cfa1fb799.js?body=1" for ::1 at 2015-05-15 15:35:53 -0400
+
+
+Started GET "/assets/collections/auth_books.self-b95f56b6325db785f57a6c647cb32c6c7e4ed216aa26d6c660ed67f7d1bc3aae.js?body=1" for ::1 at 2015-05-15 15:35:53 -0400
+
+
+Started GET "/assets/collections/books.self-b8c9de9df7655b197b6e825464f901b03661f6d47e7ea87c44cd4335c0002035.js?body=1" for ::1 at 2015-05-15 15:35:53 -0400
+
+
+Started GET "/assets/collections/collections.self-8e5284eeb5946679d7cb54e0293a20c0779c80b67c544c4baa351fcde5c95308.js?body=1" for ::1 at 2015-05-15 15:35:53 -0400
+
+
+Started GET "/assets/views/books/authbooks_view.self-0dda2dca0082194e5e18f463df0a8949847f4e3e95cbcf44a7f1f9dd916d1150.js?body=1" for ::1 at 2015-05-15 15:35:53 -0400
+
+
+Started GET "/assets/views/books/books_index.self-ff7d4058579ba3713cb3df3cbc4bcd33f05541e79771a4b5af4fbf41883d5264.js?body=1" for ::1 at 2015-05-15 15:35:53 -0400
+
+
+Started GET "/assets/views/collections/coll_form_view.self-a4e4ad9ef8654dfe3ed7e5bac5ec9cea5be6f7fc8f004b8d72320fb0dc16ecf8.js?body=1" for ::1 at 2015-05-15 15:35:53 -0400
+
+
+Started GET "/assets/views/library_view.self-38c22c359b9ce2171f19b02541c8071473bdf33cf44ef5eb04d39bf42ee9af1b.js?body=1" for ::1 at 2015-05-15 15:35:53 -0400
+
+
+Started GET "/assets/views/collections/collections_index.self-7bb1816722337eccf48607acf57cb0511ea66993a07b20eb56785a450bfd235f.js?body=1" for ::1 at 2015-05-15 15:35:53 -0400
+
+
+Started GET "/assets/routers/router.self-8b25a73e301e3b773d8cabee79262fa91befa0268c2d792849216ea2c6ac12bb.js?body=1" for ::1 at 2015-05-15 15:35:53 -0400
+
+
+Started GET "/assets/sessions.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for ::1 at 2015-05-15 15:35:53 -0400
+
+
+Started GET "/assets/static_pages.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for ::1 at 2015-05-15 15:35:53 -0400
+
+
+Started GET "/assets/users.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for ::1 at 2015-05-15 15:35:53 -0400
+
+
+Started GET "/assets/application.self-e088abdec24c652728c331cc53f5d2286e096b6080fa2bacfba79c56847e932e.js?body=1" for ::1 at 2015-05-15 15:35:53 -0400
+
+
+Started POST "/session" for ::1 at 2015-05-15 15:35:58 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"+UH7qU9IfxcnF5cGEeyG8sb7PE4Gs/HqmVBqdWz+WUfTaNg0BETTMfaQ1gACe/u6cxIanYiyVH3MNPsvXMU5Nw==", "user"=>{"email"=>"jack@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1[0m  [["email", "jack@gmail.com"]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'oIqC9aZIkGt660RlTZPN+Q==' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mUser Exists (0.9ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."email" = 'jack@gmail.com' AND "users"."id" != 1) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "oIqC9aZIkGt660RlTZPN+Q=="], ["updated_at", "2015-05-15 19:35:58.234728"], ["id", 1]]
+  [1m[35m (0.5ms)[0m  COMMIT
+Redirected to http://localhost:3000/
+Completed 302 Found in 85ms (ActiveRecord: 3.1ms)
+
+
+Started GET "/" for ::1 at 2015-05-15 15:35:58 -0400
+Processing by StaticPagesController#root as HTML
+  Rendered static_pages/root.html.erb within layouts/application (0.1ms)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "oIqC9aZIkGt660RlTZPN+Q=="]]
+  Rendered layouts/_header.html.erb (1.0ms)
+Completed 200 OK in 110ms (Views: 108.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/header.self-1f11abe452e6eb937a044a051d58862241000e60953d9936e4ca74a6d146c031.css?body=1" for ::1 at 2015-05-15 15:35:58 -0400
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2015-05-15 15:35:58 -0400
+
+
+Started GET "/assets/main.self-784c720ca6677e7afaf47178db0304a48b9bbe48b86050d07f02eda206ecc8c6.css?body=1" for ::1 at 2015-05-15 15:35:58 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for ::1 at 2015-05-15 15:35:58 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for ::1 at 2015-05-15 15:35:58 -0400
+
+
+Started GET "/assets/jquery.serializejson.self-c480e85ec7f2b02efd59ab693b310ece9aaac9ce35b2b7f9fc817a27d5ee0a79.js?body=1" for ::1 at 2015-05-15 15:35:58 -0400
+
+
+Started GET "/assets/underscore.self-7752a8498b0c515609cfb1c62bbf3e50cc27fce6445e6f00283b1ef344283aa1.js?body=1" for ::1 at 2015-05-15 15:35:58 -0400
+
+
+Started GET "/assets/backbone.self-f5f741e7991113473236eb4da601cd50b44bdaea52f3b792a481c588bcd901a4.js?body=1" for ::1 at 2015-05-15 15:35:58 -0400
+
+
+Started GET "/assets/backbone.modaldialog.self-c687f9358a6687fac9e382fa0edec391f1f2f779781b5febeaa4a99a8aac18df.js?body=1" for ::1 at 2015-05-15 15:35:58 -0400
+
+
+Started GET "/assets/enwritt_app.self-3f79f630f8fc0bcaeddfbf73b4ba52dea5931afe7a0a842b971caf672621ff26.js?body=1" for ::1 at 2015-05-15 15:35:58 -0400
+
+
+Started GET "/assets/books/authbooks.self-d4ad85a0918b15a96f6b8637af23ec2a706f69c7ebd5da294717ae481e18bde8.js?body=1" for ::1 at 2015-05-15 15:35:58 -0400
+
+
+Started GET "/assets/books.self-cf9a9de31c99c71fe4640a654fd9007f4fc8735a8c6d7b3d0aba4835b5a03a44.js?body=1" for ::1 at 2015-05-15 15:35:58 -0400
+
+
+Started GET "/assets/collections/form.self-bee8f2e6ab56d7f873455c91569c5fbf1f10a9a7b931762a55502909c24de8c6.js?body=1" for ::1 at 2015-05-15 15:35:58 -0400
+
+
+Started GET "/assets/collections.self-77f7c57e324e3c103ff5493c804f800016ac79e8b7197a6694e4dbc9ca198446.js?body=1" for ::1 at 2015-05-15 15:35:58 -0400
+
+
+Started GET "/assets/shared/library.self-ea7d238ceae22c9d0b318cd19ceb8d7fb9d58015dbd6fcf980cf4acd9f20510f.js?body=1" for ::1 at 2015-05-15 15:35:58 -0400
+
+
+Started GET "/assets/models/book.self-540b3776ced0516ee2becbc4b55a4a248e4cecef208e8c4d7f654fa9a7bab730.js?body=1" for ::1 at 2015-05-15 15:35:58 -0400
+
+
+Started GET "/assets/models/collection.self-2e3ca035d43ee364a899436e9b0cdd49c2c42aaa73d2fed753836567958dec89.js?body=1" for ::1 at 2015-05-15 15:35:58 -0400
+
+
+Started GET "/assets/utils/composite_view.self-f66b6c655266c80542f8c00a4d7dd95d165b76b75795c186b1b0dc9cfa1fb799.js?body=1" for ::1 at 2015-05-15 15:35:58 -0400
+
+
+Started GET "/assets/collections/auth_books.self-b95f56b6325db785f57a6c647cb32c6c7e4ed216aa26d6c660ed67f7d1bc3aae.js?body=1" for ::1 at 2015-05-15 15:35:58 -0400
+
+
+Started GET "/assets/collections/books.self-b8c9de9df7655b197b6e825464f901b03661f6d47e7ea87c44cd4335c0002035.js?body=1" for ::1 at 2015-05-15 15:35:58 -0400
+
+
+Started GET "/assets/collections/collections.self-8e5284eeb5946679d7cb54e0293a20c0779c80b67c544c4baa351fcde5c95308.js?body=1" for ::1 at 2015-05-15 15:35:58 -0400
+
+
+Started GET "/assets/views/books/authbooks_view.self-0dda2dca0082194e5e18f463df0a8949847f4e3e95cbcf44a7f1f9dd916d1150.js?body=1" for ::1 at 2015-05-15 15:35:58 -0400
+
+
+Started GET "/assets/views/books/books_index.self-ff7d4058579ba3713cb3df3cbc4bcd33f05541e79771a4b5af4fbf41883d5264.js?body=1" for ::1 at 2015-05-15 15:35:58 -0400
+
+
+Started GET "/assets/views/collections/coll_form_view.self-a4e4ad9ef8654dfe3ed7e5bac5ec9cea5be6f7fc8f004b8d72320fb0dc16ecf8.js?body=1" for ::1 at 2015-05-15 15:35:58 -0400
+
+
+Started GET "/assets/views/collections/collections_index.self-7bb1816722337eccf48607acf57cb0511ea66993a07b20eb56785a450bfd235f.js?body=1" for ::1 at 2015-05-15 15:35:58 -0400
+
+
+Started GET "/assets/views/library_view.self-38c22c359b9ce2171f19b02541c8071473bdf33cf44ef5eb04d39bf42ee9af1b.js?body=1" for ::1 at 2015-05-15 15:35:58 -0400
+
+
+Started GET "/assets/routers/router.self-8b25a73e301e3b773d8cabee79262fa91befa0268c2d792849216ea2c6ac12bb.js?body=1" for ::1 at 2015-05-15 15:35:58 -0400
+
+
+Started GET "/assets/sessions.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for ::1 at 2015-05-15 15:35:58 -0400
+
+
+Started GET "/assets/static_pages.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for ::1 at 2015-05-15 15:35:58 -0400
+
+
+Started GET "/assets/users.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for ::1 at 2015-05-15 15:35:58 -0400
+
+
+Started GET "/assets/application.self-e088abdec24c652728c331cc53f5d2286e096b6080fa2bacfba79c56847e932e.js?body=1" for ::1 at 2015-05-15 15:35:58 -0400
+
+
+Started GET "/api/collections" for ::1 at 2015-05-15 15:35:58 -0400
+Processing by Api::CollectionsController#index as JSON
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "oIqC9aZIkGt660RlTZPN+Q=="]]
+  [1m[36mCollection Load (15.7ms)[0m  [1mSELECT "collections".* FROM "collections" WHERE "collections"."user_id" = $1[0m  [["user_id", 1]]
+  Rendered api/collections/index.json.jbuilder (17.4ms)
+Completed 200 OK in 30ms (Views: 7.5ms | ActiveRecord: 16.2ms)
+
+
+Started GET "/api/books" for ::1 at 2015-05-15 15:35:58 -0400
+Processing by Api::BooksController#index as JSON
+  [1m[35mBook Load (0.6ms)[0m  SELECT "books".* FROM "books"
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "oIqC9aZIkGt660RlTZPN+Q=="]]
+  Rendered api/books/index.json.jbuilder (2.9ms)
+Completed 200 OK in 7ms (Views: 4.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/authored" for ::1 at 2015-05-15 15:35:58 -0400
+Processing by Api::BooksController#authored as JSON
+  [1m[35mUser Load (2.8ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "oIqC9aZIkGt660RlTZPN+Q=="]]
+  [1m[36mBook Load (0.9ms)[0m  [1mSELECT "books".* FROM "books" WHERE "books"."author_id" = $1[0m  [["author_id", 1]]
+  Rendered api/books/authored.json.jbuilder (3.8ms)
+Completed 200 OK in 13ms (Views: 6.7ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/" for ::1 at 2015-05-15 15:50:02 -0400
+Processing by StaticPagesController#root as HTML
+  Rendered static_pages/root.html.erb within layouts/application (0.0ms)
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "oIqC9aZIkGt660RlTZPN+Q=="]]
+  Rendered layouts/_header.html.erb (1.7ms)
+Completed 200 OK in 418ms (Views: 417.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/header.self-44f7fe4083c3751c69e97cc59fbd77467a4271317f3e838c863db05de1f9a5de.css?body=1" for ::1 at 2015-05-15 15:50:02 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for ::1 at 2015-05-15 15:50:02 -0400
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2015-05-15 15:50:02 -0400
+
+
+Started GET "/assets/main.self-784c720ca6677e7afaf47178db0304a48b9bbe48b86050d07f02eda206ecc8c6.css?body=1" for ::1 at 2015-05-15 15:50:02 -0400
+
+
+Started GET "/assets/jquery.serializejson.self-c480e85ec7f2b02efd59ab693b310ece9aaac9ce35b2b7f9fc817a27d5ee0a79.js?body=1" for ::1 at 2015-05-15 15:50:02 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for ::1 at 2015-05-15 15:50:02 -0400
+
+
+Started GET "/assets/underscore.self-7752a8498b0c515609cfb1c62bbf3e50cc27fce6445e6f00283b1ef344283aa1.js?body=1" for ::1 at 2015-05-15 15:50:02 -0400
+
+
+Started GET "/assets/backbone.self-f5f741e7991113473236eb4da601cd50b44bdaea52f3b792a481c588bcd901a4.js?body=1" for ::1 at 2015-05-15 15:50:02 -0400
+
+
+Started GET "/assets/backbone.modaldialog.self-c687f9358a6687fac9e382fa0edec391f1f2f779781b5febeaa4a99a8aac18df.js?body=1" for ::1 at 2015-05-15 15:50:02 -0400
+
+
+Started GET "/assets/enwritt_app.self-3f79f630f8fc0bcaeddfbf73b4ba52dea5931afe7a0a842b971caf672621ff26.js?body=1" for ::1 at 2015-05-15 15:50:02 -0400
+
+
+Started GET "/assets/books/authbooks.self-d4ad85a0918b15a96f6b8637af23ec2a706f69c7ebd5da294717ae481e18bde8.js?body=1" for ::1 at 2015-05-15 15:50:02 -0400
+
+
+Started GET "/assets/books.self-cf9a9de31c99c71fe4640a654fd9007f4fc8735a8c6d7b3d0aba4835b5a03a44.js?body=1" for ::1 at 2015-05-15 15:50:02 -0400
+
+
+Started GET "/assets/collections/form.self-bee8f2e6ab56d7f873455c91569c5fbf1f10a9a7b931762a55502909c24de8c6.js?body=1" for ::1 at 2015-05-15 15:50:02 -0400
+
+
+Started GET "/assets/collections.self-77f7c57e324e3c103ff5493c804f800016ac79e8b7197a6694e4dbc9ca198446.js?body=1" for ::1 at 2015-05-15 15:50:02 -0400
+
+
+Started GET "/assets/collections/show.self-6d60d3486be70bda4c094a87e32e1750f31951ddca8d2713bbaf2eab0e37b61a.js?body=1" for ::1 at 2015-05-15 15:50:02 -0400
+
+
+Started GET "/assets/shared/library.self-ea7d238ceae22c9d0b318cd19ceb8d7fb9d58015dbd6fcf980cf4acd9f20510f.js?body=1" for ::1 at 2015-05-15 15:50:02 -0400
+
+
+Started GET "/assets/models/book.self-540b3776ced0516ee2becbc4b55a4a248e4cecef208e8c4d7f654fa9a7bab730.js?body=1" for ::1 at 2015-05-15 15:50:02 -0400
+
+
+Started GET "/assets/models/collection.self-2e3ca035d43ee364a899436e9b0cdd49c2c42aaa73d2fed753836567958dec89.js?body=1" for ::1 at 2015-05-15 15:50:02 -0400
+
+
+Started GET "/assets/utils/composite_view.self-f66b6c655266c80542f8c00a4d7dd95d165b76b75795c186b1b0dc9cfa1fb799.js?body=1" for ::1 at 2015-05-15 15:50:02 -0400
+
+
+Started GET "/assets/collections/auth_books.self-b95f56b6325db785f57a6c647cb32c6c7e4ed216aa26d6c660ed67f7d1bc3aae.js?body=1" for ::1 at 2015-05-15 15:50:02 -0400
+
+
+Started GET "/assets/collections/books.self-b8c9de9df7655b197b6e825464f901b03661f6d47e7ea87c44cd4335c0002035.js?body=1" for ::1 at 2015-05-15 15:50:02 -0400
+
+
+Started GET "/assets/collections/collections.self-8e5284eeb5946679d7cb54e0293a20c0779c80b67c544c4baa351fcde5c95308.js?body=1" for ::1 at 2015-05-15 15:50:02 -0400
+
+
+Started GET "/assets/views/books/authbooks_view.self-0dda2dca0082194e5e18f463df0a8949847f4e3e95cbcf44a7f1f9dd916d1150.js?body=1" for ::1 at 2015-05-15 15:50:02 -0400
+
+
+Started GET "/assets/views/books/books_index.self-ff7d4058579ba3713cb3df3cbc4bcd33f05541e79771a4b5af4fbf41883d5264.js?body=1" for ::1 at 2015-05-15 15:50:02 -0400
+
+
+Started GET "/assets/views/collections/collection_show.self-d7c593e5f829b71981cc2acb7ff686f78e6262457f9fc762fbfee27f02c8c0e4.js?body=1" for ::1 at 2015-05-15 15:50:02 -0400
+
+
+Started GET "/assets/views/collections/coll_form_view.self-a4e4ad9ef8654dfe3ed7e5bac5ec9cea5be6f7fc8f004b8d72320fb0dc16ecf8.js?body=1" for ::1 at 2015-05-15 15:50:02 -0400
+
+
+Started GET "/assets/views/collections/collections_index.self-37edbf298fe56e9773aace0b83e0c3b127190499f4e48ddf580069a82649613f.js?body=1" for ::1 at 2015-05-15 15:50:02 -0400
+
+
+Started GET "/assets/views/library_view.self-38c22c359b9ce2171f19b02541c8071473bdf33cf44ef5eb04d39bf42ee9af1b.js?body=1" for ::1 at 2015-05-15 15:50:02 -0400
+
+
+Started GET "/assets/routers/router.self-8b25a73e301e3b773d8cabee79262fa91befa0268c2d792849216ea2c6ac12bb.js?body=1" for ::1 at 2015-05-15 15:50:02 -0400
+
+
+Started GET "/assets/application.self-e088abdec24c652728c331cc53f5d2286e096b6080fa2bacfba79c56847e932e.js?body=1" for ::1 at 2015-05-15 15:50:02 -0400
+
+
+Started GET "/api/collections" for ::1 at 2015-05-15 15:50:02 -0400
+Processing by Api::CollectionsController#index as JSON
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "oIqC9aZIkGt660RlTZPN+Q=="]]
+  [1m[35mCollection Load (2.3ms)[0m  SELECT "collections".* FROM "collections" WHERE "collections"."user_id" = $1  [["user_id", 1]]
+  Rendered api/collections/index.json.jbuilder (3.3ms)
+Completed 200 OK in 10ms (Views: 5.6ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/api/books" for ::1 at 2015-05-15 15:50:02 -0400
+Processing by Api::BooksController#index as JSON
+  [1m[36mBook Load (0.6ms)[0m  [1mSELECT "books".* FROM "books"[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "oIqC9aZIkGt660RlTZPN+Q=="]]
+  Rendered api/books/index.json.jbuilder (4.9ms)
+Completed 200 OK in 11ms (Views: 7.9ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/authored" for ::1 at 2015-05-15 15:50:02 -0400
+Processing by Api::BooksController#authored as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "oIqC9aZIkGt660RlTZPN+Q=="]]
+  [1m[35mBook Load (0.4ms)[0m  SELECT "books".* FROM "books" WHERE "books"."author_id" = $1  [["author_id", 1]]
+  Rendered api/books/authored.json.jbuilder (1.6ms)
+Completed 200 OK in 5ms (Views: 3.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for ::1 at 2015-05-15 15:50:36 -0400
+Processing by StaticPagesController#root as HTML
+  Rendered static_pages/root.html.erb within layouts/application (0.1ms)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "oIqC9aZIkGt660RlTZPN+Q=="]]
+  Rendered layouts/_header.html.erb (1.2ms)
+Completed 200 OK in 134ms (Views: 133.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/header.self-65a5c82371800f0c19b96f0d2d221c3b230f9ba723298712283395de60356ecd.css?body=1" for ::1 at 2015-05-15 15:50:36 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for ::1 at 2015-05-15 15:50:36 -0400
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2015-05-15 15:50:37 -0400
+
+
+Started GET "/assets/main.self-784c720ca6677e7afaf47178db0304a48b9bbe48b86050d07f02eda206ecc8c6.css?body=1" for ::1 at 2015-05-15 15:50:37 -0400
+
+
+Started GET "/assets/jquery.serializejson.self-c480e85ec7f2b02efd59ab693b310ece9aaac9ce35b2b7f9fc817a27d5ee0a79.js?body=1" for ::1 at 2015-05-15 15:50:37 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for ::1 at 2015-05-15 15:50:37 -0400
+
+
+Started GET "/assets/underscore.self-7752a8498b0c515609cfb1c62bbf3e50cc27fce6445e6f00283b1ef344283aa1.js?body=1" for ::1 at 2015-05-15 15:50:37 -0400
+
+
+Started GET "/assets/backbone.self-f5f741e7991113473236eb4da601cd50b44bdaea52f3b792a481c588bcd901a4.js?body=1" for ::1 at 2015-05-15 15:50:37 -0400
+
+
+Started GET "/assets/backbone.modaldialog.self-c687f9358a6687fac9e382fa0edec391f1f2f779781b5febeaa4a99a8aac18df.js?body=1" for ::1 at 2015-05-15 15:50:37 -0400
+
+
+Started GET "/assets/enwritt_app.self-3f79f630f8fc0bcaeddfbf73b4ba52dea5931afe7a0a842b971caf672621ff26.js?body=1" for ::1 at 2015-05-15 15:50:37 -0400
+
+
+Started GET "/assets/books/authbooks.self-d4ad85a0918b15a96f6b8637af23ec2a706f69c7ebd5da294717ae481e18bde8.js?body=1" for ::1 at 2015-05-15 15:50:37 -0400
+
+
+Started GET "/assets/books.self-cf9a9de31c99c71fe4640a654fd9007f4fc8735a8c6d7b3d0aba4835b5a03a44.js?body=1" for ::1 at 2015-05-15 15:50:37 -0400
+
+
+Started GET "/assets/collections/form.self-bee8f2e6ab56d7f873455c91569c5fbf1f10a9a7b931762a55502909c24de8c6.js?body=1" for ::1 at 2015-05-15 15:50:37 -0400
+
+
+Started GET "/assets/collections.self-77f7c57e324e3c103ff5493c804f800016ac79e8b7197a6694e4dbc9ca198446.js?body=1" for ::1 at 2015-05-15 15:50:37 -0400
+
+
+Started GET "/assets/collections/show.self-6d60d3486be70bda4c094a87e32e1750f31951ddca8d2713bbaf2eab0e37b61a.js?body=1" for ::1 at 2015-05-15 15:50:37 -0400
+
+
+Started GET "/assets/shared/library.self-ea7d238ceae22c9d0b318cd19ceb8d7fb9d58015dbd6fcf980cf4acd9f20510f.js?body=1" for ::1 at 2015-05-15 15:50:37 -0400
+
+
+Started GET "/assets/models/book.self-540b3776ced0516ee2becbc4b55a4a248e4cecef208e8c4d7f654fa9a7bab730.js?body=1" for ::1 at 2015-05-15 15:50:37 -0400
+
+
+Started GET "/assets/models/collection.self-2e3ca035d43ee364a899436e9b0cdd49c2c42aaa73d2fed753836567958dec89.js?body=1" for ::1 at 2015-05-15 15:50:37 -0400
+
+
+Started GET "/assets/utils/composite_view.self-f66b6c655266c80542f8c00a4d7dd95d165b76b75795c186b1b0dc9cfa1fb799.js?body=1" for ::1 at 2015-05-15 15:50:37 -0400
+
+
+Started GET "/assets/collections/auth_books.self-b95f56b6325db785f57a6c647cb32c6c7e4ed216aa26d6c660ed67f7d1bc3aae.js?body=1" for ::1 at 2015-05-15 15:50:37 -0400
+
+
+Started GET "/assets/collections/books.self-b8c9de9df7655b197b6e825464f901b03661f6d47e7ea87c44cd4335c0002035.js?body=1" for ::1 at 2015-05-15 15:50:37 -0400
+
+
+Started GET "/assets/collections/collections.self-8e5284eeb5946679d7cb54e0293a20c0779c80b67c544c4baa351fcde5c95308.js?body=1" for ::1 at 2015-05-15 15:50:37 -0400
+
+
+Started GET "/assets/views/books/authbooks_view.self-0dda2dca0082194e5e18f463df0a8949847f4e3e95cbcf44a7f1f9dd916d1150.js?body=1" for ::1 at 2015-05-15 15:50:37 -0400
+
+
+Started GET "/assets/views/books/books_index.self-ff7d4058579ba3713cb3df3cbc4bcd33f05541e79771a4b5af4fbf41883d5264.js?body=1" for ::1 at 2015-05-15 15:50:37 -0400
+
+
+Started GET "/assets/views/collections/coll_form_view.self-a4e4ad9ef8654dfe3ed7e5bac5ec9cea5be6f7fc8f004b8d72320fb0dc16ecf8.js?body=1" for ::1 at 2015-05-15 15:50:37 -0400
+
+
+Started GET "/assets/views/collections/collection_show.self-d7c593e5f829b71981cc2acb7ff686f78e6262457f9fc762fbfee27f02c8c0e4.js?body=1" for ::1 at 2015-05-15 15:50:37 -0400
+
+
+Started GET "/assets/views/collections/collections_index.self-37edbf298fe56e9773aace0b83e0c3b127190499f4e48ddf580069a82649613f.js?body=1" for ::1 at 2015-05-15 15:50:37 -0400
+
+
+Started GET "/assets/views/library_view.self-38c22c359b9ce2171f19b02541c8071473bdf33cf44ef5eb04d39bf42ee9af1b.js?body=1" for ::1 at 2015-05-15 15:50:37 -0400
+
+
+Started GET "/assets/routers/router.self-8b25a73e301e3b773d8cabee79262fa91befa0268c2d792849216ea2c6ac12bb.js?body=1" for ::1 at 2015-05-15 15:50:37 -0400
+
+
+Started GET "/assets/application.self-e088abdec24c652728c331cc53f5d2286e096b6080fa2bacfba79c56847e932e.js?body=1" for ::1 at 2015-05-15 15:50:37 -0400
+
+
+Started GET "/api/collections" for ::1 at 2015-05-15 15:50:37 -0400
+Processing by Api::CollectionsController#index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "oIqC9aZIkGt660RlTZPN+Q=="]]
+  [1m[36mCollection Load (0.3ms)[0m  [1mSELECT "collections".* FROM "collections" WHERE "collections"."user_id" = $1[0m  [["user_id", 1]]
+  Rendered api/collections/index.json.jbuilder (2.0ms)
+Completed 200 OK in 21ms (Views: 16.1ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/books" for ::1 at 2015-05-15 15:50:37 -0400
+Processing by Api::BooksController#index as JSON
+  [1m[35mBook Load (0.5ms)[0m  SELECT "books".* FROM "books"
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "oIqC9aZIkGt660RlTZPN+Q=="]]
+  Rendered api/books/index.json.jbuilder (2.9ms)
+Completed 200 OK in 11ms (Views: 8.9ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/authored" for ::1 at 2015-05-15 15:50:37 -0400
+Processing by Api::BooksController#authored as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "oIqC9aZIkGt660RlTZPN+Q=="]]
+  [1m[36mBook Load (0.4ms)[0m  [1mSELECT "books".* FROM "books" WHERE "books"."author_id" = $1[0m  [["author_id", 1]]
+  Rendered api/books/authored.json.jbuilder (1.4ms)
+Completed 200 OK in 5ms (Views: 2.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for ::1 at 2015-05-15 15:51:53 -0400
+Processing by StaticPagesController#root as HTML
+  Rendered static_pages/root.html.erb within layouts/application (0.0ms)
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "oIqC9aZIkGt660RlTZPN+Q=="]]
+  Rendered layouts/_header.html.erb (1.8ms)
+Completed 200 OK in 176ms (Views: 175.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/header.self-715046011ec377cdd0e286ed70312978ff29ff2a1b56ab963e618e4e8ff35864.css?body=1" for ::1 at 2015-05-15 15:51:53 -0400
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2015-05-15 15:51:53 -0400
+
+
+Started GET "/assets/jquery.serializejson.self-c480e85ec7f2b02efd59ab693b310ece9aaac9ce35b2b7f9fc817a27d5ee0a79.js?body=1" for ::1 at 2015-05-15 15:51:53 -0400
+
+
+Started GET "/assets/main.self-784c720ca6677e7afaf47178db0304a48b9bbe48b86050d07f02eda206ecc8c6.css?body=1" for ::1 at 2015-05-15 15:51:53 -0400
+
+
+Started GET "/assets/jquery_ujs.self-8e98a7a072a6cee1372d19fff9ff3e6aa1e39a37d89d6f06861637d061113ee7.js?body=1" for ::1 at 2015-05-15 15:51:53 -0400
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for ::1 at 2015-05-15 15:51:53 -0400
+
+
+Started GET "/assets/underscore.self-7752a8498b0c515609cfb1c62bbf3e50cc27fce6445e6f00283b1ef344283aa1.js?body=1" for ::1 at 2015-05-15 15:51:53 -0400
+
+
+Started GET "/assets/backbone.self-f5f741e7991113473236eb4da601cd50b44bdaea52f3b792a481c588bcd901a4.js?body=1" for ::1 at 2015-05-15 15:51:53 -0400
+
+
+Started GET "/assets/backbone.modaldialog.self-c687f9358a6687fac9e382fa0edec391f1f2f779781b5febeaa4a99a8aac18df.js?body=1" for ::1 at 2015-05-15 15:51:53 -0400
+
+
+Started GET "/assets/enwritt_app.self-3f79f630f8fc0bcaeddfbf73b4ba52dea5931afe7a0a842b971caf672621ff26.js?body=1" for ::1 at 2015-05-15 15:51:53 -0400
+
+
+Started GET "/assets/books/authbooks.self-d4ad85a0918b15a96f6b8637af23ec2a706f69c7ebd5da294717ae481e18bde8.js?body=1" for ::1 at 2015-05-15 15:51:53 -0400
+
+
+Started GET "/assets/books.self-cf9a9de31c99c71fe4640a654fd9007f4fc8735a8c6d7b3d0aba4835b5a03a44.js?body=1" for ::1 at 2015-05-15 15:51:53 -0400
+
+
+Started GET "/assets/collections/form.self-bee8f2e6ab56d7f873455c91569c5fbf1f10a9a7b931762a55502909c24de8c6.js?body=1" for ::1 at 2015-05-15 15:51:53 -0400
+
+
+Started GET "/assets/collections.self-77f7c57e324e3c103ff5493c804f800016ac79e8b7197a6694e4dbc9ca198446.js?body=1" for ::1 at 2015-05-15 15:51:53 -0400
+
+
+Started GET "/assets/collections/show.self-6d60d3486be70bda4c094a87e32e1750f31951ddca8d2713bbaf2eab0e37b61a.js?body=1" for ::1 at 2015-05-15 15:51:53 -0400
+
+
+Started GET "/assets/shared/library.self-ea7d238ceae22c9d0b318cd19ceb8d7fb9d58015dbd6fcf980cf4acd9f20510f.js?body=1" for ::1 at 2015-05-15 15:51:53 -0400
+
+
+Started GET "/assets/models/book.self-540b3776ced0516ee2becbc4b55a4a248e4cecef208e8c4d7f654fa9a7bab730.js?body=1" for ::1 at 2015-05-15 15:51:53 -0400
+
+
+Started GET "/assets/models/collection.self-2e3ca035d43ee364a899436e9b0cdd49c2c42aaa73d2fed753836567958dec89.js?body=1" for ::1 at 2015-05-15 15:51:53 -0400
+
+
+Started GET "/assets/utils/composite_view.self-f66b6c655266c80542f8c00a4d7dd95d165b76b75795c186b1b0dc9cfa1fb799.js?body=1" for ::1 at 2015-05-15 15:51:53 -0400
+
+
+Started GET "/assets/collections/auth_books.self-b95f56b6325db785f57a6c647cb32c6c7e4ed216aa26d6c660ed67f7d1bc3aae.js?body=1" for ::1 at 2015-05-15 15:51:53 -0400
+
+
+Started GET "/assets/collections/books.self-b8c9de9df7655b197b6e825464f901b03661f6d47e7ea87c44cd4335c0002035.js?body=1" for ::1 at 2015-05-15 15:51:53 -0400
+
+
+Started GET "/assets/collections/collections.self-8e5284eeb5946679d7cb54e0293a20c0779c80b67c544c4baa351fcde5c95308.js?body=1" for ::1 at 2015-05-15 15:51:53 -0400
+
+
+Started GET "/assets/views/books/authbooks_view.self-0dda2dca0082194e5e18f463df0a8949847f4e3e95cbcf44a7f1f9dd916d1150.js?body=1" for ::1 at 2015-05-15 15:51:53 -0400
+
+
+Started GET "/assets/views/books/books_index.self-ff7d4058579ba3713cb3df3cbc4bcd33f05541e79771a4b5af4fbf41883d5264.js?body=1" for ::1 at 2015-05-15 15:51:53 -0400
+
+
+Started GET "/assets/views/collections/coll_form_view.self-a4e4ad9ef8654dfe3ed7e5bac5ec9cea5be6f7fc8f004b8d72320fb0dc16ecf8.js?body=1" for ::1 at 2015-05-15 15:51:53 -0400
+
+
+Started GET "/assets/views/collections/collection_show.self-d7c593e5f829b71981cc2acb7ff686f78e6262457f9fc762fbfee27f02c8c0e4.js?body=1" for ::1 at 2015-05-15 15:51:53 -0400
+
+
+Started GET "/assets/views/collections/collections_index.self-37edbf298fe56e9773aace0b83e0c3b127190499f4e48ddf580069a82649613f.js?body=1" for ::1 at 2015-05-15 15:51:53 -0400
+
+
+Started GET "/assets/views/library_view.self-38c22c359b9ce2171f19b02541c8071473bdf33cf44ef5eb04d39bf42ee9af1b.js?body=1" for ::1 at 2015-05-15 15:51:53 -0400
+
+
+Started GET "/assets/routers/router.self-8b25a73e301e3b773d8cabee79262fa91befa0268c2d792849216ea2c6ac12bb.js?body=1" for ::1 at 2015-05-15 15:51:53 -0400
+
+
+Started GET "/assets/application.self-e088abdec24c652728c331cc53f5d2286e096b6080fa2bacfba79c56847e932e.js?body=1" for ::1 at 2015-05-15 15:51:53 -0400
+
+
+Started GET "/api/collections" for ::1 at 2015-05-15 15:51:53 -0400
+Processing by Api::CollectionsController#index as JSON
+  [1m[36mUser Load (2.8ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "oIqC9aZIkGt660RlTZPN+Q=="]]
+  [1m[35mCollection Load (0.5ms)[0m  SELECT "collections".* FROM "collections" WHERE "collections"."user_id" = $1  [["user_id", 1]]
+  Rendered api/collections/index.json.jbuilder (2.0ms)
+Completed 200 OK in 10ms (Views: 4.7ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/api/books" for ::1 at 2015-05-15 15:51:53 -0400
+Processing by Api::BooksController#index as JSON
+  [1m[36mBook Load (0.6ms)[0m  [1mSELECT "books".* FROM "books"[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "oIqC9aZIkGt660RlTZPN+Q=="]]
+  Rendered api/books/index.json.jbuilder (3.2ms)
+Completed 200 OK in 8ms (Views: 5.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/authored" for ::1 at 2015-05-15 15:51:53 -0400
+Processing by Api::BooksController#authored as JSON
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "oIqC9aZIkGt660RlTZPN+Q=="]]
+  [1m[35mBook Load (0.3ms)[0m  SELECT "books".* FROM "books" WHERE "books"."author_id" = $1  [["author_id", 1]]
+  Rendered api/books/authored.json.jbuilder (1.6ms)
+Completed 200 OK in 6ms (Views: 3.5ms | ActiveRecord: 0.5ms)

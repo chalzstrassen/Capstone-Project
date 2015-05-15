@@ -1,4 +1,4 @@
-html, body, header, a, form, input, button, h3, {
+html, body, header, a, form, input, button, h3 {
   padding: 0;
   margin: 0;
   border: 0;
@@ -22,10 +22,10 @@ header {
   display: block;
   clear: both;
 }
-h3 {
+h3.welcome-message {
   float:left;
   font-size: 14px;
-  margin: 5px 10px;
+  padding: 0px 10px;
 }
 .logo {
   float: left;

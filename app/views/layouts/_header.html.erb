@@ -2,7 +2,7 @@
   <span id="magnifying-glass"></span>
   <a href="#" class="logo">Enwritt</a>
   <% if logged_in? %>
-    <h3> Welcome <%= current_user.email %> </h3>
+    <h3 class="welcome-message"> Welcome <%= current_user.email %> </h3>
     <form class="auth" method="POST" action="<%= session_url %>">
       <%= csrf_token %>
       <input type="hidden" name="_method" value="delete">
