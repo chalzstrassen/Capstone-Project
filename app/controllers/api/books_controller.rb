@@ -22,10 +22,10 @@ module Api
       render :show
     end
 
-    def authored
-      @books = current_user.authored_books
-      render :authored
-    end
+    # def authored
+    #   @books = current_user.authored_books
+    #   render :authored
+    # end
 
   private
 
