@@ -7,7 +7,11 @@ Enwritt.Views.CollectionShow = Backbone.ModalView.extend({
     this.listenTo(this.model, "sync", this.render);
   },
   render: function () {
-    var content = this.template({collection: this.model});
+    var books = this.model.get("books");
+    var content = this.template({
+      collection: this.model,
+      books: _(books)
+    });
     this.$el.html(content);
 
     return this;

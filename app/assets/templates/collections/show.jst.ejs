@@ -2,4 +2,9 @@
 <main class="collection-description">
   <%= collection.escape("description") %>
 </main>
+<ul class="collection-books">
+	<% books.each(function(book) { %>
+		<li>Title: <%= book.title %>, Author Email: <%= book.author %></li>
+	<% }) %>
+</ul>
 <button id="edit-collection" class="form-button">Edit</button>
