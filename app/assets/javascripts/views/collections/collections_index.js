@@ -36,7 +36,10 @@ Enwritt.Views.CollectionsIndex = Backbone.View.extend({
   showCollection: function (event) {
     var collId = $(event.currentTarget).data("id");
     var model = this.collection.getOrFetch(collId);
-    var view = new Enwritt.Views.CollectionShow({model: model});
+    var view = new Enwritt.Views.CollectionShow({
+      model: model,
+      collection: this.collection
+    });
 
     view.render().showModal({
       closeImageUrl: "//:0",

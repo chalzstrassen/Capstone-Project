@@ -4,6 +4,7 @@
 ### Models
 
 ### Controllers
+* Collection destroy/edit/update
 
 ### Views
 

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
   	resources :books, only: [:index, :create, :show]
-    get '/authored', to: 'books#authored'
+    resources :authbooks, only: [:index, :create, :show]
   	resources :collections, except: [:new, :edit]
   end
 end
