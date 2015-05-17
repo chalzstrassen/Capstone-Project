@@ -1,7 +1,8 @@
 Enwritt.Views.CollectionShow = Backbone.ModalView.extend({
   template: JST["collections/show"],
   events: {
-  	"click #edit-collection": "showForm" 
+  	"click #edit-collection": "showForm",
+    "click #add-book": "addBookForm"
   },
   initialize: function () {
     this.listenTo(this.model, "sync", this.render);
