@@ -9,4 +9,6 @@ class Book < ActiveRecord::Base
             foreign_key: :author_id,
             primary_key: :id,
             )
+
+  
 end

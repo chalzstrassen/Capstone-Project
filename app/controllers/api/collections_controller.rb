@@ -36,7 +36,6 @@ module Api
     end
 
     private
-
       def collection_params
         params.require(:collection).permit(:name, :description)
       end

@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   	resources :books, only: [:index, :create, :show]
     resources :authbooks, only: [:index, :create, :show]
   	resources :collections, except: [:new, :edit]
+  	resources :collects, only: [:create, :destroy]
   end
 end

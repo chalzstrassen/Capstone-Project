@@ -29,6 +29,10 @@ Enwritt.Views.CollectionShow = Backbone.ModalView.extend({
   	view.render().showModal({
   		closeImageUrl: "//:0",
       closeImageHoverUrl: "//:0"});
-  }
+  },
+
+  addBookForm: function (event) {
+    
+  }  
 
 });
