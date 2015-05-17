@@ -2,7 +2,8 @@ Enwritt.Views.CollFormView = Backbone.ModalView.extend({
   template: JST['collections/form'],
   events: {
     "click .collection-button": "syncCollection",
-    "click .collection-delete": "destroyCollection"
+    "click .collection-delete": "destroyCollection",
+    "click .back": "backToShow"
   },
   initialize: function () {
     this.listenTo(this.model, "sync", this.render);
@@ -35,5 +36,20 @@ Enwritt.Views.CollFormView = Backbone.ModalView.extend({
     this.hideModal();
     this.model.destroy();
     this.collection.fetch();
+  },
+
+  backToShow: function (event) {
+    event.preventDefault();
+
+    var showView = new Enwritt.Views.CollectionShow({
+      model: this.model,
+      collection: this.collection  
+    });
+
+    this.hideModal();
+    showView.render().showModal({
+      closeImageUrl: "//:0",
+      closeImageHoverUrl: "//:0"
+    });
   }
 });
