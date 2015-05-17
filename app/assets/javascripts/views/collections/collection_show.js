@@ -33,14 +33,19 @@ Enwritt.Views.CollectionShow = Backbone.ModalView.extend({
 
   addBookForm: function (event) {
     event.preventDefault();
-    
-    var view = new Enwritt.Views.AddBookForm({
-      model: this.model,
-      collection: this.collection,
-      el: ".available-books"
-    });
+    var bookCollection = new Enwritt.Collections.Books();
 
-    this.%el.html(view.render().$el);
+    bookCollection.fetch({
+      success: function () {
+        var view = new Enwritt.Views.AddBook({
+          collection: bookCollection,
+          el: ".available-books"
+        });
+
+        this.%el.html(view.render().$el);
+      }
+    });
+    
   }  
 
 });
