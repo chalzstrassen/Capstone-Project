@@ -1,5 +1,8 @@
 Enwritt.Views.AuthBooksView = Backbone.View.extend({
   template: JST["books/authbooks"],
+  events: {
+    "click .publish-book" : "showBookForm"
+  },
   initialize: function () {
     this.listenTo(this.collection, "sync", this.render);
   },
@@ -8,5 +11,19 @@ Enwritt.Views.AuthBooksView = Backbone.View.extend({
 
     this.$el.html(content);
     return this;
+  },
+  showBookForm: function (event) {
+    event.preventDefault()
+    var newBook = new Enwritt.Models.Book();
+    var view = new Enwritt.Views.BookForm({
+      model: newBook,
+      collection: this.collection
+    });
+
+    view.render().showModal({
+      closeImageUrl: "//:0",
+      closeImageHoverUrl: "//:0"
+    });
+
   }
 });

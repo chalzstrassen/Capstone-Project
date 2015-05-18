@@ -15,11 +15,6 @@ module Api
       end
     end
 
-		def show
-			@book = Book.find_by(params[:id])
-			render :show
-		end
-
 		def update
 			@book = Book.find_by(params[:id])
 
@@ -28,7 +23,6 @@ module Api
 			else
 				render json: @book.errors.full_messages, status: 422
 			end
-			
 		end
 
 		private
