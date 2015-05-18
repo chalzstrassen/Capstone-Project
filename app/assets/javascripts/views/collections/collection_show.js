@@ -2,7 +2,8 @@ Enwritt.Views.CollectionShow = Backbone.ModalView.extend({
   template: JST["collections/show"],
   events: {
   	"click #edit-collection": "showForm",
-    "click #add-book": "addBookForm"
+    "click #add-book": "addBookForm",
+    "click .remove-book": "removeBook"
   },
   initialize: function () {
     this.listenTo(this.model, "sync", this.render);
@@ -48,4 +49,27 @@ Enwritt.Views.CollectionShow = Backbone.ModalView.extend({
       }
     });
   },
+
+  removeBook: function (event) {
+    event.preventDefault();
+    var bookId = $(event.currentTarget).data("id");
+    var collId = this.model.id;
+    var that = this;
+    $.ajax({
+			url: "/api/collects/1",
+			method: "DELETE",
+			data: {collection_id: collId, book_id: bookId},
+			dataType: "json",
+			success: function () {
+				that.model.fetch({
+					success: function () {
+						that.render();
+					}
+				});
+			},
+			error: function (xhr, responseText) {
+				alert(responseText);
+			}
+		});
+  }
 });

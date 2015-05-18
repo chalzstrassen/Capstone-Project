@@ -1,8 +1,7 @@
 module Api
-	class CollectsController
+	class CollectsController < ApiController
 		def create
 			@collect = Collect.new(collects_params)
-
 			if @collect.save
 				render json: @collect
 			else
@@ -11,7 +10,7 @@ module Api
 		end
 
 		def destroy
-			@collect = Collect.find(params[:id])
+			@collect = Collect.find_by(collects_params);
 			@collect.destroy
 			render json: {}
 		end

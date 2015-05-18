@@ -6,6 +6,6 @@ json.books do
 	json.array! @collection.books do |book|
 		json.title book.title
 		json.author book.author.email
+		json.id book.id
 	end
 end
-

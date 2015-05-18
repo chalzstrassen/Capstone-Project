@@ -8,7 +8,6 @@ Enwritt.Views.AddBook = Backbone.View.extend({
 	},
 	render: function () {
 		var content = this.template({books: this.collection});
-		console.log("zombie check");
 		this.$el.html(content);
 
 		return this;
@@ -19,13 +18,22 @@ Enwritt.Views.AddBook = Backbone.View.extend({
 		var bookId = $(event.currentTarget).data("id");
 		var collId = this.model.id;
 
+		var that = this;
 		$.ajax({
 			url: "/api/collects",
 			method: "POST",
 			data: {collection_id: collId, book_id: bookId},
-			dataType: "json"
-		}).done(function () {
-			alert("Book added successfully");
+			dataType: "json",
+			success: function () {
+				that.model.fetch({
+					success: function () {
+						that.render();
+					}
+				});
+			},
+			error: function (xhr, responseText) {
+				alert(responseText);
+			}
 		});
 	}
 });
