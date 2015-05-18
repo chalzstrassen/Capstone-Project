@@ -6,7 +6,6 @@ Enwritt.Views.CollectionShow = Backbone.ModalView.extend({
   },
   initialize: function () {
     this.listenTo(this.model, "sync", this.render);
-    this.listenTo(this, "closeModalWindow", this.removeAddBook);
   },
   render: function () {
     var books = this.model.get("books");
@@ -43,13 +42,8 @@ Enwritt.Views.CollectionShow = Backbone.ModalView.extend({
           el: ".available-books"
         });
 
-        this.%el.html(view.render().$el);
+        view.$el.html(view.render().$el);
       }
     });
   },
-
-  removeAddBook: function () {
-    this._addBookView && this._addBookView.remove();
-  }
-
 });
