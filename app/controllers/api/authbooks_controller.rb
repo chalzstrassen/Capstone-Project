@@ -22,6 +22,13 @@ module Api
 
 		def update
 			@book = Book.find_by(params[:id])
+
+			if @book.update(book_params)
+				render json: @book
+			else
+				render json: @book.errors.full_messages, status: 422
+			end
+			
 		end
 
 		private

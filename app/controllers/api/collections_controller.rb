@@ -28,7 +28,7 @@ module Api
 
     def update
       @collection = current_user.collections.find(params[:id])
-      if @collection.update_attributes(collection_params)
+      if @collection.update(collection_params)
         render json: @collection
       else
         render json: @collection.errors.full_messages, status: 422
