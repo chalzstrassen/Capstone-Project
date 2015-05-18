@@ -24,7 +24,6 @@ Enwritt.Views.CollFormView = Backbone.ModalView.extend({
     this.model.save({},{
       success: function () {
         that.collection.add(that.model);
-        that.collection.fetch();
         that.hideModal();
       }
     });
@@ -35,7 +34,6 @@ Enwritt.Views.CollFormView = Backbone.ModalView.extend({
 
     this.hideModal();
     this.model.destroy();
-    this.collection.fetch();
   },
 
   backToShow: function (event) {
@@ -43,7 +41,7 @@ Enwritt.Views.CollFormView = Backbone.ModalView.extend({
 
     var showView = new Enwritt.Views.CollectionShow({
       model: this.model,
-      collection: this.collection  
+      collection: this.collection
     });
 
     this.hideModal();
