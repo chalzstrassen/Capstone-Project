@@ -45,5 +45,11 @@ Enwritt.Views.CollectionsIndex = Backbone.View.extend({
       closeImageUrl: "//:0",
       closeImageHoverUrl: "//:0"
     });
+
+    this.listenTo(view, "closeModalWindow", this.refreshView);
+  },
+
+  refreshView: function () {
+    this.collection.fetch();
   }
 });
