@@ -35,10 +35,12 @@ Enwritt.Views.CollectionShow = Backbone.ModalView.extend({
     event.preventDefault();
     var bookCollection = new Enwritt.Collections.Books();
     this._addBookView = bookCollection;
+    var that = this;
     bookCollection.fetch({
       success: function () {
         var view = new Enwritt.Views.AddBook({
           collection: bookCollection,
+          model: that.model,
           el: ".available-books"
         });
 
