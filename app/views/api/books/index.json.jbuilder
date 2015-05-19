@@ -4,4 +4,5 @@ json.array! @books do |book|
   json.title book.title
   json.author_email book.author.email
   json.id book.id
+  json.image_url asset_path(book.cover.url(:original));
 end

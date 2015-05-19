@@ -1,9 +1,7 @@
 class Book < ActiveRecord::Base
   validates :author_id, :title, :genre, :synopsis, presence: true
-  # validates :genre,   // Will need to decide what
-  # authors can select as genre or whether book can have
-  # multiple genres.
-
+  has_attached_file :cover, default_url: "default.png"
+  validates_attachment_content_type :cover, content_type: /\Aimage\/.*\Z/
   belongs_to(:author,
             class_name: "User",
             foreign_key: :author_id,

@@ -21,6 +21,7 @@ module CharlesCapstoneProject
     # config.i18n.default_locale = :de
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
+    config.assets.paths << "app/assets/templates"
     config.paperclip_defaults = {
       :storage => :s3,
       :s3_credentials => {
@@ -29,7 +30,6 @@ module CharlesCapstoneProject
         :secret_access_key => ENV["s3_secret_access_key"]
       }
     }
-    
     config.active_record.raise_in_transactional_callbacks = true
   end
 end
