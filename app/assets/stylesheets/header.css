@@ -9,6 +9,7 @@ html, body, header, a, form, input, button, h3 {
   color: inherit;
   text-align: inherit;
 }
+
 header {
   font-family: sans-serif;
   width: 100%;

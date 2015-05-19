@@ -23,9 +23,9 @@ module Api
     end
 
     def destroy
-      @book = current_user.authored_books.find(params[:id])
+      @book = Book.find(params[:id])
       
-      if @book
+      if @book.author_id == current_user.id
         if @book.destroy
           render json: {}
         else
@@ -34,6 +34,19 @@ module Api
       else
         render json: "You did not write this book."
       end
+    end
+
+    def update
+      @book = Book.find(params[:id])
+
+      # if @book.author_id == current_user
+        if @book.update(book_params)
+          render json: @book
+        else
+          render json: @book.errors.full_messages, status: 422
+        end
+      # end
+      
     end
 
   private

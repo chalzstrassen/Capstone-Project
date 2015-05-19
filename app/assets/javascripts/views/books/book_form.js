@@ -3,7 +3,11 @@ Enwritt.Views.BookForm = Backbone.ModalView.extend({
   tagName: "form",
   className: "book-form",
   events: {
-  	"click .publish-button" : "submit"
+  	"click .publish-button" : "submit",
+    "click .edit-button" : "updateBook"
+  },
+  initialize: function () {
+    this.listenTo(this.model, "sync", this.render);
   },
   render: function () {
     var content = this.template({ book: this.model });
@@ -24,7 +28,14 @@ Enwritt.Views.BookForm = Backbone.ModalView.extend({
         this.collection.add(this.model)
   		}.bind(this)
   	});
-  	
+  },
+  
+  updateBook: function (event) {
+    event.preventDefault();
+
+    var formData = $(".book-form").serializeJSON();
+    this.model.set(formData);
+    this.model.save();
   }
 
 });

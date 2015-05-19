@@ -21,5 +21,22 @@ Enwritt.Views.BookShow = Backbone.ModalView.extend({
 				this.hideModal();
 			}.bind(this)
 		});
+	},
+	editBook: function (event) {
+		event.preventDefault();
+		var bookId = $(event.currentTarget).data("id");
+		var book = new Enwritt.Models.Book({ id: bookId });
+		book.fetch();
+		var view = new Enwritt.Views.BookForm({
+			model: book,
+			collection: this.collection
+		});
+
+		this.hideModal();
+		view.render().showModal({
+			closeImageUrl: "//:0",
+      		closeImageHoverUrl: "//:0"
+  		});
 	}
+
 });

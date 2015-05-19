@@ -32,6 +32,11 @@
 	border: 2px solid magenta;
 }
 
+div.modal {
+  width: 500px;
+  height: 500px;
+}
+
 /* Stylings for collections index subview */
 
 li.collection-item {

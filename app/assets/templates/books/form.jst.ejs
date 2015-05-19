@@ -12,4 +12,8 @@
 	<label>Synopsis
 		<textarea name="book[synopsis]"><%= book.escape("synopsis") %></textarea>
 	</label>
+<% if (book.isNew()) { %>
 	<button class="publish-button">Publish</button>
+<% } else { %>
+	<button class="edit-button">Make Edit</button>
+<% } %>
