@@ -1,2 +1,15 @@
-<% if ()
-<h1>Publish a book</h1>
+<% if (book.isNew()) { %>
+	<h1>Publish a book</h1>
+<% } else { %>
+	<h1>Edit <%= book.escape("title") %></h1>
+<% } %> 
+	<label>Title
+		<input type="text" name="book[title]" value="<%= book.escape("title") %>">
+	</label>
+	<label>Genre
+		<input type="text" name="book[genre]" value="<%= book.escape("genre") %>">
+	</label>
+	<label>Synopsis
+		<textarea name="book[synopsis]"><%= book.escape("synopsis") %></textarea>
+	</label>
+	<button class="publish-button">Publish</button>
