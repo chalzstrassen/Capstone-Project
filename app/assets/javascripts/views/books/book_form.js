@@ -29,13 +29,19 @@ Enwritt.Views.BookForm = Backbone.ModalView.extend({
   		}.bind(this)
   	});
   },
-  
+
   updateBook: function (event) {
     event.preventDefault();
 
     var formData = $(".book-form").serializeJSON();
     this.model.set(formData);
-    this.model.save();
+    this.model.save({}, {
+      success: function () {
+        this.hideModal();
+        this.collection.set(this.model, { remove: false });
+      }.bind(this)
+    });
+
   }
 
 });

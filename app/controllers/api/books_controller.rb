@@ -39,14 +39,14 @@ module Api
     def update
       @book = Book.find(params[:id])
 
-      # if @book.author_id == current_user
+      if @book.author_id == current_user.id
         if @book.update(book_params)
           render json: @book
         else
           render json: @book.errors.full_messages, status: 422
         end
-      # end
-      
+      end
+
     end
 
   private
