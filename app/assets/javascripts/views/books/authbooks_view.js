@@ -5,7 +5,7 @@ Enwritt.Views.AuthBooksView = Backbone.View.extend({
     "click .authbook-item" : "showBookModal"
   },
   initialize: function () {
-    this.listenTo(this.collection, "sync add", this.render);
+    this.listenTo(this.collection, "sync add remove", this.render);
   },
   render: function () {
     var content = this.template({books: this.collection});

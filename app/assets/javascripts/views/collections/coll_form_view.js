@@ -34,6 +34,7 @@ Enwritt.Views.CollFormView = Backbone.ModalView.extend({
 
     this.hideModal();
     this.model.destroy();
+    this.collection.remove(this.model);
   },
 
   backToShow: function (event) {

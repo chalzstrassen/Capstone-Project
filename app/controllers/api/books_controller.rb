@@ -23,14 +23,17 @@ module Api
     end
 
     def destroy
-      @book = Book.find(params[:id])
+      @book = current_user.authored_books.find(params[:id])
       
-      if @book.destroy
-        render json: {}
+      if @book
+        if @book.destroy
+          render json: {}
+        else
+          render json: @book.errors.full_messages, status: 422
+        end
       else
-        render json: @book.errors.full_messages, status: 422
+        render json: "You did not write this book."
       end
-      
     end
 
   private

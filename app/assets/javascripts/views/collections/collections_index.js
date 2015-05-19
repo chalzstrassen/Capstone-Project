@@ -5,7 +5,7 @@ Enwritt.Views.CollectionsIndex = Backbone.View.extend({
     "click li.collection-item": "showCollection"
   },
   initialize: function () {
-    this.listenTo(this.collection, "sync", this.render);
+    this.listenTo(this.collection, "sync remove", this.render);
   },
   render: function () {
     var content = this.template({collections: this.collection});
