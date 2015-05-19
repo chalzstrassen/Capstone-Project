@@ -16,7 +16,7 @@ module Api
     end
 
 		def update
-			@book = Book.find_by(params[:id])
+			@book = current_user.authored_books.find_by(params[:id])
 
 			if @book.update(book_params)
 				render json: @book

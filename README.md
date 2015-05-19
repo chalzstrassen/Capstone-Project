@@ -6,12 +6,12 @@
 Enwritt is a Scribd clone built on Rails and Backbone.
 <!-- This is a Markdown checklist. Use it to keep track of your progress! -->
 Users can:
-- [ ] Create accounts
-- [ ] Create sessions (log in)
-- [ ] Have a library listing all purchased books and collections
-- [ ] Create and publish books
-- [ ] Create collections
-- [ ] Add books to collections
+- [x] Create accounts
+- [x] Create sessions (log in)
+- [x] Have a library listing all purchased books and collections
+- [x] Create and publish books
+- [x] Create collections
+- [x] Add books to collections
 - [ ] Purchase/Sell Books
 - [ ] Download purchased books as PDF
 - [ ] Narrow search for books within collection/library
