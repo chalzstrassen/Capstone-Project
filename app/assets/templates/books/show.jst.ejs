@@ -1,0 +1,6 @@
+<h1>Title: <%= book.escape("title") %><h1>
+<h4>Author Email: <%- book.get("author").email_address %></h4>
+<article class="book-synopsis">
+	<h3>Synopsis</h3><%= book.escape("synopsis") %>
+</article>
+

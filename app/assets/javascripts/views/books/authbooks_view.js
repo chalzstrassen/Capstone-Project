@@ -5,7 +5,7 @@ Enwritt.Views.AuthBooksView = Backbone.View.extend({
     "click .authbook-item" : "showBookModal"
   },
   initialize: function () {
-    this.listenTo(this.collection, "sync", this.render);
+    this.listenTo(this.collection, "sync add", this.render);
   },
   render: function () {
     var content = this.template({books: this.collection});
@@ -29,7 +29,20 @@ Enwritt.Views.AuthBooksView = Backbone.View.extend({
   showBookModal: function (event) {
     event.preventDefault();
     var bookId = $(event.currentTarget).data("id");
-    var model = this.collection.get(bookId);
-    console.log(model.escape("title"));
+    var model = new Enwritt.Models.Book({ id: bookId });
+    var that = this;
+    model.fetch({
+      success: function () {
+        var view = new Enwritt.Views.BookShow({
+          model: model,
+          collection: that.collection
+        });
+
+        view.render().showModal({
+          closeImageUrl: "//:0",
+          closeImageHoverUrl: "//:0"
+        });
+      }
+    });
   }
 });

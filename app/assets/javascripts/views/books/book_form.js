@@ -21,7 +21,7 @@ Enwritt.Views.BookForm = Backbone.ModalView.extend({
   	this.model.save({},{
   		success: function () {
   			this.hideModal();
-        this.collection.fetch();
+        this.collection.add(this.model)
   		}.bind(this)
   	});
   	
