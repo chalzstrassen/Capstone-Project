@@ -18,5 +18,5 @@
 * CollForm
 
 ## Gems/Libraries
-* Filepicker
-* rMagick
+* Paperclip
+* AWS-SDK

@@ -6,7 +6,6 @@ Enwritt.Views.BookShow = Backbone.ModalView.extend({
 	},
 	render: function () {
 		var content = this.template({ book: this.model });
-
 		this.$el.html(content);
 		return this;
 	},

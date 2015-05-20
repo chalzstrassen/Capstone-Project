@@ -17,7 +17,7 @@ Users can:
 - [ ] Narrow search for books within collection/library
 
 Anyone can:
-- [ ] Preview books
+- [x] Preview books
 - [ ] Search for books by title and author
 
 ## Design Docs

@@ -3,6 +3,9 @@
 <article class="book-synopsis">
 	<h3>Synopsis</h3><p><%= book.escape("synopsis") %></p>
 	<img src="<%= book.escape("image_url") %>" width="150">
+	<a href="<%= book.escape("content_url") %>">
+		<img src="<%= book.escape("pdf_thumb") %>">
+	</a>
 </article>
 
 <button class="delete-book" data-id="<%= book.id %>">Delete Book</button>

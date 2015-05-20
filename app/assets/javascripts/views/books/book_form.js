@@ -5,7 +5,8 @@ Enwritt.Views.BookForm = Backbone.ModalView.extend({
   events: {
   	"click .publish-button" : "submit",
     "click .edit-button" : "updateBook",
-    "change #input-cover-image": "fileInputChange"
+    "change #input-cover-image" : "fileInputChange",
+    "change #input-content-pdf" : "pdfFileChange"
   },
   initialize: function () {
     this.listenTo(this.model, "sync", this.render);
@@ -69,6 +70,22 @@ Enwritt.Views.BookForm = Backbone.ModalView.extend({
 
    _updatePreview: function(src){
     this.$el.find("#preview-cover-image").attr("src", src);
+  },
+
+  pdfFileChange: function (event) {
+    var that = this;
+    var file = event.currentTarget.files[0];
+    var reader = new FileReader();
+
+    reader.onloadend = function () {
+      that.model._content = reader.result;
+    }
+
+    if (file) {
+      reader.readAsDataURL(file);
+    } else {
+      delete that.model._content;
+    }
   }
 
 });

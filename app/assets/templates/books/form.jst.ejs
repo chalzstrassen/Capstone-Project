@@ -13,9 +13,12 @@
 		<textarea name="book[synopsis]"><%= book.escape("synopsis") %></textarea>
 	</label>
 	<label>Cover Image
-		<input type="file" name="book[cover]" id="input-cover-image">
+		<input type="file" name="book[cover]" id="input-cover-image" accept="image/*">
 	</label>
-	  <img src="" id="preview-cover-image" width="50">
+	  <img src="<%= book.escape("image_url") %>" id="preview-cover-image" width="50">
+	<label>Book Content
+		<input type="file" name="book[content]" id="input-content-pdf" accept="application/pdf">
+	</label> 
 <% if (book.isNew()) { %>
 	<button class="publish-button">Publish</button>
 <% } else { %>

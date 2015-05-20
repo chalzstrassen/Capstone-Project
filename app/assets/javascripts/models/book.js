@@ -7,6 +7,10 @@ Enwritt.Models.Book = Backbone.Model.extend({
   		json.book.cover = this._cover;
   	}
 
+  	if (this._content) {
+  		json.book.content = this._content;
+  	}
+
   	return json;
   }
 });
