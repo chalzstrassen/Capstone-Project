@@ -24,13 +24,6 @@ id            | integer   | not null, primary key
 collection_id | integer   | not null, foreign key (references collections)
 book_id       | integer   | not null, foreign key (references books)
 
-## sales
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-buyer_id    | integer   | not null, foreign key (references users)
-book_id     | integer   | not null, foreign key (references books)
-
 ## users
 column name     | data type | details
 ----------------|-----------|-----------------------
@@ -38,3 +31,12 @@ id              | integer   | not null, primary key
 email           | string    | not null, unique
 password_digest | string    | not null
 session_token   | string    | not null, unique
+
+# Bonus Implementation
+## sales
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+buyer_id    | integer   | not null, foreign key (references users)
+book_id     | integer   | not null, foreign key (references books)
+

@@ -12,17 +12,20 @@
   book1 = user1.authored_books.create!(
     title: "Beer from Hell",
     genre: "Fiction",
-    synopsis: "Tucker goes to hell and becomes a bartender who interacts with other infamous and notorious historical figures. Hilarity ensues.")
+    synopsis: "Tucker goes to hell and becomes a bartender who interacts with other infamous and notorious historical figures. Hilarity ensues."
+  )
 
   book2 = user1.authored_books.create!(
     title: "App Academy Sickness",
     genre: "Nonfiction",
-    synopsis: "Real student accounts of incidents not witnessed by their instructors in the office. All very hilarious.")
+    synopsis: "Real student accounts of incidents not witnessed by their instructors in the office. All very hilarious."
+  )
 
   book3 = user1.authored_books.create!(
     title: "Firetrux",
     genre: "Photobook",
-    synopsis: "Follow Firetrux and his friends as they adventure through whereever they want to adventure in. From canyons to rivers, hear more about the travails and exploits of Firetrux.")
+    synopsis: "Follow Firetrux and his friends as they adventure through whereever they want to adventure in. From canyons to rivers, hear more about the travails and exploits of Firetrux."
+  )
 
   collection1 = user2.collections.create!(
     name: "App Academy Recommendations",
@@ -30,3 +33,17 @@
   )
 
   collection1.add_book(book2)
+
+  50.times do |i|
+    User.create!(email: "pgsearch#{i}@gmail.com", password: "password")
+  end
+
+  50.times do |i|
+    Book.create!(
+      author_id: i+1,
+      title: "PGSearch Book #{i}",
+      genre: "Nonfiction",
+      synopsis: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae veniam voluptatem aliquid suscipit dolores dolorum tempore expedita sint hic. Ad alias itaque nesciunt eveniet error aliquam, quo a assumenda, dignissimos?"
+    )
+  end
+

@@ -65,3 +65,14 @@ h3.welcome-message {
      -ms-transform: rotate(45deg);
       -o-transform: rotate(45deg);
 }
+.query {
+  background-color: white;
+  float: left;
+  margin: 0 10px;
+  width: 0;
+  transition: width 1s;
+}
+
+.revealed {
+  width: 200px;
+}

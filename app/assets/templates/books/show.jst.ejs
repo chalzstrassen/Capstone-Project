@@ -4,7 +4,11 @@
 	<h3>Synopsis</h3><p><%= book.escape("synopsis") %></p>
 	<img src="<%= book.escape("image_url") %>" width="150">
 	<a href="<%= book.escape("content_url") %>">
-		<img src="<%= book.escape("pdf_thumb") %>">
+		<% if (book.get("pdf_thumb") != "/") { %>
+			<img src="<%= book.escape("pdf_thumb") %>">
+		<% } else { %>
+			<p>No pdf file uploaded</p>
+		<% } %>
 	</a>
 </article>
 

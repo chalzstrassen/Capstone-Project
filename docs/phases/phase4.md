@@ -17,3 +17,5 @@ Api::BooksController (search)
 * SearchShow (composite view, contains BooksIndex subview)
 
 ## Gems/Libraries
+* Kaminari
+* PgSearch
