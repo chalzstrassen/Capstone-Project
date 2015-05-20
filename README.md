@@ -12,14 +12,14 @@ Users can:
 - [x] Create and publish books
 - [x] Create collections
 - [x] Add books to collections
-- [ ] Purchase/Sell Books
-- [ ] Download purchased books as PDF
+- [x] Download books as PDF
 - [ ] Narrow search for books within collection/library
 
 Anyone can:
 - [x] Preview books
+- [ ] Pagination/infinite scroll
 - [ ] Search for books by title and author
-
+- [ ] Log in with OAuth (_choose social media_)
 ## Design Docs
 * [View Wireframes][views]
 * [DB schema][schema]
@@ -74,15 +74,18 @@ books within the collection.
 [Details][phase-five]
 
 ### Bonus Features (TBD)
+- [ ] Purchase/Sell Books
+- [ ] Progress UI
 - [ ] Sales counter
-- [ ] User avatars
-- [ ] Author profiles
-- [ ] Author rankings
-- [ ] Pagination/infinite scroll
-- [ ] Rating/Reviews
 - [ ] Recently viewed
-- [ ] Wishlists
-- [ ] Recommendations
+
+	#### Social Features
+		- [ ] User avatars
+		- [ ] Author profiles
+		- [ ] Author rankings
+		- [ ] Wishlists
+		- [ ] Rating/Reviews
+		- [ ] Recommendations
 
 [phase-one]: ./docs/phases/phase1.md
 [phase-two]: ./docs/phases/phase2.md
