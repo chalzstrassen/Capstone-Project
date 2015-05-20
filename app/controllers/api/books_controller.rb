@@ -52,7 +52,7 @@ module Api
   private
 
     def book_params
-      params.require(:book).permit(:title, :genre, :synopsis)
+      params.require(:book).permit(:title, :genre, :synopsis, :cover)
     end
 
   end
