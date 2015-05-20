@@ -1,6 +1,7 @@
 module Api
   class BooksController < ApiController
     skip_before_action :require_signed_in!, only: [:show, :index]
+    wrap_parameters false
 
     def index
       @books = Book.all

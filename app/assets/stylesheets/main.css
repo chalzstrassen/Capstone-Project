@@ -1,3 +1,4 @@
+
 #library {
 	display: block;
 	width: 900px;
@@ -32,7 +33,7 @@
 	border: 2px solid magenta;
 }
 
-div.modal {
+.modal {
   width: 500px;
   height: 500px;
 }

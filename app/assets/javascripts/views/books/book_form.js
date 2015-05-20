@@ -4,7 +4,8 @@ Enwritt.Views.BookForm = Backbone.ModalView.extend({
   className: "book-form",
   events: {
   	"click .publish-button" : "submit",
-    "click .edit-button" : "updateBook"
+    "click .edit-button" : "updateBook",
+    "change #input-cover-image": "fileInputChange"
   },
   initialize: function () {
     this.listenTo(this.model, "sync", this.render);
@@ -19,8 +20,8 @@ Enwritt.Views.BookForm = Backbone.ModalView.extend({
   submit: function (event) {
   	event.preventDefault();
 
-  	var formData = $(".book-form").serializeJSON();
-
+  	var formData = $(".book-form").serializeJSON().book;
+    debugger
   	this.model.set(formData);
   	this.model.save({},{
   		success: function () {
@@ -33,7 +34,8 @@ Enwritt.Views.BookForm = Backbone.ModalView.extend({
   updateBook: function (event) {
     event.preventDefault();
 
-    var formData = $(".book-form").serializeJSON();
+    var formData = $(".book-form").serializeJSON().book;
+    debugger;
     this.model.set(formData);
     this.model.save({}, {
       success: function () {
@@ -41,7 +43,32 @@ Enwritt.Views.BookForm = Backbone.ModalView.extend({
         this.collection.set(this.model, { remove: false });
       }.bind(this)
     });
+  },
 
+  fileInputChange: function(event){
+    console.log(event.currentTarget.files[0]);
+
+    var that = this;
+    var file = event.currentTarget.files[0];
+    var reader = new FileReader();
+
+    reader.onloadend = function(){
+      that._updatePreview(reader.result);
+      that.model._cover = reader.result;
+      console.log(that.model);
+    }
+
+    if (file) {
+      reader.readAsDataURL(file);
+    } else {
+      that._updatePreview("");
+      delete that.model._cover;
+      console.log(that.model);
+    }
+  },
+
+   _updatePreview: function(src){
+    this.$el.find("#preview-cover-image").attr("src", src);
   }
 
 });
