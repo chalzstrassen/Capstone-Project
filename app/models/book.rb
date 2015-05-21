@@ -1,4 +1,5 @@
 class Book < ActiveRecord::Base
+  include PgSearch
   validates :author_id, :title, :genre, :synopsis, presence: true
   has_attached_file :cover, default_url: "default.png"
   validates_attachment_content_type :cover, content_type: /\Aimage\/.*\Z/
@@ -10,5 +11,7 @@ class Book < ActiveRecord::Base
             foreign_key: :author_id,
             primary_key: :id,
             )
+  pg_search_scope :search_by_title, against: :title
+  pg_search_scope :search_by_author_email, associated_against: { :author => :email } 
 
 end
