@@ -11,7 +11,7 @@ class Book < ActiveRecord::Base
             foreign_key: :author_id,
             primary_key: :id,
             )
-  pg_search_scope :search_by_title, against: :title
+  pg_search_scope :search_on_title_genre_synopsis, against: [:title, :genre, :synopsis]
   pg_search_scope :search_by_author_email, associated_against: { :author => :email } 
 
 end

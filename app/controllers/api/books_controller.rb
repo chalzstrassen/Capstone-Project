@@ -4,7 +4,12 @@ module Api
     wrap_parameters false
 
     def index
-      @books = Book.all
+      if logged_in?
+        @books = Book.includes(:author).where("author_id <> ?", current_user.id)
+      else
+        @books = Book.includes(:author).all
+      end
+      
       render :index
     end
 
