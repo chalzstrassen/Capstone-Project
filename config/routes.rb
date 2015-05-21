@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   	resources :collections, except: [:new, :edit]
   	resources :collects, only: [:create, :destroy]
   end
+
+  get "search", to: "searches#index"
 end

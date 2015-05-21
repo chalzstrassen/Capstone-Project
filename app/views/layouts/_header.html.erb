@@ -1,7 +1,7 @@
 <header class="group">
   <span id="magnifying-glass"></span>
-  <form class="query group">
-  <input type="text" class="search-box">
+  <form class="query-form group" method="GET" action="<%= search_url %>">
+  <input type="text" name="query" class="search-box">
   <button class="search-button">Search</button>
   </form>
   <a href="#" class="logo">Enwritt</a>

@@ -23,10 +23,10 @@
 	var revealed = false;
 	$("#magnifying-glass").on("click", function () {
 		if (revealed) {
-			$(".query").removeClass("revealed")
+			$(".query-form").removeClass("revealed")
 			revealed = false;
 		} else {
-			$(".query").addClass("revealed");
+			$(".query-form").addClass("revealed");
 			revealed = true;
 		}
 	});

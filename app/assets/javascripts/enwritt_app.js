@@ -4,7 +4,11 @@ window.Enwritt = {
   Views: {},
   Routers: {},
   initialize: function(options) {
-    new Enwritt.Routers.Router({$rootEl: $('#library')});
-    Backbone.history.start();
+    if (Backbone.history.started) {
+    	Backbone.history.navigate("#");
+    } else {
+    	new Enwritt.Routers.Router({$rootEl: $('#library')});
+    	Backbone.history.start();
+    }
   }
 };

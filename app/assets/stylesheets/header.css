@@ -67,11 +67,11 @@ h3.welcome-message {
      -ms-transform: rotate(45deg);
       -o-transform: rotate(45deg);
 }
-.query {
+.query-form {
   float: left;
   margin: 0 10px;
   width: 0;
-  transition: width 1s;
+  transition: width 0.65s;
   overflow: hidden;
   height: 25px;
 }

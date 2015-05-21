@@ -1,5 +1,5 @@
-class Api::SearchesController < ApplicationController
-	skip_before_action :require_signed_in! , only: [:index]
+class Api::UserSearchesController < ApplicationController
+	skip_before_action :require_signed_in!, only: [:index, :filter_by_genre]
 
 	def index
 		@search_results = Book.search_on_title_synopsis(params[:query])

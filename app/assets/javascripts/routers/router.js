@@ -3,17 +3,12 @@ Enwritt.Routers.Router = Backbone.Router.extend({
     this.$rootEl = options.$rootEl
   },
   routes: {
-    '': 'libraryLayout',
-    'search': 'resultsLayout'
+    '': 'libraryLayout'
   },
 
   libraryLayout: function () {
     var view = new Enwritt.Views.LibraryView();
     this._swapView(view);
-  },
-
-  resultsLayout: function () {
-
   },
   
   _swapView: function (view) {
