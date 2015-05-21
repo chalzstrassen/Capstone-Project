@@ -1,5 +1,5 @@
 <%= render "filters" %>
-<h1>Results for <%= @query %></h1>
+<h1>Results for <%= @query %> by <%= @search_condition %></h1>
 <% if @search_results.length > 0 %>
 	<ul class="search-results">
 		<% @search_results.each do |result| %>
@@ -7,6 +7,7 @@
 				<p>Title: <%= result.title %></p>
 				<p>Genre: <%= result.genre %></p>
 				<p>Synopsis: <%= result.synopsis %></p>
+				<p>Author email: <%= result.author.email %></p>
 			</li>
 		<% end %>
 	</ul>

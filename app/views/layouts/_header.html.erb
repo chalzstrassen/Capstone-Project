@@ -2,6 +2,10 @@
   <span id="magnifying-glass"></span>
   <form class="query-form group" method="GET" action="<%= search_url %>">
   <input type="text" name="query" class="search-box">
+  <select name="search_by" id="search-option">Search By
+    <option value="book" selected>Book</option>
+    <option value="author">Author</option>
+  </select>
   <button class="search-button">Search</button>
   </form>
   <a href="<%= root_url %>" class="logo">Enwritt</a>
