@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     if @user.save
       flash[:notice] = "Successfully created your account! Here's your library."
       login!(@user)
-      redirect_to @user
+      redirect_to root_url
     else
       flash.now[:errors] = @user.errors.full_messages
       render :new

@@ -12,6 +12,8 @@ class Book < ActiveRecord::Base
             primary_key: :id,
             )
   pg_search_scope :search_on_title_synopsis, against: [:title, :synopsis]
-  pg_search_scope :search_by_author_email, associated_against: { :author => :email } 
+  pg_search_scope :search_by_author_email, 
+                  associated_against: { :author => :email },
+                  using: { :tsearch => { :prefix => true }} 
 
 end

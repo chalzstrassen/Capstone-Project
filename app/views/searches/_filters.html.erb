@@ -1,0 +1,14 @@
+<h2>Filter Search by Genre</h2>
+<form action="<%= search_url %>" method="GET">
+	<input type="hidden" name="query" value="<%= @query %>">
+	<input type="checkbox" name="filter[]" value="Nonfiction" 
+		<%= "checked" if @filters.include?("Nonfiction") %>>
+		Nonfiction<br>
+	<input type="checkbox" name="filter[]" value="Fiction"
+		<%= "checked" if @filters.include?("Fiction") %>>
+		Fiction<br>
+	<input type="checkbox" name="filter[]" value="Photobook"
+		<%= "checked" if @filters.include?("Photobook") %>>
+		Photobook<br>
+	<button>Filter</button>
+</form>

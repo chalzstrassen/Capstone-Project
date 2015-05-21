@@ -4,7 +4,7 @@
   <input type="text" name="query" class="search-box">
   <button class="search-button">Search</button>
   </form>
-  <a href="#" class="logo">Enwritt</a>
+  <a href="<%= root_url %>" class="logo">Enwritt</a>
   <% if logged_in? %>
     <h3 class="welcome-message"> Welcome <%= current_user.email %> </h3>
     <form class="auth" method="POST" action="<%= session_url %>">

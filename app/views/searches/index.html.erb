@@ -1,3 +1,5 @@
+<%= render "filters" %>
+<h1>Results for <%= @query %></h1>
 <% if @search_results.length > 0 %>
 	<ul class="search-results">
 		<% @search_results.each do |result| %>
@@ -10,5 +12,5 @@
 	</ul>
 	<%= paginate @search_results %>
 <% else %>
-	<h2>No results</h2>
+	<h3>No results</h3>
 <% end %>

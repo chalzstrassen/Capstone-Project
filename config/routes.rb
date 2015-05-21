@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   end
 
   get "search", to: "searches#index"
+  get "search/by_genre", to: "searches#filter_by_genre"
 end

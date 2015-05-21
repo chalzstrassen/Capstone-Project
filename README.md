@@ -18,7 +18,8 @@ Users can:
 Anyone can:
 - [x] Preview books
 - [ ] Pagination/infinite scroll
-- [ ] Search for books by title, synopsis and author
+- [ ] Search for books by title and synopsis
+- [ ] Filter search by author
 - [ ] Filter search for books by genre
 - [ ] Log in with OAuth (_choose social media_)
 ## Design Docs
