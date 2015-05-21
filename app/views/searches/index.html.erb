@@ -1,0 +1,14 @@
+<% if @search_results.length > 0 %>
+	<ul class="search-results">
+		<% @search_results.each do |result| %>
+			<li>
+				<p>Title: <%= result.title %></p>
+				<p>Genre: <%= result.genre %></p>
+				<p>Synopsis: <%= result.synopsis %></p>
+			</li>
+		<% end %>
+	</ul>
+	<%= paginate @search_results %>
+<% else %>
+	<h2>No results</h2>
+<% end %>
