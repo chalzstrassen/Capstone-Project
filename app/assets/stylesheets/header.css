@@ -13,8 +13,8 @@ html, body, header, a, form, input, button, h3 {
 header {
   font-family: sans-serif;
   width: 100%;
-  height: 20px;
-  padding: 5px;
+  height: 25px;
+  padding: 10px;
   display: block;
   background: #2d8;
 }
@@ -30,6 +30,8 @@ h3.welcome-message {
 }
 .logo {
   float: left;
+  display: block;
+  font-size: 20px;
   margin: 0 5px;
 }
 .auth {
@@ -38,13 +40,13 @@ h3.welcome-message {
 }
 #magnifying-glass
 {
- font-size: 20px;
+ font-size: 25px;
  display: inline-block;
- width: 10px;
- height: 10px;
+ width: 15px;
+ height: 15px;
  border: 1px solid #aaa;
  position: relative;
- border-radius: 5px;
+ border-radius: 10px;
  float: left;
  margin: 0 5px;
  background: #eee;
@@ -58,21 +60,40 @@ h3.welcome-message {
  bottom: -1px;
  border-width: 0;
  background: #a3a;
- width: 5px;
- height: 1px;
+ width: 8px;
+ height: 2px;
  -webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);
      -ms-transform: rotate(45deg);
       -o-transform: rotate(45deg);
 }
 .query {
-  background-color: white;
   float: left;
   margin: 0 10px;
   width: 0;
   transition: width 1s;
+  overflow: hidden;
+  height: 25px;
 }
 
 .revealed {
-  width: 200px;
+  width: 250px;
+}
+.search-box {
+  background-color: white;
+  width: 70%;
+  float: left;
+  display: block;
+  height: 25px;
+}
+.search-button {
+  width: auto;
+  font-size: 14px;
+  float: left;
+  display: block;
+  margin-left: 10px;
+  background: #eee;
+  padding: 0px 5px;
+  height: 25px;
+
 }
