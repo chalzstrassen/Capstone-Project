@@ -7,7 +7,7 @@
 <ul class="collection-books">
 	<% books.each(function(book) { %>
 		<li>Title: <%- book.title %>, Author Email: <%- book.author %></li>
-    <button data-id="<%- book.id %>" class="remove-book">Remove</button>
+    	<button data-id="<%- book.id %>" class="remove-book">Remove</button>
 	<% }) %>
 </ul><br>
 <ul class="available-books">

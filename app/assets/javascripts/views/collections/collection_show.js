@@ -77,20 +77,26 @@ Enwritt.Views.CollectionShow = Backbone.ModalView.extend({
   },
   renderSearchResults: function () {
     var books = this.searchResults;
+    var content = JST["searches/book_hits"]({ books: books });
+    this.$(".collection-books").html(content);
   },
   search: function (event) {
     event.preventDefault();
-    debugger;
     this.searchResults._query = this.$(".search-box").val();
     if (this.searchResults._query === "") {
-      this.collection.fetch();
+      this.model.fetch();
     } else {
       this.searchResults.fetch({
         data: {
           query: this.searchResults._query,
           id: this.model.id
         }
+        // success: function (obj, responseText) {
+        //   this.renderSearchResults();
+        //   console.log(responseText);
+        // }.bind(this)
       });
+      
     }
   }
 });
