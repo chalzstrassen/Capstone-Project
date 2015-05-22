@@ -27,6 +27,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'rmagick'
 gem 'pg_search'
 gem 'kaminari'
+gem 'omniauth-facebook'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

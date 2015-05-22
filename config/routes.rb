@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   end
 
   get "search", to: "searches#index"
+  get '/auth/:provider/callback', to: 'sessions#omniauth'
 end

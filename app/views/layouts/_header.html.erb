@@ -19,5 +19,13 @@
   <% else %>
     <a href="<%= new_session_url %>" class="auth">Sign in</a>
     <a href="<%= new_user_url %>" class="auth">Sign up</a>
+    <div
+      class="fb-like auth"
+      data-share="true"
+      data-width="450"
+      data-show-faces="true">
+    </div>
+    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+    </fb:login-button>
   <% end %>
 </header>
