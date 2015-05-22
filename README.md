@@ -13,14 +13,14 @@ Users can:
 - [x] Create collections
 - [x] Add books to collections
 - [x] Download books as PDF
-- [ ] Narrow search for books within collection/library
+- [ ] Narrow search for books within collection
 
 Anyone can:
 - [x] Preview books
-- [ ] Pagination/infinite scroll
-- [ ] Search for books by title and synopsis
-- [ ] Filter search by author
-- [ ] Filter search for books by genre
+- [x] Pagination/infinite scroll
+- [x] Search for books by title and synopsis
+- [x] Filter search for books by author
+- [x] Filter search for books by genre
 - [ ] Log in with OAuth (_choose social media_)
 ## Design Docs
 * [View Wireframes][views]
@@ -82,12 +82,12 @@ books within the collection.
 - [ ] Recently viewed
 
 	#### Social Features
-		- [ ] User avatars
-		- [ ] Author profiles
-		- [ ] Author rankings
-		- [ ] Wishlists
-		- [ ] Rating/Reviews
-		- [ ] Recommendations
+	- [ ] User avatars
+	- [ ] Author profiles
+	- [ ] Author rankings
+	- [ ] Wishlists
+	- [ ] Rating/Reviews
+	- [ ] Recommendations
 
 [phase-one]: ./docs/phases/phase1.md
 [phase-two]: ./docs/phases/phase2.md

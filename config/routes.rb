@@ -9,8 +9,8 @@ Rails.application.routes.draw do
     resources :authbooks, only: [:index]
   	resources :collections, except: [:new, :edit]
   	resources :collects, only: [:create, :destroy]
+    resources :user_searches, only: [:index]
   end
 
   get "search", to: "searches#index"
-  get "search/by_genre", to: "searches#filter_by_genre"
 end

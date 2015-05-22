@@ -86,6 +86,7 @@ h3.welcome-message {
   display: block;
   height: 25px;
   border-radius: 5px 0 0 5px;
+  border: 1px solid red;
 }
 #search-option {
   display: block;

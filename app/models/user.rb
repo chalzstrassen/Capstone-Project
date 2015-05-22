@@ -8,7 +8,9 @@ class User < ActiveRecord::Base
   has_many(:authored_books,
            class_name: "Book",
            foreign_key: :author_id,
-           primary_key: :id)
+           primary_key: :id,
+           inverse_of: :author
+           )
 
   has_many :collections
 

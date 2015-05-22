@@ -2,6 +2,8 @@
 <main class="collection-description">
   <%= collection.escape("description") %>
 </main>
+<%= JST["searches"]({ collection: collection }) %>
+<br>
 <ul class="collection-books">
 	<% books.each(function(book) { %>
 		<li>Title: <%- book.title %>, Author Email: <%- book.author %></li>

@@ -3,10 +3,13 @@ Enwritt.Views.CollectionShow = Backbone.ModalView.extend({
   events: {
   	"click #edit-collection": "showForm",
     "click #add-book": "addBookForm",
-    "click .remove-book": "removeBook"
+    "click .remove-book": "removeBook",
+    "click .search-button": "search"
   },
   initialize: function () {
     this.listenTo(this.model, "sync", this.render);
+    this.searchResults = new Enwritt.Collections.SearchResults();
+    this.listenTo(this.searchResults, "sync", this.renderSearchResults);
   },
   render: function () {
     var books = this.model.get("books");
@@ -71,5 +74,23 @@ Enwritt.Views.CollectionShow = Backbone.ModalView.extend({
 				alert(responseText);
 			}
 		});
+  },
+  renderSearchResults: function () {
+    var books = this.searchResults;
+  },
+  search: function (event) {
+    event.preventDefault();
+    debugger;
+    this.searchResults._query = this.$(".search-box").val();
+    if (this.searchResults._query === "") {
+      this.collection.fetch();
+    } else {
+      this.searchResults.fetch({
+        data: {
+          query: this.searchResults._query,
+          id: this.model.id
+        }
+      });
+    }
   }
 });
