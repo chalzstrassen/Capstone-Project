@@ -14,7 +14,7 @@
     <form class="auth" method="POST" action="<%= session_url %>">
       <%= csrf_token %>
       <input type="hidden" name="_method" value="delete">
-      <button class=".sign-out">Sign out</button>
+      <button class="sign-out">Sign out</button>
     </form>
   <% else %>
     <a href="<%= new_session_url %>" class="auth">Sign in</a>
@@ -25,7 +25,36 @@
       data-width="450"
       data-show-faces="true">
     </div>
-    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-    </fb:login-button>
+    <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false"></div>
   <% end %>
 </header>
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '<%= ENV["facebook_app_id"] %>',
+      xfbml      : true,
+      version    : 'v2.2',
+      cookie     : true
+    });
+    FB.getLoginStatus(function(response) {
+      if (response.status === "connected") {
+        $.getJSON('/auth/facebook/callback', function(){});
+      }
+    });
+
+    $(".sign-out").on("click", function (event) {
+      FB.logout();
+    });
+  };
+
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+  
+</script>

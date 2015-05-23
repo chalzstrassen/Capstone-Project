@@ -13,7 +13,7 @@ Users can:
 - [x] Create collections
 - [x] Add books to collections
 - [x] Download books as PDF
-- [ ] Narrow search for books within collection
+- [x] Narrow search for books within collection
 
 Anyone can:
 - [x] Preview books
@@ -21,7 +21,7 @@ Anyone can:
 - [x] Search for books by title and synopsis
 - [x] Filter search for books by author
 - [x] Filter search for books by genre
-- [ ] Log in with OAuth (_choose social media_)
+- [x] Log in with OAuth (_login with Facebook omniauth_)
 ## Design Docs
 * [View Wireframes][views]
 * [DB schema][schema]
