@@ -25,7 +25,8 @@
       data-width="450"
       data-show-faces="true">
     </div>
-    <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false"></div>
+    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+    </fb:login-button>
   <% end %>
 </header>
 
@@ -37,14 +38,15 @@
       version    : 'v2.2',
       cookie     : true
     });
-    FB.getLoginStatus(function(response) {
-      if (response.status === "connected") {
-        $.getJSON('/auth/facebook/callback', function(){});
-      }
-    });
 
     $(".sign-out").on("click", function (event) {
       FB.logout();
+    });
+
+    FB.getLoginStatus(function(response) {
+      if (response.status === "connected") {
+        $.getJSON('/auth/facebook/callback', function(json) {});
+      }
     });
   };
 
