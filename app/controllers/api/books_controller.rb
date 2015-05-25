@@ -5,7 +5,10 @@ module Api
 
     def index
       if logged_in?
-        @books = Book.includes(:author).where("author_id <> ?", current_user.id)
+        @books = Book.includes(:author)
+                     .where("author_id <> ?", current_user.id)
+                     .page(params[:page])
+                     .per(5)
       else
         @books = Book.includes(:author).all
       end

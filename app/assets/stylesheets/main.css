@@ -7,6 +7,7 @@
 	border: 5px solid black;
 	padding: 10px;
 	margin-top: 40px;
+	background: #ddd;
 }
 
 #collections {
@@ -16,22 +17,29 @@
 	float: left;
 	margin: auto;
 	border: 1px solid #ddd;
+	background: white;
+	margin-bottom: 5px;
 }
 
 #books-index {
 	display: block;
-	width: 440px;
+	width: 448px;
 	float: left;
-	margin-right: 5px
-	border: 2px solid pink;
+	height: 264px;
+	border-left: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	background: white;
 }
 
 #authored-books {
 	display: block;
-	width: 440px;
+	width: 444px;
 	float: left;
 	margin-left: 5px;
-	border: 2px solid magenta;
+	border-right: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	background: white;
 }
 
 .modal {
@@ -89,3 +97,44 @@ li.collection-item:first-child {
 	margin-top: 35px;
 	border: 1px solid black;
 }
+
+/* Stylings for Library books Index view */
+ul.books-list {
+	display: block;
+	width: 400px;
+	margin: auto;
+	height: auto;
+}
+ul.books-list li {
+	display: block;
+	padding: 5px 0;
+	border-bottom: 1px solid black;
+	cursor: pointer;
+}
+ul.books-list li:first-child {
+	border-top: 1px solid black;
+}
+ul.books-list li:hover {
+	background: #eee;
+}
+.books-paging {
+	display: block;
+	width: inherit;
+	margin-top: 10px;
+	padding: 10px;
+}
+.next-books, .prev-books {
+	display: block;
+	padding: 5px 10px;
+	font-weight: bolder;
+	border: 1px solid black;
+}
+
+.prev-books {
+	float: left;
+}
+
+.next-books {
+	float: right;
+}
+

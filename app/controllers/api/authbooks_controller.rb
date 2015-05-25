@@ -1,7 +1,7 @@
 module Api
 	class AuthbooksController < ApiController
 		def index
-			@books = current_user.authored_books
+			@books = current_user.authored_books.page(params[:page]).per(5)
       		render :index
 		end
 

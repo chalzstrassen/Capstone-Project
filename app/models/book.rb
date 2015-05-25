@@ -2,7 +2,7 @@ class Book < ActiveRecord::Base
   include PgSearch
   validates :author_id, :title, :genre, :synopsis, presence: true
   validates :genre, 
-            inclusion: { in: %w(Nonfiction Fiction Photobook Textbook) }
+            inclusion: { in: %w(Nonfiction Fiction Photobook Textbook Science) }
   has_attached_file :cover, default_url: "default.png"
   validates_attachment_content_type :cover, content_type: /\Aimage\/.*\Z/
   has_attached_file :content, styles: { thumbnail: ["100x100#", :png] }, default_url: "/"

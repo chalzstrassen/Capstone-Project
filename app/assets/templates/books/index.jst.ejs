@@ -7,4 +7,8 @@
   <li>Title: <%= book.escape("title") %>, Author: <%= book.get("author_email") %></li>
 <% }) %>
 </ul>
+<nav class="books-paging group">
+<a href="javascript:void(0)" class="prev-books">&lt;</a>
+<a href="javascript:void(0)" class="next-books">&gt;</a>
+</nav>
 <% } %>
