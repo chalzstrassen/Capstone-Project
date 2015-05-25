@@ -2,13 +2,15 @@
 <p>You have not created any collections.</p>
 <% } else { %>
 <h2>Your Collections</h2>
+  <a href="javascript:void(0)" class="paginate">&lt;</a>
 <ul class='collections-list group'>
   <% collections.each(function (collection) { %>
     <li class="collection-item" data-id="<%= collection.id %>">
     	<strong class="collection-name"><%= collection.escape("name") %></strong><br>
     Number of Books: <%= collection.escape("collects_count") %></li>
   <% }); %>
+  <a href="javascript:void(0)" class="paginate">&gt;</a>
 </ul>
 <% } %>
 
-<button class="create-collection">Create a Collection</button>
+<button class="create-collection">+</button>

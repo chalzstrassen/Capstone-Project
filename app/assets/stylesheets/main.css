@@ -6,15 +6,16 @@
 	margin: auto;
 	border: 5px solid black;
 	padding: 10px;
+	margin-top: 40px;
 }
 
 #collections {
 	display: block;
-	width: 880px;
-	height: 250px;
+	width: 898px;
+	height: 228px;
 	float: left;
-	border: 5px solid red;
 	margin: auto;
+	border: 1px solid #ddd;
 }
 
 #books-index {
@@ -40,29 +41,51 @@
 
 /* Stylings for collections index subview */
 ul.collections-list {
-	width: 798px;
-	margin: 0 auto;
 	text-align: center;
 	height: 100px;
+	width: 100%;
+	margin-left: 70px;
+	display: block;
 }
 
 li.collection-item {
 	cursor: pointer;
 	display: block;
-	width: 190px;
+	width: 175px;
+	margin-left: 10px;
 	float: left;
 	height: 100%;
-	padding-top: 10px;
 	border: 1px solid black;
+}
+
+li.collection-item:first-child {
+	margin-left: 0;
 }
 
 .collection-name {
 	font-weight: bold;
 	display: block;
+	margin-top: 10px;
 }
 
 .create-collection {
 	background: #eed;
 	display: block;
 	padding: 5px 10px;
+	float: right;
+	margin-top: 20px;
+	margin-right: 40px;
+	font-size: 18px;
+	font-weight: bold;
+	border: 1px dashed #bbb;
+}
+
+.paginate {
+	display: block;
+	padding: 5px 10px;
+	float: left;
+	font-weight: bolder;
+	margin-left: 20px;
+	margin-top: 35px;
+	border: 1px solid black;
 }
