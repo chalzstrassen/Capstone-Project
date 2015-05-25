@@ -28,7 +28,7 @@ header {
   padding: 10px;
   display: block;
   background: #2d8;
-  border-bottom: ;
+  border-bottom: 1px solid green;
 }
 .group:after {
   content: "";
