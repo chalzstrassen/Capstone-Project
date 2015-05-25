@@ -10,7 +10,7 @@
 
 #collections {
 	display: block;
-	width: 870px;
+	width: 880px;
 	height: 250px;
 	float: left;
 	border: 5px solid red;
@@ -21,7 +21,7 @@
 	display: block;
 	width: 440px;
 	float: left;
-	margin-right: 5px;
+	margin-right: 5px
 	border: 2px solid pink;
 }
 
@@ -39,7 +39,30 @@
 }
 
 /* Stylings for collections index subview */
+ul.collections-list {
+	width: 798px;
+	margin: 0 auto;
+	text-align: center;
+	border: 1px solid green;
+}
 
 li.collection-item {
 	cursor: pointer;
+	display: block;
+	width: 190px;
+	float: left;
+	padding: 10px 0;
+	border: 1px solid black;
+}
+
+.collection-name {
+	font-weight: bold;
+	display: block;
+	margin-bottom: 15px;
+}
+
+.create-collection {
+	background: #eed;
+	display: block;
+	padding: 5px 10px;
 }

@@ -25,38 +25,8 @@
       data-width="450"
       data-show-faces="true">
     </div>
-    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+    <fb:login-button scope="public_profile,email" onlogin="redirect();">
     </fb:login-button>
   <% end %>
 </header>
 
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '<%= ENV["facebook_app_id"] %>',
-      xfbml      : true,
-      version    : 'v2.2',
-      cookie     : true
-    });
-
-    $(".sign-out").on("click", function (event) {
-      FB.logout();
-    });
-
-    FB.getLoginStatus(function(response) {
-      if (response.status === "connected") {
-        $.getJSON('/auth/facebook/callback', function(json) {});
-      }
-    });
-  };
-
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-  
-</script>

@@ -29,13 +29,14 @@
 
     FB.getLoginStatus(function(response) {
       if (response.status === "connected") {
-        $.getJSON('/auth/facebook/callback', function(json) {
-        	window.location.replace('/');
-        });
+        $.get('/auth/facebook/callback', function(html) {});
       }
     });
   };
 
+  function redirect() {
+  	window.location.replace("<%= root_url %>");
+  }
 
   (function(d, s, id){
      var js, fjs = d.getElementsByTagName(s)[0];

@@ -2,9 +2,11 @@
 <p>You have not created any collections.</p>
 <% } else { %>
 <h2>Your Collections</h2>
-<ul class='collections-list'>
+<ul class='collections-list group'>
   <% collections.each(function (collection) { %>
-    <li class="collection-item" data-id="<%= collection.id %>">Collection name: <%= collection.escape("name") %>, count: <%= collection.escape("collects_count") %></li>
+    <li class="collection-item" data-id="<%= collection.id %>">
+    	<strong class="collection-name"><%= collection.escape("name") %></strong><br>
+    Number of Books: <%= collection.escape("collects_count") %></li>
   <% }); %>
 </ul>
 <% } %>
