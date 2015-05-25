@@ -35,6 +35,7 @@
 #authored-books {
 	display: block;
 	width: 444px;
+	height: 264px;
 	float: left;
 	margin-left: 5px;
 	border-right: 1px solid #ddd;
@@ -98,12 +99,17 @@ li.collection-item:first-child {
 	border: 1px solid black;
 }
 
+.paginate:hover {
+	background: #aaa;
+}
+
 /* Stylings for Library books Index view */
 ul.books-list {
 	display: block;
 	width: 400px;
 	margin: auto;
-	height: auto;
+	height: 150px;
+	overflow: scroll;
 }
 ul.books-list li {
 	display: block;
@@ -138,3 +144,12 @@ ul.books-list li:hover {
 	float: right;
 }
 
+/* Stylings for Authored Books index */
+.publish-book {
+	display: block;
+	padding: 5px 10px;
+	float: right;
+	margin-right: 40px;
+	background: #ddd;
+	border: 1px: dashed #bbb;
+}

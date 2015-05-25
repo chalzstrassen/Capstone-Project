@@ -1,14 +1,19 @@
+<button class="publish-book">Publish a Book</button>
 <% if (books.length === 0) { %>
 <h2>You have not written any books.</h2>
 <% } else { %>
 <h2>Authored Books</h2>
-<ul class="authored-list">
+<ul class="books-list">
   <% books.each(function (book) { %>
-    <li class="authbook-item" data-id="<%= book.id %>">
+    <li data-id="<%= book.id %>">
     	Title: <%= book.escape("title") %>, Published: <%= book.escape("published") %>
     </li>
   <% }) %>
 </ul>
+<nav class="books-paging group">
+<a href="javascript:void(0)" class="prev-books">&lt;</a>
+<a href="javascript:void(0)" class="next-books">&gt;</a>
+</nav>
 <% } %>
 
-<button class="publish-book">Publish a Book</button>
+
