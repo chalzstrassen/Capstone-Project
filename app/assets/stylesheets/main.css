@@ -154,7 +154,7 @@ ul.books-list li:hover {
 	float: right;
 	margin-right: 40px;
 	background: #ddd;
-	border: 1px: dashed #bbb;
+	border: 1px dashed #bbb;
 }
 
 .publish-book:hover {
