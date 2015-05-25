@@ -43,7 +43,7 @@ ul.collections-list {
 	width: 798px;
 	margin: 0 auto;
 	text-align: center;
-	border: 1px solid green;
+	height: 100px;
 }
 
 li.collection-item {
@@ -51,14 +51,14 @@ li.collection-item {
 	display: block;
 	width: 190px;
 	float: left;
-	padding: 10px 0;
+	height: 100%;
+	padding-top: 10px;
 	border: 1px solid black;
 }
 
 .collection-name {
 	font-weight: bold;
 	display: block;
-	margin-bottom: 15px;
 }
 
 .create-collection {
