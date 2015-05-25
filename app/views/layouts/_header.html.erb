@@ -19,14 +19,50 @@
   <% else %>
     <a href="<%= new_session_url %>" class="auth">Sign in</a>
     <a href="<%= new_user_url %>" class="auth">Sign up</a>
+    <fb:login-button scope="public_profile,email" onlogin="redirect();">
+    </fb:login-button>
+  <% end %>
     <div
       class="fb-like auth"
       data-share="true"
       data-width="450"
       data-show-faces="true">
     </div>
-    <fb:login-button scope="public_profile,email" onlogin="redirect();">
-    </fb:login-button>
-  <% end %>
 </header>
 
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '<%= ENV["facebook_app_id"] %>',
+      xfbml      : true,
+      version    : 'v2.2',
+      cookie     : true
+    });
+
+    $(".auth").on("click", function (event) {
+      FB.logout(function () {
+        redirect();
+      });
+    });
+
+    FB.getLoginStatus(function(response) {
+      if (response.status === "connected") {
+        $.get('/auth/facebook/callback', function(html) {
+        });
+      }
+    });
+  };
+
+  function redirect() {
+    window.location.replace("<%= root_url %>");
+  }
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+  
+</script>

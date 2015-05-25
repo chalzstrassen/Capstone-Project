@@ -23,13 +23,17 @@
       cookie     : true
     });
 
-    $(".sign-out").on("click", function (event) {
-      FB.logout();
+    $(".auth").on("click", function (event) {
+      FB.logout(function () {
+        redirect();
+      });
     });
 
     FB.getLoginStatus(function(response) {
       if (response.status === "connected") {
-        $.get('/auth/facebook/callback', function(html) {});
+        $.get('/auth/facebook/callback', function(html) {
+          redirect();
+        });
       }
     });
   };

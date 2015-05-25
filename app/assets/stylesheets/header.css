@@ -53,6 +53,7 @@ h3.welcome-message {
 }
 #magnifying-glass
 {
+ cursor: pointer;
  font-size: 25px;
  display: inline-block;
  width: 15px;
@@ -79,6 +80,9 @@ h3.welcome-message {
     -moz-transform: rotate(45deg);
      -ms-transform: rotate(45deg);
       -o-transform: rotate(45deg);
+}
+#magnifying-glass:hover {
+  background: #aaa;
 }
 .query-form {
   float: left;

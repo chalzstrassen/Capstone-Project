@@ -143,6 +143,9 @@ ul.books-list li:hover {
 .next-books {
 	float: right;
 }
+.next-books:hover, .prev-books:hover {
+	background: #aaa;
+}
 
 /* Stylings for Authored Books index */
 .publish-book {
@@ -152,4 +155,9 @@ ul.books-list li:hover {
 	margin-right: 40px;
 	background: #ddd;
 	border: 1px: dashed #bbb;
+}
+
+.publish-book:hover {
+	background: #444;
+	color: #fef;
 }
