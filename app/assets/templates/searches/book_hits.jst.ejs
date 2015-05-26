@@ -1,4 +1,4 @@
 <% books.each(function(book) { %>
-		<li>Title: <%= book.escape("title") %>, Author Email: <%= book.escape("author") %></li>
+		<li>Title: <%= book.escape("title") %>, Author Email: <%= book.escape("author_email") %></li>
         <button data-id="<%= book.id %>" class="remove-book">Remove</button>
 <% }) %>

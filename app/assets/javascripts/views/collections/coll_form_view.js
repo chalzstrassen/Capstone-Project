@@ -30,7 +30,7 @@ Enwritt.Views.CollFormView = Backbone.ModalView.extend({
         $(".error").remove();
         var errorArr = resp.responseJSON;
         for (var err in errorArr) {
-          this.$el.append('<p class="error">'+errorArr[err]+'</p>');
+          this.$("footer.errors").append('<p class="error">'+errorArr[err]+'</p>');
         }
       }.bind(this)
     });

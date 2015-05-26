@@ -19,7 +19,7 @@
       <%= collection.escape("description") %>
     </textarea>
   </label>
-  <footer class="group">
+  <section class="group">
   <% if (collection.isNew()) { %>
   <button class="collection-button">Create</button>
   <% } else { %>
@@ -27,5 +27,7 @@
   <button class="collection-button">Update</button>
   <button class="back">Go Back</button>
   <% } %>
+  </section>
+  <footer class="errors group">
   </footer>
 </form>

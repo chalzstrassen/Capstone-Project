@@ -9,6 +9,7 @@ module Api
 
     def show
       @collection = current_user.collections.find(params[:id])
+      @books = @collection.books.page(params[:page]).per(5)
       render :show
     end
 

@@ -1,8 +1,10 @@
 /* Collection form modal */
 #collection-form {
 	width: 460px;
+	display: block;
 	margin: auto;
-
+	height: auto;
+	position: relative;
 }
 
 #collection-form label {
@@ -10,7 +12,7 @@
 	width: 440px;
 	margin: auto;
 }
-#collection-form footer {
+#collection-form section {
 	float: right;
 	display: block;
 	margin-top: 20px;
@@ -41,7 +43,17 @@ article {
 	border: 1px solid #cdd;
 }
 textarea.form-text {
-	height: 150px;
+	height: 140px;
+}
+footer.errors {
+	position: absolute;
+	display: block;
+	height: 15px;
+	left: 0px;
+	bottom: -100px;
+}
+footer.errors .error {
+	float: left;
 }
 /* Collection show modal */
 .search-button {
