@@ -25,7 +25,14 @@ Enwritt.Views.CollFormView = Backbone.ModalView.extend({
       success: function () {
         that.collection.add(that.model);
         that.hideModal();
-      }
+      },
+      error: function (obj, resp) {
+        $(".error").remove();
+        var errorArr = resp.responseJSON;
+        for (var err in errorArr) {
+          this.$el.append('<p class="error">'+errorArr[err]+'</p>');
+        }
+      }.bind(this)
     });
   },
 

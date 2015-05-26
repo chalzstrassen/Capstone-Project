@@ -3,18 +3,23 @@
 <% } else { %>
 <h1 class="tab"><%= collection.escape("name") %></h1>
 <% } %>
+<article>
+  Collections are used to organize your books. You must provide
+  a name and a description to create a collection.
+</article>
 <form id="collection-form">
-  <label>Name
+  <label class="group"><strong class="form-label">Name</strong>
   <input class="form-text"
     type="text"
     name="name"
     value="<%= collection.escape("name") %>">
-  </label><br>
-  <label>Description
-    <textarea class="form-textarea" name="description">
+  </label>
+  <label class="group"><strong class="form-label">Description</strong>
+    <textarea class="form-text" name="description">
       <%= collection.escape("description") %>
     </textarea>
   </label>
+  <footer class="group">
   <% if (collection.isNew()) { %>
   <button class="collection-button">Create</button>
   <% } else { %>
@@ -22,4 +27,5 @@
   <button class="collection-button">Update</button>
   <button class="back">Go Back</button>
   <% } %>
+  </footer>
 </form>

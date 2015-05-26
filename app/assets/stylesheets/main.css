@@ -52,7 +52,7 @@
 ul.collections-list {
 	text-align: center;
 	height: 100px;
-	width: 100%;
+	width: 898px;
 	margin-left: 70px;
 	display: block;
 }
@@ -87,6 +87,11 @@ li.collection-item:first-child {
 	font-size: 18px;
 	font-weight: bold;
 	border: 1px dashed #bbb;
+}
+
+.create-collection:hover {
+	background: #444;
+	color: #eed;
 }
 
 .paginate {

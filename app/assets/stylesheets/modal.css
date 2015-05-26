@@ -1,0 +1,53 @@
+/* Collection form modal */
+#collection-form {
+	width: 460px;
+	margin: auto;
+
+}
+
+#collection-form label {
+	display: block;
+	width: 440px;
+	margin: auto;
+}
+#collection-form footer {
+	float: right;
+	display: block;
+	margin-top: 20px;
+}
+
+#collection-form button {
+	float: left;
+	display: block;
+	padding: 5px 10px;
+	border: 1px solid #cdc;
+	background: #ddd;
+	margin-right: 20px;
+}
+article {
+	text-indent: 10%;
+	margin-left: 10px;
+}
+.form-label {
+	display: block;
+	padding: 5px 10px;
+	float: left;
+}
+
+.form-text {
+	display: block;
+	width: 300px;
+	margin: 20px;
+	border: 1px solid #cdd;
+}
+textarea.form-text {
+	height: 150px;
+}
+/* Collection show modal */
+.search-button {
+	cursor: pointer;
+}
+.search-button:hover {
+	background: #444;
+	color: #dde;
+}
