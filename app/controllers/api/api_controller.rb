@@ -7,5 +7,9 @@ module Api
     			render json: ["You must be signed in to view this API!"], status: :unauthorized
     		end
     	end
+
+    	def exclude_authored(id)
+    		Book.includes(:author).where("author_id <> ?", id)
+    	end
     end
 end

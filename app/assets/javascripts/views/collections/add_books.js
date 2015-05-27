@@ -31,9 +31,14 @@ Enwritt.Views.AddBook = Backbone.View.extend({
 					}
 				});
 			},
-			error: function (xhr, responseText) {
-				alert(responseText);
+			error: function (xhr, resp) {
+				alert(resp);
 			}
+		});
+	},
+	booksInColl: function () {
+		this.collection.each(function (book) {
+
 		});
 	}
 });

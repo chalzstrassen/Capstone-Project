@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   	resources :collections, except: [:new, :edit]
   	resources :collects, only: [:create, :destroy]
     resources :user_searches, only: [:index]
+    resources :availbooks, only: [:index]
   end
 
   get "search", to: "searches#index"

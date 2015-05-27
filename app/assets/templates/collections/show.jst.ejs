@@ -1,16 +1,20 @@
 <h1><%= collection.escape("name") %></h1>
+
 <main class="collection-description">
-  <%= collection.escape("description") %>
+  <h3>Description: </h3><article><%= collection.escape("description") %></article>
 </main>
 <%= JST["searches"]({ collection: collection }) %>
-<br>
 <ul class="collection-books">
 	<% books.each(function(book) { %>
-		<li>Title: <%- book.title %>, Author Email: <%- book.author_email %></li>
-    	<button data-id="<%- book.id %>" class="remove-book">Remove</button>
+		<li>
+			Title: <%- book.title %>, Author Email: <%- book.author_email %>
+	    	<button data-id="<%- book.id %>" class="remove-book">Remove</button>
+    	</li>
 	<% }) %>
-</ul><br>
-<ul class="available-books">
 </ul>
+<section class="buttons group">
 <button id="add-book" class="form-button">Add book</button>
 <button id="edit-collection" class="form-button">Edit</button>
+</section>
+<ul class="available-books">
+</ul>

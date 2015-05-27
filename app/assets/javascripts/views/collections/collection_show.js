@@ -1,5 +1,6 @@
 Enwritt.Views.CollectionShow = Backbone.ModalView.extend({
   template: JST["collections/show"],
+  className: "show-view",
   events: {
   	"click #edit-collection": "showForm",
     "click #add-book": "addBookForm",
@@ -37,10 +38,11 @@ Enwritt.Views.CollectionShow = Backbone.ModalView.extend({
 
   addBookForm: function (event) {
     event.preventDefault();
-    var bookCollection = new Enwritt.Collections.Books();
+    var bookCollection = new Enwritt.Collections.AvailBooks();
     this._addBookView = bookCollection;
     var that = this;
     bookCollection.fetch({
+      data: { id: this.model.id },
       success: function () {
         var view = new Enwritt.Views.AddBook({
           collection: bookCollection,

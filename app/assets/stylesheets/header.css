@@ -112,7 +112,7 @@ h3.welcome-message {
   display: block;
   height: 25px;
   border-radius: 5px 0 0 5px;
-  border: 1px solid red;
+  border: 1px solid #ddd;
 }
 #search-option {
   display: block;
@@ -124,6 +124,7 @@ h3.welcome-message {
 
 }
 .search-button {
+  cursor: pointer;
   width: auto;
   font-size: 14px;
   float: left;
@@ -132,5 +133,10 @@ h3.welcome-message {
   background: #eee;
   padding: 0px 5px;
   height: 25px;
+  border: 1px solid #aaa;
+}
+.search-button:hover { 
+  background: #444;
+  color: #dde;
 }
 
