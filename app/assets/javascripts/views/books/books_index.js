@@ -1,5 +1,8 @@
 Enwritt.Views.BooksIndex = Backbone.View.extend({
   template: JST['books'],
+  events: {
+  	"click .book-item" : "showBookModal"
+  },
   initialize: function () {
     this.listenTo(this.collection, "sync", this.render);
   },
@@ -8,5 +11,25 @@ Enwritt.Views.BooksIndex = Backbone.View.extend({
     this.$el.html(content);
 
     return this;
+  },
+  showBookModal: function (event) {
+    event.preventDefault();
+    var bookId = $(event.currentTarget).data("id");
+    var model = new Enwritt.Models.Book({ id: bookId });
+    var that = this;
+    model.fetch({
+      success: function () {
+        var view = new Enwritt.Views.BookShow({
+          model: model,
+          collection: that.collection,
+          _fromAuth: false
+        });
+
+        view.render().showModal({
+          closeImageUrl: "//:0",
+          closeImageHoverUrl: "//:0"
+        });
+      }
+    });
   }
 });

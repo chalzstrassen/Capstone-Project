@@ -4,8 +4,12 @@ Enwritt.Views.BookShow = Backbone.ModalView.extend({
 		"click .delete-book" : "deleteBook",
 		"click .edit-book" : "editBook"
 	},
+	initialize: function (options) {
+		this._fromAuth = options._fromAuth
+	},
 	render: function () {
-		var content = this.template({ book: this.model });
+		var content = this.template({ book: this.model,
+									  fromAuth: this._fromAuth });
 		this.$el.html(content);
 		return this;
 	},

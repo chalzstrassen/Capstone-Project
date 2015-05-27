@@ -5,7 +5,7 @@
 <h2>Authored Books</h2>
 <ul class="books-list">
   <% books.each(function (book) { %>
-    <li data-id="<%= book.id %>">
+    <li class="book-item" data-id="<%= book.id %>">
     	Title: <%= book.escape("title") %>, Published: <%= book.escape("published") %>
     </li>
   <% }) %>

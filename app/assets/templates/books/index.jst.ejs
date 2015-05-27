@@ -4,7 +4,7 @@
 <h2>All books in Library</h2>
 <ul class="books-list">
 <% books.each(function (book) { %>
-  <li data-id="<%= book.id %>">Title: <%= book.escape("title") %>, Author: <%= book.get("author_email") %></li>
+  <li class="book-item" data-id="<%= book.id %>">Title: <%= book.escape("title") %>, Author: <%= book.get("author_email") %></li>
 <% }) %>
 </ul>
 <nav class="books-paging group">

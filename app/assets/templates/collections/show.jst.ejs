@@ -6,7 +6,7 @@
 <%= JST["searches"]({ collection: collection }) %>
 <ul class="collection-books">
 	<% books.each(function(book) { %>
-		<li>
+		<li class="group">
 			Title: <%- book.title %>, Author Email: <%- book.author_email %>
 	    	<button data-id="<%- book.id %>" class="remove-book">Remove</button>
     	</li>
