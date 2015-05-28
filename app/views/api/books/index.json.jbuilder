@@ -1,5 +1,5 @@
 json._page @books.current_page
-json._ajaxLinks render(partial: "pagination.html.erb", books: @books)
+json._ajaxLinks render(partial: "api/books/pagination.html.erb", books: @books)
 
 json.paginated do
 	json.array! @books do |book|

@@ -121,6 +121,15 @@ h3 {
 .available-books .form-button {
 	float: right;
 }
-
+.add-book {
+	float: right;
+	font-size: 12px;
+	margin-right: 10px;
+	background: #ddd;
+	color: green;
+	border: 1px solid #747;
+	border-radius: 7px;
+	padding: 0px 10px;
+}
 
 
