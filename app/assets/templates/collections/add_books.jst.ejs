@@ -1,6 +1,12 @@
 <% books.each(function (book) { %>
-  <li>
+  <li class="group">
   	Title: <%= book.escape("title") %>
   	<button data-id="<%= book.id %>" class="add-book">Add</button>
   </li>
 <% }) %>
+<nav class="books-paging group">
+<a href="javascript:void(0)" class="prev-books">&lt;</a>
+<a href="javascript:void(0)" class="next-books">&gt;</a>
+</nav>
+
+<button id="close" class="form-button">Close</button>

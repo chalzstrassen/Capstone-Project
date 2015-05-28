@@ -1,7 +1,8 @@
 Enwritt.Views.AddBook = Backbone.View.extend({
 	template: JST["collections/add_books"],
 	events: {
-		"click .add-book" : "addBook"
+		"click .add-book" : "addBook",
+		"click #close" : "removeView"
 	},
 	initialize: function () {
 		this.listenTo(this.collection, "sync", this.render);
@@ -36,9 +37,8 @@ Enwritt.Views.AddBook = Backbone.View.extend({
 			}
 		});
 	},
-	booksInColl: function () {
-		this.collection.each(function (book) {
-
-		});
+	removeView: function (event) {
+		event.preventDefault();
+		this.remove();
 	}
 });
