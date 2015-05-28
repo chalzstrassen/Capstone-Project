@@ -91,7 +91,8 @@ Enwritt.Views.CollectionShow = Backbone.ModalView.extend({
       this.searchResults.fetch({
         data: {
           query: this.searchResults._query,
-          id: this.model.id
+          id: this.model.id,
+          page: this._page
         }
         // success: function (obj, responseText) {
         //   this.renderSearchResults();

@@ -3,6 +3,7 @@ window.Enwritt = {
   Collections: {},
   Views: {},
   Routers: {},
+  Mixins: {},
   initialize: function(options) {
     if (Backbone.History.started) {
     	Backbone.history.navigate("#");

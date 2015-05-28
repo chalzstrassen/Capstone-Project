@@ -101,7 +101,7 @@ h3 {
 	background: #333;
 	color: #eee;
 }
-.collection-books li:first-child {
+.collection-books li:first-child, .available-books li:first-child {
 	margin-top: 10px;
 	border-top: 1px solid #111;
 }

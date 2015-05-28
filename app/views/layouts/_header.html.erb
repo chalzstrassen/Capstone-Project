@@ -39,10 +39,12 @@
       cookie     : true
     });
 
-    $(".auth").on("click", function (event) {
-      FB.logout(function () {
-        redirect();
-      });
+    $(".sign-out").on("click", function (event) {
+      if (FB.getAuthResponse()) {
+        FB.logout(function () {
+          redirect();
+        });
+      }
     });
 
     FB.getLoginStatus(function(response) {

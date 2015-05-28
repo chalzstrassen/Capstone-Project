@@ -7,7 +7,8 @@ Enwritt.Views.BooksIndex = Backbone.View.extend({
     this.listenTo(this.collection, "sync", this.render);
   },
   render: function () {
-    var content = this.template({books: this.collection});
+    var content = this.template({books: this.collection, links: this.collection._ajaxLinks});
+    // <%= links %> will render pagination links
     this.$el.html(content);
 
     return this;
