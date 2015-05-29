@@ -1,8 +1,9 @@
 Enwritt.Views.AddBook = Backbone.View.extend({
+	mixins: [Enwritt.Mixins.Pagination],
 	template: JST["collections/add_books"],
 	events: {
-		"click .add-book" : "addBook",
-		"click #close" : "hideView"
+		"click .add-book"   : "addBook",
+		"click #close"      : "hideView"
 	},
 	initialize: function () {
 		this.listenTo(this.collection, "sync", this.render);

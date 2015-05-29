@@ -1,4 +1,5 @@
 Enwritt.Views.CollectionsIndex = Backbone.View.extend({
+  mixins: [Enwritt.Mixins.Pagination],
   template: JST['collections'],
   events: {
     "click .create-collection": "displayModal",

@@ -18,8 +18,9 @@ h2 {
 }
 h1 {
   display: block;
-  padding: 10px 20px;
+  padding: 5px 20px;
   text-decoration: underline;
+  margin: 5px;
 }
 body {
   font-family: sans-serif;

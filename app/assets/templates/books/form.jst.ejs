@@ -1,23 +1,29 @@
 <% if (book.isNew()) { %>
-	<h1>Publish a book</h1>
+	<h1 class="tab">Publish a book</h1>
 <% } else { %>
-	<h1>Edit <%= book.escape("title") %></h1>
+	<h1 class="tab">Edit <%= book.escape("title") %></h1>
 <% } %> 
-	<label>Title
-		<input type="text" name="book[title]" value="<%= book.escape("title") %>">
+	<label class="group"><strong class="form-label">Title</strong>
+		<input type="text" 
+			   class="form-text" 
+			   name="book[title]" 
+			   value="<%= book.escape("title") %>">
 	</label>
-	<label>Genre
-		<input type="text" name="book[genre]" value="<%= book.escape("genre") %>">
+	<label class="group"><strong class="form-label">Genre</strong>
+		<input type="text" 
+			   class="form-text" 
+			   name="book[genre]" 
+			   value="<%= book.escape("genre") %>">
 	</label>
-	<label>Synopsis
-		<textarea name="book[synopsis]"><%= book.escape("synopsis") %></textarea>
+	<label class="group"><strong class="form-label">Synopsis</form>
+		<textarea class="form-text" name="book[synopsis]"><%= book.escape("synopsis") %></textarea>
 	</label>
-	<label>Cover Image
-		<input type="file" name="book[cover]" id="input-cover-image" accept="image/*">
+	<label class="group"><strong class="form-label">Cover Image (*.jpeg, *.png, *.gif)</strong>
+		<input class="form-text" type="file" name="book[cover]" id="input-cover-image" accept="image/*">
+	  	<img src="<%= book.escape("image_url") %>" id="preview-cover-image" width="50">
 	</label>
-	  <img src="<%= book.escape("image_url") %>" id="preview-cover-image" width="50">
-	<label>Book Content
-		<input type="file" name="book[content]" id="input-content-pdf" accept="application/pdf">
+	<label class="group"><strong class="form-label">Book Content (*.pdf)</strong>
+		<input class="form-text" type="file" name="book[content]" id="input-content-pdf" accept="application/pdf">
 	</label> 
 <% if (book.isNew()) { %>
 	<button class="publish-button">Publish</button>

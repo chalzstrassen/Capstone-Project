@@ -1,17 +1,19 @@
 <h1>Title: <%= book.escape("title") %><h1>
-<h4>Author Email: <%- book.get("author").email_address %></h4>
+<h3 class="author-email">Author Email: <%- book.get("author").email_address %></h3>
 <article class="book-synopsis">
 	<h3>Synopsis</h3><p><%= book.escape("synopsis") %></p>
 	<img src="<%= book.escape("image_url") %>" width="150">
-	<a href="<%= book.escape("content_url") %>">
 		<% if (book.get("pdf_thumb") != "/") { %>
-			<img src="<%= book.escape("pdf_thumb") %>">
+			<a href="<%= book.escape("content_url") %>">
+				<img src="<%= book.escape("pdf_thumb") %>">
+			</a>
 		<% } else { %>
 			<p>No pdf file uploaded</p>
 		<% } %>
-	</a>
 </article>
 <% if (fromAuth){ %>
-<button class="delete-book" data-id="<%= book.id %>">Delete Book</button>
-<button class="edit-book" data-id="<%= book.id %>">Edit Book</button>
+<section class="buttons group">
+<button class="delete-book form-button" data-id="<%= book.id %>">Delete Book</button>
+<button class="edit-book form-button" data-id="<%= book.id %>">Edit Book</button>
+</section>
 <% } %>

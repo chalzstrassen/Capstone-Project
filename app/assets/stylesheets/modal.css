@@ -1,13 +1,15 @@
 /* Collection form modal */
-#collection-form {
+#collection-form, .book-form {
 	width: 460px;
 	display: block;
 	margin: auto;
-	height: auto;
+	max-height: 450px;
 	position: relative;
+	overflow-y: scroll;
+	overflow-x: hidden;
 }
 
-#collection-form label {
+#collection-form label, .book-form label {
 	display: block;
 	width: 440px;
 	margin: auto;
@@ -18,7 +20,7 @@
 	margin-top: 20px;
 }
 
-#collection-form button {
+#collection-form button, .book-form button {
 	float: left;
 	display: block;
 	padding: 5px 10px;
@@ -131,5 +133,20 @@ h3 {
 	border-radius: 7px;
 	padding: 0px 10px;
 }
+
+/* Book show templates */
+.author-email {
+	margin-left: 20px;
+	margin-bottom: 10px;
+}
+.book-synopsis {
+	display: block;
+	width: 460px;
+	margin: auto;
+	overflow-y: scroll;
+	max-height: 350px;
+}
+
+/* Book form templates */
 
 

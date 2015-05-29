@@ -1,4 +1,5 @@
 Enwritt.Views.BooksIndex = Backbone.View.extend({
+  mixins: [Enwritt.Mixins.Pagination],
   template: JST['books'],
   events: {
   	"click .book-item" : "showBookModal"

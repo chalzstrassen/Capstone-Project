@@ -16,6 +16,7 @@
 //= require underscore
 //= require backbone
 //= require backbone.modaldialog
+//= require Cocktail
 //= require enwritt_app
 //= require_tree ../templates
 //= require_tree ./models
