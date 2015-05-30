@@ -1,8 +1,9 @@
 <%= render "filters" %>
 <h1>Results for <%= @query %> by <%= @search_condition %></h1>
 <% if @search_results.length > 0 %>
-	<ul class="search-results">
-		<% @search_results.each do |result| %>
+	<%= paginate @search_results %>
+	<ol class="search-results" start="<%= (@search_results.current_page-1) * 25 + 1 %>">
+		<% @search_results.each_with_index do |result| %>
 			<li>
 				<p>Title: <%= result.title %></p>
 				<p>Genre: <%= result.genre %></p>
@@ -10,7 +11,7 @@
 				<p>Author email: <%= result.author.email %></p>
 			</li>
 		<% end %>
-	</ul>
+	</ol>
 	<%= paginate @search_results %>
 <% else %>
 	<h3>No results</h3>
