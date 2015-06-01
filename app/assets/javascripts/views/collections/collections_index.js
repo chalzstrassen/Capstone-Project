@@ -1,5 +1,4 @@
 Enwritt.Views.CollectionsIndex = Backbone.View.extend({
-  mixins: [Enwritt.Mixins.Pagination],
   template: JST['collections'],
   events: {
     "click .create-collection": "displayModal",
@@ -9,7 +8,11 @@ Enwritt.Views.CollectionsIndex = Backbone.View.extend({
     this.listenTo(this.collection, "sync remove", this.render);
   },
   render: function () {
-    var content = this.template({collections: this.collection});
+    var content = this.template({
+      collections: this.collection,
+      page: this.collection._page,
+      totalPages: this.collection._totalPages
+    });
     this.$el.html(content);
 
     return this;

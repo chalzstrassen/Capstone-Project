@@ -2,8 +2,8 @@ module Api
   class CollectionsController < ApiController
     def index
       @collections = current_user.collections
-                                 .page(params[:page])
-                                 .per(4)
+                               # .page(params[:page])
+                               # .per(4)
       render :index
     end
 
