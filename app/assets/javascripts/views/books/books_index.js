@@ -1,8 +1,11 @@
-Enwritt.Views.BooksIndex = Backbone.View.extend({
-  mixins: [Enwritt.Mixins.Pagination],
+Enwritt.Views.BooksIndex = Backbone.View.extend(
+  _.extend({}, Enwritt.Mixins.Pagination, {
+
   template: JST['books'],
   events: {
-  	"click .book-item" : "showBookModal"
+    "click .book-item" : "showBookModal",
+    "click .prev-books" : "prevPage",
+    "click .next-books" : "nextPage"
   },
   initialize: function () {
     this.listenTo(this.collection, "sync", this.render);
@@ -34,4 +37,6 @@ Enwritt.Views.BooksIndex = Backbone.View.extend({
       }
     });
   }
-});
+
+  })
+);

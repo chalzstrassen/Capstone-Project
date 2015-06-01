@@ -1,8 +1,4 @@
 Enwritt.Mixins.Pagination = {
-	events: {
-		"click .prev-books" : "prevPage",
-		"click .next-books" : "nextPage"
-	},
 	prevPage: function (event) {
 		event.preventDefault();
 		var collection = this.collection;
@@ -18,7 +14,6 @@ Enwritt.Mixins.Pagination = {
 	},
 	nextPage: function (event) {
 		event.preventDefault();
-		debugger;
 		var collection = this.collection;
 		if (collection._page && collection._totalPages) {
 			if (collection._page < collection._totalPages) {

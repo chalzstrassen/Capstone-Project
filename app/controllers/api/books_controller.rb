@@ -9,7 +9,7 @@ module Api
                      .page(params[:page])
                      .per(5)
       else
-        @books = Book.includes(:author).all
+        @books = Book.includes(:author).page(params[:page]).per(5)
       end
       
       render :index
