@@ -1,14 +1,23 @@
-Enwritt.Views.AuthBooksView = Backbone.View.extend({
+Enwritt.Views.AuthBooksView = Backbone.View.extend(
+  _.extend({}, Enwritt.Mixins.Pagination, {
+
   template: JST["books/authbooks"],
   events: {
     "click .publish-book" : "showBookForm",
-    "click .book-item" : "showBookModal"
+    "click .book-item" : "showBookModal",
+    "click .prev-books" : "prevPage",
+    "click .next-books" : "nextPage",
+    "keyup #books-page" : "gotoPage"
   },
   initialize: function () {
     this.listenTo(this.collection, "sync add remove change", this.render);
   },
   render: function () {
-    var content = this.template({books: this.collection});
+    var content = this.template({
+      books: this.collection,
+      page: this.collection._page,
+      totalPages: this.collection._totalPages
+    });
 
     this.$el.html(content);
     return this;
@@ -46,4 +55,5 @@ Enwritt.Views.AuthBooksView = Backbone.View.extend({
       }
     });
   }
-});
+})
+);

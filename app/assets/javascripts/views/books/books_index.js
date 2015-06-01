@@ -5,14 +5,19 @@ Enwritt.Views.BooksIndex = Backbone.View.extend(
   events: {
     "click .book-item" : "showBookModal",
     "click .prev-books" : "prevPage",
-    "click .next-books" : "nextPage"
+    "click .next-books" : "nextPage",
+    "keyup #books-page" : "gotoPage"
   },
   initialize: function () {
     this.listenTo(this.collection, "sync", this.render);
   },
   render: function () {
-    var content = this.template({books: this.collection, links: this.collection._ajaxLinks});
-    // <%= links %> will render pagination links
+    var content = this.template({
+                      books: this.collection, 
+                      page: this.collection._page,
+                      totalPages: this.collection._totalPages
+                    });
+
     this.$el.html(content);
 
     return this;
