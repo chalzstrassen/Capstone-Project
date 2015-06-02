@@ -2,7 +2,7 @@
 <p>You have not created any collections.</p>
 <% } else { %>
 <h2>Your Collections</h2>
-  <a href="javascript:void(0)" class="paginate">&lt;</a>
+  <a href="javascript:void(0)" class="paginate" id="scroll-left">&lt;</a>
   <section class="group">
 <ul class='collections-list group'>
   <% collections.each(function (collection) { %>
@@ -11,8 +11,34 @@
     Number of Books: <%= collection.escape("collects_count") %></li>
   <% }); %>
 </ul>
-  <a href="javascript:void(0)" class="paginate">&gt;</a>
+  <a href="javascript:void(0)" class="paginate" id="scroll-right">&gt;</a>
   </section>
 <% } %>
 
 <button class="create-collection">+</button>
+
+<script>
+	var curIdx = 0;
+	$("#scroll-right").on("click", function (event) {
+		event.preventDefault();
+		var collections = $(".collection-item");
+		$(collections.get(curIdx)).removeClass("selected-collection");
+		if (curIdx < collections.length) {
+			curIdx++;
+		} else {
+			curIdx = 0;
+		}
+		$(collections.get(curIdx)).addClass("selected-collection");
+	});
+	$("#scroll-left").on("click", function (event) {
+		event.preventDefault();
+		var collections = $(".collection-item");
+		$(collections.get(curIdx)).removeClass("selected-collection");
+		if (curIdx > -1) {
+			curIdx--;
+		} else {
+			curIdx = collections.length - 1;
+		}
+		$(collections.get(curIdx)).addClass("selected-collection");
+	});
+</script>
