@@ -25,32 +25,60 @@
 			$(collections.get(i)).addClass("active");
 		}
 	});
-	var collectionsPages = Math.floor(collections.length/4) + 1;
+	var upper = collections.length;
+	if (upper % 4 == 0) {
+		var collectionsPages = upper/4;
+	} else {
+		var collectionsPages = Math.floor(upper/4) + 1;
+	}
 	var curIdx = 0;
-	$("#collections-page").html("Page: " + (curIdx + 1) + " of " + collectionsPages);
+	var page = 1;
+	$("#collections-page").html("Page: " + Math.floor((curIdx+4)/4) + " of " + collectionsPages);
 	$("#scroll-right").on("click", function (event) {
 		event.preventDefault();
-		$(collections.get(curIdx)).removeClass("active no-margin");
-		if (curIdx + 8 < collections.length) {
+		if (curIdx + 8 < upper) {
+			$(collections.get(curIdx)).removeClass("active no-margin");
+			for (var i = curIdx; i < curIdx + 4; i++) {
+				$(collections.get(i)).removeClass("active");
+				$(collections.get(i+4)).addClass("active");
+			}
+			curIdx += 4;
+			$(collections.get(curIdx)).addClass("no-margin");
+			page++
+		}	else if (curIdx + 4 < upper) {
+			$(collections.get(curIdx)).removeClass("active no-margin");
 			for (var i = curIdx; i < curIdx + 4; i++) {
 				$(collections.get(i)).removeClass("active");
 			}
-			
-		} else if (curIdx + 4 < collections.length) {
-			$(collections.get(curIdx + 4)).addClass("active");
-			curIdx++;
+			curIdx += 4;
 			$(collections.get(curIdx)).addClass("no-margin");
-			$("#collections-page").html("Page: " + (curIdx + 1) + " of " + collectionsPages);
+			for (var i = curIdx; i < upper; i++) {
+				$(collections.get(i)).addClass("active");
+			}
+			page++;
 		}
+		$("#collections-page").html("Page: " + page + " of " + collectionsPages);
 	});
 	$("#scroll-left").on("click", function (event) {
 		event.preventDefault();
-		if (curIdx - 4 > 0) {
-			$(collections.get(curIdx)).removeClass("no-margin")
-			$(collections.get(curIdx + 3)).removeClass("active");
-			$(collections.get(curIdx-1)).addClass("active");
-			curIdx--;
-			$("#collections-page").html("Page: " + (curIdx + 1) + " of " + collectionsPages);
+		if (curIdx - 8 > -1) {
+			$(collections.get(curIdx)).removeClass("active no-margin");
+			for (var i = curIdx; i < curIdx + 4; i++) {
+				$(collections.get(i)).removeClass("active");
+				$(collections.get(i-4)).addClass("active");
+			}
+			curIdx -= 4;
+			$(collections.get(curIdx)).addClass("no-margin");
+			page--;
+		} else if (curIdx - 4 > -1) {
+			$(collections.get(curIdx)).removeClass("active no-margin");
+			for (var i = curIdx; i < curIdx + 4; i++) {
+				$(collections.get(i)).removeClass("active");
+				$(collections.get(i-4)).addClass("active");
+			}
+			curIdx -= 4;
+			page--;
 		}
+		$("#collections-page").html("Page: " + page + " of " + collectionsPages);
 	});
 </script>
