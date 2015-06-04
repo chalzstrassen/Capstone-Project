@@ -14,31 +14,43 @@
   <a href="javascript:void(0)" class="paginate" id="scroll-right">&gt;</a>
   </section>
 <% } %>
+  <span id="collections-page"></span>
 
 <button class="create-collection">+</button>
 
 <script>
+	var collections = $(".collection-item");
+	$(document).ready(function () {
+		for (var i = 0; i < 4; i++) {
+			$(collections.get(i)).addClass("active");
+		}
+	});
+	var collectionsPages = Math.floor(collections.length/4) + 1;
 	var curIdx = 0;
+	$("#collections-page").html("Page: " + (curIdx + 1) + " of " + collectionsPages);
 	$("#scroll-right").on("click", function (event) {
 		event.preventDefault();
-		var collections = $(".collection-item");
-		$(collections.get(curIdx)).removeClass("selected-collection");
-		if (curIdx < collections.length) {
+		$(collections.get(curIdx)).removeClass("active no-margin");
+		if (curIdx + 8 < collections.length) {
+			for (var i = curIdx; i < curIdx + 4; i++) {
+				$(collections.get(i)).removeClass("active");
+			}
+			
+		} else if (curIdx + 4 < collections.length) {
+			$(collections.get(curIdx + 4)).addClass("active");
 			curIdx++;
-		} else {
-			curIdx = 0;
+			$(collections.get(curIdx)).addClass("no-margin");
+			$("#collections-page").html("Page: " + (curIdx + 1) + " of " + collectionsPages);
 		}
-		$(collections.get(curIdx)).addClass("selected-collection");
 	});
 	$("#scroll-left").on("click", function (event) {
 		event.preventDefault();
-		var collections = $(".collection-item");
-		$(collections.get(curIdx)).removeClass("selected-collection");
-		if (curIdx > -1) {
+		if (curIdx - 4 > 0) {
+			$(collections.get(curIdx)).removeClass("no-margin")
+			$(collections.get(curIdx + 3)).removeClass("active");
+			$(collections.get(curIdx-1)).addClass("active");
 			curIdx--;
-		} else {
-			curIdx = collections.length - 1;
+			$("#collections-page").html("Page: " + (curIdx + 1) + " of " + collectionsPages);
 		}
-		$(collections.get(curIdx)).addClass("selected-collection");
 	});
 </script>
