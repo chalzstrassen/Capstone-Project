@@ -10,10 +10,32 @@
 			   value="<%= book.escape("title") %>">
 	</label>
 	<label class="group"><strong class="form-label">Genre</strong>
-		<input type="text" 
-			   class="form-text" 
-			   name="book[genre]" 
-			   value="<%= book.escape("genre") %>">
+		<select name="book[genre]" class="form-text">
+			<option value="Misc" <% if (book.escape("genre") === "" || book.escape("genre") === "Misc") { %>
+				selected
+				<% } %>
+				>Misc</option>
+			<option value="Nonfiction" <% if (book.escape("genre") === "Nonfiction") { %>
+				selected
+				<% } %> 
+				>Nonfiction</option>
+			<option value="Fiction" <% if (book.escape("genre") === "Fiction") { %>
+				selected
+				<% } %> 
+				>Fiction</option>
+			<option value="Photobook" <% if (book.escape("genre") === "Photobook") { %>
+				selected
+				<% } %> 
+				>Photobook</option>
+			<option value="Textbook" <% if (book.escape("genre") === "Textbook") { %>
+				selected
+				<% } %> 
+				>Textbook</option>
+			<option value="Science" <% if (book.escape("genre") === "Science") { %>
+				selected
+				<% } %> 
+				>Science</option>
+		</select>
 	</label>
 	<label class="group"><strong class="form-label">Synopsis</form>
 		<textarea class="form-text" name="book[synopsis]"><%= book.escape("synopsis") %></textarea>

@@ -35,7 +35,6 @@ Enwritt.Views.BookForm = Backbone.ModalView.extend({
     event.preventDefault();
 
     var formData = $(".book-form").serializeJSON().book;
-    debugger;
     this.model.set(formData);
     this.model.save({}, {
       success: function () {
