@@ -4,13 +4,21 @@
 <form action="<%= session_url %>" method="POST">
   <%= csrf_token %>
   <label>Email
-    <input type="text" name="user[email]">
+    <input type="text" id="guest-email" name="user[email]">
   </label>
   <br>
   <label>Password
-    <input type="password" name="user[password]">
+    <input id="guest-pass" type="password" name="user[password]">
   </label>
   <button class="form-button">Sign in!</button>
+  <button id="guest-login" class="form-button">Guest Login</button>
 </form>
 </section>
 
+<script>
+  $("#guest-login").on("click", function(event) {
+  	event.preventDefault();
+  	$("#guest-email").attr("value","guest");
+  	$("#guest-pass").attr("value","password");
+  });
+</script>

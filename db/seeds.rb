@@ -8,6 +8,9 @@
 
   user1 = User.create!(email: "jack@gmail.com", password: "password")
   user2 = User.create!(email: "jill@yahoo.com", password: "coffee")
+  user3 = User.create!(email: "guest", password: "password")
+
+  genres = %w(Misc Nonfiction Fiction Photobook Textbook Science)
 
   book1 = user1.authored_books.create!(
     title: "Beer from Hell",
@@ -34,16 +37,26 @@
 
   collection1.add_book(book2)
 
-  50.times do |i|
-    User.create!(email: "pgsearch#{i}@gmail.com", password: "password")
+  # Seed database with users
+
+  10.times do |i|
+    User.create!(email: Faker::Internet.email, password: "password")
   end
 
   50.times do |i|
-    Book.create!(
-      author_id: i+1,
-      title: "PGSearch Book #{i}",
-      genre: "Nonfiction",
-      synopsis: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae veniam voluptatem aliquid suscipit dolores dolorum tempore expedita sint hic. Ad alias itaque nesciunt eveniet error aliquam, quo a assumenda, dignissimos?"
+    author_id = rand(13) + 1
+    author = User.find(author_id)
+    title = [Faker::Hacker.adjective.capitalize, Faker::Hacker.noun.capitalize].join(" ")
+    a = author.authored_books.new(
+      title: title,
+      genre: genres.sample,
+      synopsis: Faker::Hacker.say_something_smart
     )
   end
+
+
+
+
+
+  
 

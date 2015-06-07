@@ -28,7 +28,7 @@ gem 'rmagick'
 gem 'pg_search'
 gem 'kaminari'
 gem 'omniauth-facebook'
-
+gem 'faker'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
