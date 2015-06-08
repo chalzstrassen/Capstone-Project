@@ -71,9 +71,6 @@ Enwritt.Views.CollectionShow = Backbone.ModalView.extend({
 						that.render();
 					}
 				});
-			},
-			error: function (xhr, responseText) {
-				alert(responseText);
 			}
 		});
   },
@@ -93,11 +90,10 @@ Enwritt.Views.CollectionShow = Backbone.ModalView.extend({
           query: this.searchResults._query,
           id: this.model.id,
           page: this._page
-        }
-        // success: function (obj, responseText) {
-        //   this.renderSearchResults();
-        //   console.log(responseText);
-        // }.bind(this)
+        },
+        success: function (obj, responseText) {
+         this.renderSearchResults();
+        }.bind(this)
       });
       
     }

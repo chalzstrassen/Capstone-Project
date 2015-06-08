@@ -4,7 +4,8 @@ Enwritt.Collections.Books = Backbone.Collection.extend({
   parse: function (resp) {
     this._page = resp._page;
     this._totalPages = resp._totalPages;
-
+    delete resp._page;
+    delete resp._totalPages;
     return resp.paginated;
   },
   getOrFetch: function (id) {

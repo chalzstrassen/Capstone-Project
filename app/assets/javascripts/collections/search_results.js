@@ -4,6 +4,6 @@ Enwritt.Collections.SearchResults = Backbone.Collection.extend({
 	parse: function (resp) {
 		this._page = resp._page;
 		delete resp._page;
-		return resp;
+		return resp.paginated;
 	}
 });
