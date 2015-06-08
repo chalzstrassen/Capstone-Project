@@ -39,14 +39,15 @@ Enwritt.Views.CollectionShow = Backbone.ModalView.extend({
   addBookForm: function (event) {
     event.preventDefault();
     var bookCollection = new Enwritt.Collections.AvailBooks();
-    this._addBookView = bookCollection;
     var that = this;
     bookCollection.fetch({
       data: { id: this.model.id },
       success: function () {
+        var totalPages = bookCollection._totalPages;
         var view = new Enwritt.Views.AddBook({
           collection: bookCollection,
           model: that.model,
+          totalPages: totalPages,
           el: ".available-books"
         });
 

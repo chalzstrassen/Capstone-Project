@@ -3,7 +3,7 @@ Enwritt.Collections.AvailBooks = Backbone.Collection.extend({
 	url: "api/availbooks",
 	parse: function (resp) {
 	    this._page = resp._page;
-	    this._ajaxLinks = resp._ajaxLinks;
+	    this._totalPages = resp._totalPages;
 
 	    return resp.paginated;
   	}
