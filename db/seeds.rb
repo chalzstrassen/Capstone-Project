@@ -52,6 +52,9 @@
       genre: genres.sample,
       synopsis: Faker::Hacker.say_something_smart
     )
+    a.cover = File.new(::Rails.root.join("app", "assets", "images", "cover", "pic#{i % 27}.jpg"))
+    a.content = File.new(::Rails.root.join("app", "assets", "images", "content", "pdf#{i % 24}.pdf"))
+    a.save
   end
 
 
