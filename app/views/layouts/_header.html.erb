@@ -19,45 +19,28 @@
   <% else %>
     <a href="<%= new_session_url %>" class="auth">Sign in</a>
     <a href="<%= new_user_url %>" class="auth">Sign up</a>
-    <fb:login-button scope="public_profile,email" onlogin="redirect();">
-    </fb:login-button>
   <% end %>
-    <div
-      class="fb-like auth"
-      data-share="true"
-      data-width="450"
-      data-show-faces="true">
-    </div>
 </header>
 
 <script>
+</script>
+
+<script>
+  $("#guest-login").on("click", function(event) {
+    event.preventDefault();
+    $("#guest-email").attr("value","guest");
+    $("#guest-pass").attr("value","password");
+  });
+
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '<%= ENV["facebook_app_id"] %>',
       xfbml      : true,
+      status     : true,
       version    : 'v2.2',
       cookie     : true
     });
-
-    $(".sign-out").on("click", function (event) {
-      if (FB.getAuthResponse()) {
-        FB.logout(function () {
-          redirect();
-        });
-      }
-    });
-
-    FB.getLoginStatus(function(response) {
-      if (response.status === "connected") {
-        $.get('/auth/facebook/callback', function(html) {
-        });
-      }
-    });
   };
-
-  function redirect() {
-    window.location.replace("<%= root_url %>");
-  }
 
   (function(d, s, id){
      var js, fjs = d.getElementsByTagName(s)[0];
@@ -67,4 +50,24 @@
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
   
+  $(".fb-btn").on("click", function (event) {
+    event.preventDefault();
+
+    FB.login(function (response) {
+      if (response.authResponse) {
+        $.getJSON('/auth/facebook/callback', function(json) {
+          window.location.replace("<%= root_url %>");
+        });
+      }
+    }, {scope: "email"});
+
+  });
+
+  $(".sign-out").on("click", function (event) {
+      if (FB.getAuthResponse()) {
+        FB.logout(function () {
+          window.location.replace("<%= new_session_url %>");
+        });
+      }
+    });
 </script>
