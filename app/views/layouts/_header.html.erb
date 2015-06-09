@@ -26,12 +26,6 @@
 </script>
 
 <script>
-  $("#guest-login").on("click", function(event) {
-    event.preventDefault();
-    $("#guest-email").attr("value","guest");
-    $("#guest-pass").attr("value","password");
-  });
-
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '<%= ENV["facebook_app_id"] %>',

@@ -20,38 +20,8 @@
 
 <script>
   $("#guest-login").on("click", function(event) {
-  	event.preventDefault();
-  	$("#guest-email").attr("value","guest");
-  	$("#guest-pass").attr("value","password");
-  });
-
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '<%= ENV["facebook_app_id"] %>',
-      xfbml      : true,
-      status     : true,
-      version    : 'v2.2',
-      cookie     : true
-    });
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-  
-  $(".fb-btn").on("click", function (event) {
     event.preventDefault();
-
-    FB.login(function (response) {
-      if (response.authResponse) {
-        $.getJSON('/auth/facebook/callback', function(json) {
-          window.location.replace("<%= root_url %>");
-        });
-      }
-    }, {scope: "email"});
+    $("#guest-email").attr("value","guest");
+    $("#guest-pass").attr("value","password");
   });
 </script>
