@@ -1,7 +1,7 @@
 <section class="login-form">
 <h1>User Sign in</h1>
 
-<form action="<%= session_url %>" method="POST">
+<form class="login" action="<%= session_url %>" method="POST">
   <%= csrf_token %>
   <label>Email
     <input type="text" id="guest-email" name="user[email]">
@@ -24,4 +24,44 @@
     $("#guest-email").attr("value","guest");
     $("#guest-pass").attr("value","password");
   });
+
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '<%= ENV["facebook_app_id"] %>',
+      xfbml      : true,
+      status     : true,
+      version    : 'v2.2',
+      cookie     : true
+    });
+  }
+
+  $(".fb-btn").on("click", function (event) {
+    event.preventDefault();
+    if (FB.getAuthResponse()){
+      $.getJSON('/auth/facebook/callback', function(json) {
+        });
+        window.setTimeout(redirect, 2000);
+    } else {
+    FB.login(function (response) {
+      if (response.authResponse) {
+        $.getJSON('/auth/facebook/callback', function(json) {
+        });
+        window.setTimeout(redirect, 2000);
+      }
+    }, {scope: "email"});
+    }
+  });
+  
+  function redirect () {
+    window.location.replace("<%= root_url %>")
+  }
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+  
 </script>
