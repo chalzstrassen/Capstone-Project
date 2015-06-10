@@ -1,6 +1,6 @@
 # Enwritt
 
-[Heroku link](http://enwritt.herokuapp.com)
+[Live](http://www.enwritt.us)
 
 ## Minimum Viable Product
 Enwritt is a Scribd clone built on Rails and Backbone.
@@ -22,6 +22,7 @@ Anyone can:
 - [x] Filter search for books by author
 - [x] Filter search for books by genre
 - [x] Log in with OAuth (_login with Facebook omniauth_)
+
 ## Design Docs
 * [View Wireframes][views]
 * [DB schema][schema]
