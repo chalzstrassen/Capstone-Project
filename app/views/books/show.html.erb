@@ -32,3 +32,26 @@
 		</form>
 	<% end %>
 <% end %>
+
+<h2>Comments on this Book</h2>
+<ul class="search-results">
+	<% @book.comments.each do |comment| %>
+		<li>
+			<p>Commenter: <%= comment.commenter.fname || "Anonymous" %></p>
+			<p>Body: 
+				<br>
+				<%= comment.body %>
+			</p>
+		</li>
+	<% end %>
+</ul>
+
+<% if logged_in? %>
+	<form action="<%= comment_book_url(@book) %>" method="POST">
+		<%= csrf_token %>
+		<label>Leave a comment
+			<textarea name="comment[body]"></textarea>
+		</label>
+		<button>Post Comment</button>		
+	</form>
+<% end %>
