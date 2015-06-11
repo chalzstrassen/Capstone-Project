@@ -24,8 +24,8 @@
 		for (var i = 0; i < 4; i++) {
 			$(collections.get(i)).addClass("active");
 		}
+		$("#scroll-left").css("display", "none");
 		if (collections.length < 4) {
-			$("#scroll-left").css("display", "none");
 			$("#scroll-right").css("display", "none");
 		}
 	});
