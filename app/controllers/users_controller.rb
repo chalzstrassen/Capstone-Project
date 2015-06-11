@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_signed_in!, only: [:edit]
+  before_action :require_signed_in!, only: [:edit, :comment]
 
   def new
     @user = User.new
@@ -21,8 +21,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @auth_books = @user.authored_books
-    @collections = @user.collections
     render :show
   end
 
@@ -31,8 +29,24 @@ class UsersController < ApplicationController
     render :edit
   end
 
+  def comment
+    @user = User.find(params[:id])
+    @comment = @user.comments_on.new(comment_params)
+    @comment.commenter_id = current_user.id
+    if @comment.save
+      redirect_to user_url(@user)
+    else
+      flash[:notice] = "Cannot save comment."
+      redirect_to user_url(@user)
+    end
+  end
+
   private
     def user_params
       params.require(:user).permit(:email, :password)
+    end
+
+    def comment_params
+      params.require(:comment).permit(:body)
     end
 end

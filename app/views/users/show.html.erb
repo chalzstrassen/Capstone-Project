@@ -3,12 +3,34 @@
 		<h1>Hi, this is your profile</h1>
 		<a href="<%= edit_user_url(@user) %>">Edit</a>
 	<% end %>
-<% else %>
-	<% if @user.fname == nil || @user.lname == nil %>
-		<h1>Anonymous</h1>
-	<% else %>
-		<h1>Profile of <%= @user.fname + " " + @user.lname %>
-	<% end %>
 <% end %>
 
+<% if @user.fname == nil || @user.lname == nil %>
+	<h1>Profile of Anonymous</h1>
+<% else %>
+	<h1>Profile of <%= @user.fname + " " + @user.lname %>
+<% end %>
+
+<h2>Comments on this profile</h2>
+<ul class="search-results">
+	<% @user.comments_on.each do |comment| %>
+		<li>
+			<p>Commenter: <%= comment.commenter.fname || "Anonymous" %></p>
+			<p>Body: 
+				<br>
+				<%= comment.body %>
+			</p>
+		</li>
+	<% end %>
+</ul>
+
+<% if logged_in? %>
+	<form action="<%= comment_user_url(@user) %>" method="POST">
+		<%= csrf_token %>
+		<label>Leave a comment
+			<textarea name="comment[body]"></textarea>
+		</label>
+		<button>Post Comment</button>		
+	</form>
+<% end %>
 

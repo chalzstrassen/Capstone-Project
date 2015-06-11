@@ -22,7 +22,12 @@ class User < ActiveRecord::Base
            inverse_of: :commenter
            )
             
-  has_many :comments_on, as: :commentable
+  has_many(:comments_on,
+           class_name: "Comment",
+           foreign_key: :commentable_id,
+           primary_key: :id,
+           as: :commentable
+          )
 
   pg_search_scope :search_on_fname_lname, against: [:fname, :lname]
 
