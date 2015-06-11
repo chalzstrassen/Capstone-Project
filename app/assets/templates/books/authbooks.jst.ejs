@@ -13,6 +13,8 @@
 <nav class="books-paging group">
 <% if (page > 1) { %>
 	<a href="javascript:void(0)" class="prev-books">&lt;</a>
+<% } else { %>
+	<span class="prev-books hide-scroll"></span>
 <% } %>
 <span class="page-mark">
 <input class="page" id="books-page" type="text" value="<%= page %>"> /
@@ -20,6 +22,8 @@
 </span>
 <% if (page < totalPages) { %>
 	<a href="javascript:void(0)" class="next-books">&gt;</a>
+<% } else { %>
+	<span class="next-books hide-scroll"></span>
 <% } %>
 </nav>
 <% } %>

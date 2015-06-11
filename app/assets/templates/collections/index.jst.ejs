@@ -24,7 +24,7 @@
 		for (var i = 0; i < 4; i++) {
 			$(collections.get(i)).addClass("active");
 		}
-		$("#scroll-left").css("display", "none");
+		$("#scroll-left").css("visibility", "hidden");
 		if (collections.length < 4) {
 			$("#scroll-right").css("display", "none");
 		}
@@ -62,7 +62,7 @@
 			page++;
 			$("#scroll-right").css("display", "none");
 		}
-		$("a#scroll-left").css("display", "block");
+		$("a#scroll-left").css("visibility", "visible");
 		$("#collections-page").html("Page: " + page + " of " + collectionsPages);
 	});
 	$("#scroll-left").on("click", function (event) {
@@ -84,7 +84,7 @@
 			}
 			curIdx -= 4;
 			page--;
-			$("#scroll-left").css("display", "none");
+			$("#scroll-left").css("visibility", "hidden");
 		}
 		$("a#scroll-right").css("display", "block");
 		$("#collections-page").html("Page: " + page + " of " + collectionsPages);
