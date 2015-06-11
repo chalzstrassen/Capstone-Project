@@ -23,6 +23,7 @@
     event.preventDefault();
     $("#guest-email").attr("value","guest");
     $("#guest-pass").attr("value","password");
+    $(".form-button").trigger("click");
   });
 
   window.fbAsyncInit = function() {
@@ -39,16 +40,17 @@
     event.preventDefault();
     if (FB.getAuthResponse()){
       $.getJSON('/auth/facebook/callback', function(json) {
-        });
-        window.setTimeout(redirect, 2000);
+
+      });
+      window.setTimeout(redirect, 2000);
     } else {
-    FB.login(function (response) {
-      if (response.authResponse) {
-        $.getJSON('/auth/facebook/callback', function(json) {
-        });
-        window.setTimeout(redirect, 2000);
-      }
-    }, {scope: "email"});
+      FB.login(function (response) {
+        if (response.authResponse) {
+          $.getJSON('/auth/facebook/callback', function(json) {
+          });
+          window.setTimeout(redirect, 2000);
+        }
+      }, {scope: "email"});
     }
   });
   
