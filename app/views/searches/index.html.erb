@@ -8,7 +8,7 @@
 				<p>Title: <a class="select" href="<%= book_url result.id %>"><%= result.title %></a></p>
 				<p>Genre: <%= result.genre %></p>
 				<p>Synopsis: <%= result.synopsis %></p>
-				<p>Author email: <%= result.author.email %></p>
+				<p><a class="select" href="<%= user_url(result.author) %>">Click here</a> to see author's page</p>
 			</li>
 		<% end %>
 	</ol>

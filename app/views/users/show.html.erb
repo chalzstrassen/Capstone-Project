@@ -1,1 +1,14 @@
-<h1>Welcome, <%= @user.email %></h1>
+<% if logged_in? %>
+	<% if current_user.id == @user.id %>
+		<h1>Hi, this is your profile</h1>
+		<a href="<%= edit_user_url(@user) %>">Edit</a>
+	<% end %>
+<% else %>
+	<% if @user.fname == nil || @user.lname == nil %>
+		<h1>Anonymous</h1>
+	<% else %>
+		<h1>Profile of <%= @user.fname + " " + @user.lname %>
+	<% end %>
+<% end %>
+
+

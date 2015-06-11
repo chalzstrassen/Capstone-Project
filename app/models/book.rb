@@ -15,6 +15,8 @@ class Book < ActiveRecord::Base
             inverse_of: :authored_books
             )
 
+  has_many :comments, as: :commentable
+
   pg_search_scope :search_on_title_synopsis, against: [:title, :synopsis]
   pg_search_scope :search_by_author_email, 
                   associated_against: { :author => :email },

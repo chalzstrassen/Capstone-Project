@@ -98,15 +98,11 @@ a.auth, .auth {
 .query-form {
   float: left;
   margin: 0 10px;
-  width: 0;
-  transition: width 0.65s;
+  width: 280;
   overflow: hidden;
   height: 25px;
 }
 
-.revealed {
-  width: 280px;
-}
 .search-box {
   background-color: white;
   width: 60%;

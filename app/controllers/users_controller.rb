@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  # before_action :require_login, only: [:library]
+  before_action :require_signed_in!, only: [:edit]
 
   def new
     @user = User.new
@@ -21,7 +21,14 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @auth_books = @user.authored_books
+    @collections = @user.collections
     render :show
+  end
+
+  def edit
+    @user = User.find(params[:id])
+    render :edit
   end
 
   private

@@ -1,0 +1,29 @@
+<section class="login-form">
+<% if user.persisted? %>
+  <h1>Edit Profile</h1>
+<% else %>
+  <h1>User Signup</h1>
+<% end %>
+<form action="<%= users_url %>" method="POST">
+  <%= csrf_token %>
+  <label>Email (required)
+    <input type="text" name="user[email]" value="<%= user.email %>">
+  </label>
+  <label>First Name
+	<input type="text" name="user[fname]" value="<%= user.fname %>">
+  </label>
+  <label>Last Name
+	<input type="text" name="user[lname]" value="<%= user.lname %>">
+  </label>
+  <label>Password (required)
+    <input type="password" name="user[password]" value="<% user.password %>">
+  </label>
+  <br>
+  <% if user.persisted? %>
+    <input type="hidden" name="_method" value="PATCH">
+    <button class="form-button">Update</button>
+  <% else %>
+    <button class="form-button">Sign up!</button>
+  <% end %>
+</form>
+</section>

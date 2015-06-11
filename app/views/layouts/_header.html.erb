@@ -1,4 +1,5 @@
 <header class="group">
+  <a href="<%= root_url %>" class="logo">Enwritt</a>
   <span id="magnifying-glass"></span>
   <form class="query-form group" method="GET" action="<%= search_url %>">
   <input type="text" name="query" class="search-box">
@@ -8,9 +9,9 @@
   </select>
   <button class="search-button">Search</button>
   </form>
-  <a href="<%= root_url %>" class="logo">Enwritt</a>
   <% if logged_in? %>
     <h3 class="welcome-message"> Welcome <%= current_user.email %> </h3>
+    <a href="<%= user_url(current_user) %>" class="auth">Profile</a>
     <form class="auth" method="POST" action="<%= session_url %>">
       <%= csrf_token %>
       <input type="hidden" name="_method" value="delete">

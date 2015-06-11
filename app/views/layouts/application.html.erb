@@ -20,17 +20,5 @@
 <% end %>
 <%= yield %>
 
-<script>
-	var revealed = false;
-	$("#magnifying-glass").on("click", function () {
-		if (revealed) {
-			$(".query-form").removeClass("revealed")
-			revealed = false;
-		} else {
-			$(".query-form").addClass("revealed");
-			revealed = true;
-		}
-	});
-</script>
 </body>
 </html>

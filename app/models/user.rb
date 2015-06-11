@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  include PgSearch
   after_initialize :ensure_session_token
 
   validates :session_token, :email, :password_digest, presence: true
@@ -13,6 +14,17 @@ class User < ActiveRecord::Base
            )
 
   has_many :collections
+
+  has_many(:comments,
+           class_name: "Comment",
+           foreign_key: :commenter_id,
+           primary_key: :id,
+           inverse_of: :commenter
+           )
+            
+  has_many :comments_on, as: :commentable
+
+  pg_search_scope :search_on_fname_lname, against: [:fname, :lname]
 
   attr_reader :password
 
