@@ -5,7 +5,7 @@
 	<ol class="search-results" start="<%= (@search_results.current_page-1) * 25 + 1 %>">
 		<% @search_results.each_with_index do |result| %>
 			<li>
-				<p>Title: <%= result.title %></p>
+				<p>Title: <a class="select" href="<%= book_url result.id %>"><%= result.title %></a></p>
 				<p>Genre: <%= result.genre %></p>
 				<p>Synopsis: <%= result.synopsis %></p>
 				<p>Author email: <%= result.author.email %></p>

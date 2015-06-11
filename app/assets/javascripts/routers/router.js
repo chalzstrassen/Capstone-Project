@@ -3,7 +3,8 @@ Enwritt.Routers.Router = Backbone.Router.extend({
     this.$rootEl = options.$rootEl
   },
   routes: {
-    '': 'libraryLayout'
+    ''          : 'libraryLayout',
+    'books/:id' : 'showBook'
   },
 
   libraryLayout: function () {

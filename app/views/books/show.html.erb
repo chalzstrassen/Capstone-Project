@@ -1,0 +1,34 @@
+<h1>Title: <%= @book.title %><h1>
+<h3 class="author-email">Author Email: <%= @book.author.email %></h3>
+<article>
+	<h3>Synopsis</h3><p><%= @book.synopsis %></p>
+	<img src="<%= asset_path(@book.cover.url(:original)) %>" width="500">
+		<% if asset_path(@book.content.url(:original)) != "/" %>
+			<a href="<%= asset_path(@book.content.url(:original)) %>">
+				<img src="<%= asset_path(@book.content.url(:thumbnail)) %>">
+			</a>
+		<% else %>
+			<p>No pdf file uploaded</p>
+		<% end %>
+</article>
+<% if logged_in? %>
+	<% if @book.author.id == current_user.id %>
+		<h3>You are the author of this book</h3>
+	<% else %>
+		<form action="<%= collects_url %>" method="POST">
+			<%= csrf_token %>
+			<input type="hidden" name="collect[book_id]" value="<%= @book.id %>">
+			<strong class="form-label">Add to: </strong>
+			<select name="collect[collection_id]">
+				<% @collections.each do |collection| %>
+					<option class="form-text" value="<%= collection.id %>"><%= collection.name %></option>
+				<% end %>
+			</select>
+			<% if @collections.length > 0 %>
+				<button class="select">Add to Collection</button>	
+			<% else %>
+				<p>All of your collections have this book... or maybe you have not created any collections.</p>
+			<% end %>
+		</form>
+	<% end %>
+<% end %>
