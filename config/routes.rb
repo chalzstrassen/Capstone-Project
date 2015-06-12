@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   root to: 'static_pages#root'
 
-  resources :users, only: [:new, :create, :show, :edit] do
+  resources :users, only: [:new, :create, :show, :edit, :update] do
     member do
       post "comment"
+      post "message"
     end
   end
   resource :session, only: [:new, :create, :destroy]

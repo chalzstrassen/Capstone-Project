@@ -2,13 +2,26 @@
 	<% if current_user.id == @user.id %>
 		<h1>Hi, this is your profile</h1>
 		<a href="<%= edit_user_url(@user) %>">Edit</a>
+		<h2>Received messages</h2>
+		<% unless @user.received_messages.empty? %>
+		<ul class="search-results">
+			<% @user.received_messages.each do |message| %>
+				<li>
+					<p>From: <%= message.from.fname || "Anonymous" %></p>
+					<p><%= message.body %></p>
+				</li>
+			<% end %>
+		</ul>
+		<% else %>
+			<p>You have not received any messages.</p>
+		<% end %>
 	<% end %>
-<% end %>
-
-<% if @user.fname == nil || @user.lname == nil %>
-	<h1>Profile of Anonymous</h1>
 <% else %>
-	<h1>Profile of <%= @user.fname + " " + @user.lname %>
+	<% if @user.fname == nil || @user.lname == nil %>
+		<h1>Profile of Anonymous</h1>
+	<% else %>
+		<h1>Profile of <%= @user.fname + " " + @user.lname %>
+	<% end %>
 <% end %>
 
 <h2>Comments on this profile</h2>
@@ -25,6 +38,7 @@
 </ul>
 
 <% if logged_in? %>
+	<% unless current_user.id == @user.id %>
 	<form action="<%= comment_user_url(@user) %>" method="POST">
 		<%= csrf_token %>
 		<label>Leave a comment
@@ -32,5 +46,14 @@
 		</label>
 		<button>Post Comment</button>		
 	</form>
+
+	<form action="<%= message_user_url(@user) %>" method="POST">
+		<%= csrf_token %>
+		<label>Message this user
+			<textarea name="message[body]"></textarea>
+		</label>
+		<button>Send Message</button>
+	</form>
+	<% end %>
 <% end %>
 

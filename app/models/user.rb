@@ -29,6 +29,20 @@ class User < ActiveRecord::Base
            as: :commentable
           )
 
+  has_many(:received_messages,
+           class_name: "Message",
+           foreign_key: :to_id,
+           primary_key: :id,
+           inverse_of: :to
+           )
+
+  has_many(:sent_messages,
+           class_name: "Message",
+           foreign_key: :from_id,
+           primary_key: :id,
+           inverse_of: :from
+           )
+
   pg_search_scope :search_on_fname_lname, against: [:fname, :lname]
 
   attr_reader :password

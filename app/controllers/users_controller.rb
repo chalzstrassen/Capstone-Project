@@ -29,24 +29,46 @@ class UsersController < ApplicationController
     render :edit
   end
 
+  def update
+    @user = User.find(params[:id])
+    @user.update(user_params)
+    redirect_to user_url(@user)
+  end
+
   def comment
     @user = User.find(params[:id])
     @comment = @user.comments_on.new(comment_params)
     @comment.commenter_id = current_user.id
     if @comment.save
-      redirect_to user_url(@user)
+      flash[:notice] = "Comment saved."     
     else
       flash[:notice] = "Cannot save comment."
-      redirect_to user_url(@user)
     end
+    redirect_to user_url(@user)
+  end
+
+  def message
+    @user = User.find(params[:id])
+    @message = @user.received_messages.new(message_params)
+    @message.from_id = current_user.id
+    if @message.save
+      flash[:notice] = "Message sent."     
+    else
+      flash[:notice] = "Cannot send message."
+    end
+    redirect_to user_url(@user)
   end
 
   private
     def user_params
-      params.require(:user).permit(:email, :password)
+      params.require(:user).permit(:email, :fname, :lname, :password)
     end
 
     def comment_params
       params.require(:comment).permit(:body)
+    end
+
+    def message_params 
+      params.require(:message).permit(:body)
     end
 end

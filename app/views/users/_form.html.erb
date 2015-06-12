@@ -4,7 +4,7 @@
 <% else %>
   <h1>User Signup</h1>
 <% end %>
-<form action="<%= users_url %>" method="POST">
+<form action="<%= user.persisted? ? user_url(user) : users_url %>" method="POST">
   <%= csrf_token %>
   <label>Email (required)
     <input type="text" name="user[email]" value="<%= user.email %>">
