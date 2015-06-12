@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_signed_in!, only: [:edit, :comment]
+  before_action :require_signed_in!, only: [:edit, :comment, :message, :like]
 
   def new
     @user = User.new
@@ -57,6 +57,27 @@ class UsersController < ApplicationController
       flash[:notice] = "Cannot send message."
     end
     redirect_to user_url(@user)
+  end
+
+  def like
+    @user = User.find(params[:id])
+    @like = @user.likes.new(liker_id: current_user.id)
+    if @like.save
+      flash[:notice] = "You have liked this profile."
+    else
+      flash[:notice] = "Cannot like this profile."
+    end
+    redirect_to user_url(@user)
+  end
+
+  def unlike
+    @user = User.find(params[:id])
+    if current_user.likes?(@user)
+      @like = @user.likes.find_by(liker_id: current_user.id)
+      flash[:notice] = "You have unliked this profile."
+      @like.destroy
+      redirect_to user_url(@user)
+    end
   end
 
   private

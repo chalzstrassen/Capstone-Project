@@ -43,6 +43,22 @@ class User < ActiveRecord::Base
            inverse_of: :from
            )
 
+  has_many(:likings,
+           class_name: "Like",
+           foreign_key: :liker_id,
+           primary_key: :id,
+           inverse_of: :liker
+           )
+
+  has_many(:likes, 
+           class_name: "Like",
+           foreign_key: :likable_id,
+           primary_key: :id,
+           as: :likable
+           )
+
+  has_many :likers, through: :likes, source: :liker
+
   pg_search_scope :search_on_fname_lname, against: [:fname, :lname]
 
   attr_reader :password
@@ -67,6 +83,11 @@ class User < ActiveRecord::Base
     end
 
     user
+  end
+
+  def likes?(user)
+    liked = user.likers
+    liked.include?(self)
   end
 
   def generate_token

@@ -5,12 +5,15 @@ Rails.application.routes.draw do
     member do
       post "comment"
       post "message"
+      post "like"
+      delete "unlike"
     end
   end
   resource :session, only: [:new, :create, :destroy]
   resources :books, only: [:show] do
     member do
       post "comment"
+      post "like"
     end
   end
   resources :collects, only: [:create]

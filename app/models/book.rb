@@ -16,6 +16,7 @@ class Book < ActiveRecord::Base
             )
 
   has_many :comments, as: :commentable
+  has_many :likes, as: :likable
 
   pg_search_scope :search_on_title_synopsis, against: [:title, :synopsis]
   pg_search_scope :search_by_author_email, 

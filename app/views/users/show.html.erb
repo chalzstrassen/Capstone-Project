@@ -15,15 +15,29 @@
 		<% else %>
 			<p>You have not received any messages.</p>
 		<% end %>
+	<% else %>
+		<% if current_user.likes?(@user) %>
+			<form action="<%= unlike_user_url(@user) %>" method="POST">
+				<%= csrf_token %>
+				<input type="hidden" name="_method" value="DELETE">
+				<button>Unlike</button>
+			</form>
+		<% else %>
+			<form action="<%= like_user_url(@user) %>" method="POST">
+				<%= csrf_token %>
+				<button>Like</button>
+			</form>
+		<% end %>
 	<% end %>
 <% else %>
 	<% if @user.fname == nil || @user.lname == nil %>
 		<h1>Profile of Anonymous</h1>
 	<% else %>
-		<h1>Profile of <%= @user.fname + " " + @user.lname %>
+		<h1>Profile of <%= @user.fname + " " + @user.lname %></h1>
 	<% end %>
 <% end %>
 
+<p>Likes: <%= @user.likes_count %></p>
 <h2>Comments on this profile</h2>
 <ul class="search-results">
 	<% @user.comments_on.each do |comment| %>
