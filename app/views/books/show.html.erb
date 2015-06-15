@@ -15,6 +15,18 @@
 	<% if @book.author.id == current_user.id %>
 		<h3>You are the author of this book</h3>
 	<% else %>
+		<% if @book.liked_by?(current_user) %>
+			<form action="<%= unlike_book_url(@book) %>" method="POST">
+				<%= csrf_token %>
+				<input type="hidden" name="_method" value="DELETE">
+				<button>Unlike</button>
+			</form>
+		<% else %>
+			<form action="<%= like_book_url(@book) %>" method="POST">
+				<%= csrf_token %>
+				<button>Like</button>
+			</form>
+		<% end %>
 		<form action="<%= collects_url %>" method="POST">
 			<%= csrf_token %>
 			<input type="hidden" name="collect[book_id]" value="<%= @book.id %>">
@@ -33,6 +45,7 @@
 	<% end %>
 <% end %>
 
+<p>Likes: <%= @book.likes_count %></p>
 <h2>Comments on this Book</h2>
 <ul class="search-results">
 	<% @book.comments.each do |comment| %>

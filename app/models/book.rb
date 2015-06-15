@@ -17,10 +17,16 @@ class Book < ActiveRecord::Base
 
   has_many :comments, as: :commentable
   has_many :likes, as: :likable
+  has_many :likers, through: :likes, source: :liker
 
   pg_search_scope :search_on_title_synopsis, against: [:title, :synopsis]
   pg_search_scope :search_by_author_email, 
                   associated_against: { :author => :email },
                   using: { :tsearch => { :prefix => true }} 
+
+  def liked_by?(user)
+    likers = self.likers
+    likers.include?(user)
+  end
 
 end

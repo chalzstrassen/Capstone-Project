@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     member do
       post "comment"
       post "like"
+      delete "unlike"
     end
   end
   resources :collects, only: [:create]
