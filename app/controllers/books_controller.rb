@@ -26,9 +26,9 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @like = @book.likes.new(liker_id: current_user.id)
     if @like.save
-      flash[:notice] = "You have liked this profile."
+      flash[:notice] = "You have liked this book."
     else
-      flash[:notice] = "Cannot like this profile."
+      flash[:notice] = "Cannot like this book."
     end
     redirect_to book_url(@book)
   end
@@ -37,7 +37,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     if @book.liked_by?(current_user)
       @like = @book.likes.find_by(liker_id: current_user.id)
-      flash[:notice] = "You have unliked this profile."
+      flash[:notice] = "You have unliked this book."
       @like.destroy
       redirect_to book_url(@book)
     end

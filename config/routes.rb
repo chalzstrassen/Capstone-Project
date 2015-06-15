@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     resources :availbooks, only: [:index]
   end
 
+  get "rankings", to: "static_pages#rankings"
   get "search", to: "searches#index"
   get '/auth/:provider/callback', to: 'sessions#omniauth'
 end

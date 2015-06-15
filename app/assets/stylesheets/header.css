@@ -54,9 +54,9 @@ h3.welcome-message {
   font-size: 20px;
   margin: 0 5px;
 }
-a.auth, .auth {
+a.header-links {
   float: right;
-  margin-right: 10px;
+  margin-right: 20px;
 }
 .auth button {
   float: right;
