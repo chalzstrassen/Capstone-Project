@@ -21,7 +21,21 @@ Rails.application.routes.draw do
   resources :comments, only: [:create, :update, :destroy]
 
   namespace :api, defaults: { format: :json } do
-  	resources :books, only: [:index, :create, :show, :destroy, :update]
+  	resources :books, only: [:index, :create, :show, :destroy, :update] do
+      member do
+        post "comment"
+        post "like"
+        delete "unlike"
+      end
+    end
+    resources :users, only: [:show] do
+      member do
+        post "comment"
+        post "like"
+        post "message"
+        delete "unlike"
+      end
+    end
     resources :authbooks, only: [:index]
   	resources :collections, except: [:new, :edit]
   	resources :collects, only: [:create, :destroy]

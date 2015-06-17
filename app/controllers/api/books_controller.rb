@@ -15,6 +15,17 @@ module Api
       render :index
     end
 
+    def comment
+      @book = Book.find(params[:id])
+      @comment = @book.comments.new(body: params[:body])
+      @comment.commenter_id = current_user.id
+      if @comment.save
+        render json: current_user
+      else
+        render json: "Cannot save comment."
+      end
+    end
+
     def create
       @book = current_user.authored_books.new(book_params)
     
@@ -27,6 +38,8 @@ module Api
 
     def show
       @book = Book.find(params[:id])
+      @comments = @book.comments
+      
       render :show
     end
 
@@ -54,13 +67,36 @@ module Api
           render json: @book.errors.full_messages, status: 422
         end
       end
+    end
 
+    def like
+      @book = Book.find(params[:id])
+      @like = @book.likes.new(liker_id: current_user.id)
+      if @like.save
+        flash[:notice] = "You have liked this book."
+      else
+        flash[:notice] = "Cannot like this book."
+      end
+    end
+
+    def unlike
+      @book = Book.find(params[:id])
+      if @book.liked_by?(current_user)
+        @like = @book.likes.find_by(liker_id: current_user.id)
+        flash[:notice] = "You have unliked this book."
+        @like.destroy
+        redirect_to book_url(@book)
+      end
     end
 
   private
 
     def book_params
       params.require(:book).permit(:title, :genre, :synopsis, :cover, :content)
+    end
+
+    def comment_params
+      params.require(:comment).permit(:body)
     end
 
   end

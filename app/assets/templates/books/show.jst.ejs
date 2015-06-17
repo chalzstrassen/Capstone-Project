@@ -1,5 +1,5 @@
 <h1>Title: <%= book.escape("title") %><h1>
-<h3 class="author-email">Author Email: <%- book.get("author").email_address %></h3>
+<h3 class="author-email">Author Name: <%- author.fname + " " + author.lname %></h3>
 <article class="book-synopsis">
 	<h3>Synopsis</h3><p><%= book.escape("synopsis") %></p>
 	<img src="<%= book.escape("image_url") %>" width="150">
@@ -11,6 +11,22 @@
 			<p>No pdf file uploaded</p>
 		<% } %>
 </article>
+<ul class="search-results"><h3>Comments</h3>
+	<% if (comments.length > 0) { %>
+		<% comments.each(function (comment) { %>
+			<li>
+				<p><%= comment.escape("body") %></p>
+				<p>Comment by: <%= comment.commenter().escape("fname") || "Anonymous" %></p>
+			</li>
+		<% }); %>
+	<% } else { %>
+		<p>There are no comments</p>
+	<% } %>
+</ul>
+<form class="book-form" id="comment">
+	<textarea class="form-text"></textarea>
+	<button class="form-button">Comment</button>
+</form>
 <% if (fromAuth){ %>
 <section class="buttons group">
 <button class="delete-book form-button" data-id="<%= book.id %>">Delete Book</button>

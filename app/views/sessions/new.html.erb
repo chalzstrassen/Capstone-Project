@@ -58,7 +58,7 @@
     } else {
       FB.login(function (response) {
         if (response.authResponse) {
-          $.getJSON('/auth/facebook/callback', function(json) {
+          $.getJSON('/auth/facebook/callback', { signed_request: response.authResponse.signedRequest }, function(json) {
           });
           window.setTimeout(redirect, 2000);
         }

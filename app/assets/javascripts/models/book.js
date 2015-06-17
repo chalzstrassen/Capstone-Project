@@ -1,5 +1,14 @@
 Enwritt.Models.Book = Backbone.Model.extend({
   urlRoot: "/api/books",
+  parse: function (resp) {
+    this._author = resp.author
+    delete resp.author
+    if (resp.comments) {
+      this.comments().set(resp.comments)
+      delete resp.comments
+    }
+    return resp;
+  },
   toJSON: function () {
   	var json = {book: _.clone(this.attributes)};
 
@@ -12,5 +21,12 @@ Enwritt.Models.Book = Backbone.Model.extend({
   	}
 
   	return json;
+  },
+  comments: function () {
+    if (!this._comments) {
+      this._comments = new Enwritt.Collections.Comments([], {commentable: this });
+    }
+
+    return this._comments;
   }
 });

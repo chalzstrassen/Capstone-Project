@@ -45,6 +45,8 @@
 .modal {
   width: 510px;
   min-height: 500px;
+  max-height: 700px;
+  overflow-y: scroll;
 }
 
 /* Stylings for collections index subview */

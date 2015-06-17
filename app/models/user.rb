@@ -79,6 +79,8 @@ class User < ActiveRecord::Base
             provider: auth_hash[:provider],
             uid: auth_hash[:uid],
             email: auth_hash[:info][:email], 
+            fname: auth_hash[:info][:first_name],
+            lname: auth_hash[:info][:last_name],
             password: SecureRandom::urlsafe_base64)
     end
 
