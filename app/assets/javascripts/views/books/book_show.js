@@ -7,6 +7,7 @@ Enwritt.Views.BookShow = Backbone.ModalView.extend({
 	},
 	initialize: function (options) {
 		this._fromAuth = options._fromAuth
+		this.listenTo(this.model.comments(), "add", this.render);
 	},
 	render: function () {
 		var comments = this.model.comments();
@@ -49,13 +50,13 @@ Enwritt.Views.BookShow = Backbone.ModalView.extend({
 		event.preventDefault();
 		var id = this.model.id;
 		var body = $("textarea.form-text").val();
+		var comment = new Enwritt.Models.Comment({body: body})
 		$.ajax({
 			method: "POST",
 			url: '/api/books/' + id + '/comment',
 			data: {body: body},
 			success: function (data) {
-				var commenter = new Enwritt.Models.User(data);
-				var comment = new Enwritt.Models.Comment({body: body, commenter: commenter});
+				comment._commenter = new Enwritt.Models.User(data);
 				this.model.comments().add(comment);
 				this.render();
 			}.bind(this)

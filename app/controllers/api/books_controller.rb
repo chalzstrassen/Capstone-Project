@@ -20,7 +20,7 @@ module Api
       @comment = @book.comments.new(body: params[:body])
       @comment.commenter_id = current_user.id
       if @comment.save
-        render json: current_user
+        render json: {fname: current_user.fname}
       else
         render json: "Cannot save comment."
       end

@@ -1,8 +1,11 @@
 Enwritt.Models.Comment = Backbone.Model.extend({
 	commenter: function () {
-		var commenterAttrib = this.get("commenter");
-		var commenter = new Enwritt.Models.User(commenterAttrib);
-		return commenter;
+		if (!this._commenter) {
+			var commenterAttrib = this.get("commenter");
+			this._commenter = new Enwritt.Models.User(commenterAttrib);			
+		}
+		
+		return this._commenter;
 	}
 });
 
