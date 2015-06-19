@@ -104,9 +104,9 @@ Enwritt.Views.BookShow = Backbone.ModalView.extend({
 				var userShow = new Enwritt.Views.UserShow({model: user});
 				this.hideModal();
 				userShow.render().showModal({
-          closeImageUrl: "//:0",
-          closeImageHoverUrl: "//:0"
-        });
+		          closeImageUrl: "//:0",
+		          closeImageHoverUrl: "//:0"
+		        });
 			}.bind(this)
 		});
 	}

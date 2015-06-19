@@ -1,6 +1,6 @@
 <% if (isCurrentUser) { %>
 		<h3>Hi, this is your profile</h3>
-		<span class="like-stat"><%= user.get("likes_count") %></span>
+		<span class="like-stat"><%= likesCount %></span>
 <% } else { %>
 		<h3>
 		<% if (user.get("fname") && user.get("lname")) { %>
@@ -9,7 +9,7 @@
 			<%= "Anonymous" %>
 		<% } %>
 		</h3>
-		<span class="like-stat">Likes: <%= user.get("likes_count") %></span>
+		<span class="like-stat">Likes: <%= likesCount %></span>
 		<% if (isLiked) { %>
 			<button class="form-button" id="unlike">Unlike</button>
 		<% } else { %>
