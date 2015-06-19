@@ -73,9 +73,9 @@ module Api
       @book = Book.find(params[:id])
       @like = @book.likes.new(liker_id: current_user.id)
       if @like.save
-        flash[:notice] = "You have liked this book."
+        render json: @like
       else
-        flash[:notice] = "Cannot like this book."
+        render json: @like.errors.full_messages, status: 422
       end
     end
 
@@ -83,9 +83,8 @@ module Api
       @book = Book.find(params[:id])
       if @book.liked_by?(current_user)
         @like = @book.likes.find_by(liker_id: current_user.id)
-        flash[:notice] = "You have unliked this book."
         @like.destroy
-        redirect_to book_url(@book)
+        render json: {}
       end
     end
 

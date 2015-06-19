@@ -10,3 +10,4 @@ json.comments do
 	  json.partial!('api/comment', comment: comment, commenter: comment.commenter)
 	end
 end
+json.isLiked @book.liked_by?(current_user)

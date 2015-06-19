@@ -80,7 +80,7 @@ Backbone.ModalView =
                     this.modalContainer =
                         $("<div id='modalContainer'>")
                             .css({
-                                "z-index":"99999",
+                                "z-index":"9",
                                 "position":"relative",
                                 "-webkit-border-radius": "6px",
                                 "-moz-border-radius": "6px",
@@ -110,7 +110,7 @@ Backbone.ModalView =
                                     width: "100%", // ...and full width
                                     opacity: 0.5, // Make it slightly transparent
                                     backgroundColor: "#000",
-                                    "z-index": 99900
+                                    "z-index": 8
                                 })
                             .appendTo( document.body)
                             .hide();
@@ -286,7 +286,7 @@ Backbone.ModalView =
                 modalContainer.css({
                         "opacity": 0,
                         "position": "absolute",
-                        "z-index": 999999});
+                        "z-index": 9});
 
 				var offsets = this.getOffsets();
 

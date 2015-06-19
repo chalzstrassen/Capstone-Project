@@ -1,5 +1,6 @@
-<h1>Title: <%= book.escape("title") %><h1>
-<h3 class="author-email">Author Name: <%- author.fname + " " + author.lname %></h3>
+<h1>Title: <%= book.escape("title") %></h1>
+<h3 class="author-email">Author Name: <button id="show-mini-profile" data-id="<%= author.id %>">
+<%- author.fname + " " + author.lname %></button></h3><div class="mini-profile"></div>
 <article class="book-synopsis">
 	<h3>Synopsis</h3><p><%= book.escape("synopsis") %></p>
 	<img src="<%= book.escape("image_url") %>" width="150">
@@ -29,7 +30,17 @@
 </form>
 <% if (fromAuth){ %>
 <section class="buttons group">
+Likes: <%= likesCount %>
 <button class="delete-book form-button" data-id="<%= book.id %>">Delete Book</button>
 <button class="edit-book form-button" data-id="<%= book.id %>">Edit Book</button>
+</section>
+<% } else { %>
+<section class="buttons group">
+Likes: <%= likesCount %>
+	<% if (isLiked) { %>
+		<button class="form-button" id="unlike">Unlike</button>
+	<% } else { %>
+		<button class="form-button" id="like">Like</button>
+	<% } %>
 </section>
 <% } %>

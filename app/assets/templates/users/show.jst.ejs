@@ -1,0 +1,47 @@
+<% if (isCurrentUser) { %>
+		<h3>Hi, this is your profile</h3>
+		<span class="like-stat"><%= user.get("likes_count") %></span>
+<% } else { %>
+		<h3>
+		<% if (user.get("fname") && user.get("lname")) { %>
+			<%= user.escape("fname") + " " + user.escape("lname") %>
+		<% } else { %>
+			<%= "Anonymous" %>
+		<% } %>
+		</h3>
+		<span class="like-stat">Likes: <%= user.get("likes_count") %></span>
+		<% if (isLiked) { %>
+			<button class="form-button" id="unlike">Unlike</button>
+		<% } else { %>
+			<button class="form-button" id="like">Like</button>
+		<% } %>
+<% } %>
+
+<ul class="search-results"><h3>Comments</h3>
+	<% if (comments.length > 0) { %>
+		<% comments.each(function (comment) { %>
+			<li>
+				<p><%= comment.escape("body") %></p>
+				<p>Comment by: <%= comment.commenter().escape("fname") || "Anonymous" %></p>
+			</li>
+		<% }); %>
+	<% } else { %>
+		<p>There are no comments</p>
+	<% } %>
+</ul>
+
+<% if (!isCurrentUser) { %>
+	<form id="comment-form" class="book-form">
+		<label class="group"><strong class="form-label">Leave a comment</strong>
+			<textarea name="comment[body]" class="form-text"></textarea>
+		</label>
+		<button class="form-button">Post Comment</button>		
+	</form>
+<hr>
+	<form id="message-form" class="book-form">
+		<label class="group"><strong class="form-label">Or send a private message</strong>
+			<textarea name="message[body]" class="form-text"></textarea>
+		</label>
+		<button class="form-button">Leave a message</button>
+	</form>
+<% } %>

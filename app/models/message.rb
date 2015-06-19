@@ -11,4 +11,5 @@ class Message < ActiveRecord::Base
 			   primary_key: :id,
 			   inverse_of: :received_messages
 			   )
+
 end

@@ -3,17 +3,24 @@ Enwritt.Views.BookShow = Backbone.ModalView.extend({
 	events: {
 		"click .delete-book" : "deleteBook",
 		"click .edit-book"   : "editBook",
-		"submit #comment"    : "comment"
+		"submit #comment"    : "comment",
+		"click #like"        : "like",
+		"click #unlike"		 : "unlike",
+		"click #show-mini-profile" : "showAuthor"
 	},
 	initialize: function (options) {
 		this._fromAuth = options._fromAuth
 		this.listenTo(this.model.comments(), "add", this.render);
+		this._likesCount = this.model.get("likes_count");
+		this._isLiked = this.model.get("isLiked");
 	},
 	render: function () {
 		var comments = this.model.comments();
 		var content = this.template({ book: this.model,
 									  fromAuth: this._fromAuth,
 									  comments: comments,
+									  likesCount: this._likesCount,
+									  isLiked: this._isLiked,
 									  author: this.model._author });
 		this.$el.html(content);
 		return this;
@@ -59,6 +66,47 @@ Enwritt.Views.BookShow = Backbone.ModalView.extend({
 				comment._commenter = new Enwritt.Models.User(data);
 				this.model.comments().add(comment);
 				this.render();
+			}.bind(this)
+		});
+	},
+	like: function (event) {
+		event.preventDefault();
+		var bookId = this.model.id;
+		$.ajax({
+			method: "POST",
+			url: "/api/books/" + bookId + "/like",
+			success: function (data) {
+				this._likesCount++;
+				this._isLiked = true;
+				this.render();
+			}.bind(this)
+		});
+	},
+	unlike: function (event) {
+		event.preventDefault();
+		var bookId = this.model.id;
+		$.ajax({
+			method: "DELETE",
+			url: "/api/books/" + bookId + "/unlike",
+			success: function (data) {
+				this._likesCount--;
+				this._isLiked = false;
+				this.render();
+			}.bind(this)
+		});
+	},
+	showAuthor: function (event) {
+		event.preventDefault();
+		var userID = $(event.currentTarget).data("id");
+		var user = new Enwritt.Models.User({id: userID});
+		user.fetch({
+			success: function () {
+				var userShow = new Enwritt.Views.UserShow({model: user});
+				this.hideModal();
+				userShow.render().showModal({
+          closeImageUrl: "//:0",
+          closeImageHoverUrl: "//:0"
+        });
 			}.bind(this)
 		});
 	}
