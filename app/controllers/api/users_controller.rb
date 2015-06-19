@@ -2,7 +2,7 @@ module Api
 	class UsersController < ApiController
 		def show
 			@user = User.find(params[:id])
-			@comments = @user.comments
+			@comments = @user.comments_on
 
 			render :show
 		end
@@ -12,7 +12,7 @@ module Api
 	    @comment = @user.comments_on.new(comment_params)
 	    @comment.commenter_id = current_user.id
 	    if @comment.save
-	      render json: [@comment, current_user]     
+	      render json: {fname: current_user.fname}     
 	    else
 	      render json: @comment.errors.full_messages, status: 422
 	    end
@@ -23,7 +23,7 @@ module Api
 	    @message = @user.received_messages.new(message_params)
 	    @message.from_id = current_user.id
 	    if @message.save
-	      render json: @message    
+	      render json: {fname: current_user.fname}    
 	    else
 	      render json: @message.errors.full_messages, status: 422
 	    end
@@ -50,5 +50,14 @@ module Api
 	    end
 	  end
 
+	private
+
+		def comment_params
+	      params.require(:comment).permit(:body)
+	    end
+
+	    def message_params 
+	      params.require(:message).permit(:body)
+	    end
   end
 end

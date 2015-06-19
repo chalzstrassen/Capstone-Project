@@ -16,7 +16,7 @@ Enwritt.Views.UserShow = Backbone.ModalView.extend({
 			user: this.model,
 			isLiked: this._isLiked,
 			isCurrentUser: this._isCurrentUser,
-			comments: this.model._comments,
+			comments: this.model.comments(),
 			likesCount: this._likesCount
 		});
 		
@@ -45,6 +45,23 @@ Enwritt.Views.UserShow = Backbone.ModalView.extend({
 			success: function (data) {
 				this._likesCount--;
 				this._isLiked = false;
+				this.render();
+			}.bind(this)
+		});
+	},
+	comment: function (event) {
+		event.preventDefault();
+		var params = $(event.currentTarget).serializeJSON();
+		var body = params.comment;
+		var comment = new Enwritt.Models.Comment(body);
+		var id = this.model.id;
+		$.ajax({
+			method: "POST",
+			url: '/api/users/' + id + '/comment',
+			data: params,
+			success: function (data) {
+				comment._commenter = new Enwritt.Models.User(data);
+				this.model.comments().add(comment);
 				this.render();
 			}.bind(this)
 		});

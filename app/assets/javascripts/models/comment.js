@@ -1,7 +1,4 @@
 Enwritt.Models.Comment = Backbone.Model.extend({
-	initialize: function (options) {
-		this._commenter = options.commenter;
-	},
 	commenter: function () {
 		if (!this._commenter) {
 			var commenterAttrib = this.get("commenter");
@@ -22,5 +19,13 @@ Enwritt.Models.User = Backbone.Model.extend({
 		}
 
 		return resp;
-	}
+	},
+
+	comments: function () {
+	    if (!this._comments) {
+	      this._comments = new Enwritt.Collections.Comments([], {commentable: this });
+	    }
+
+	    return this._comments;
+   }
 });
