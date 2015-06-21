@@ -66,4 +66,17 @@ Enwritt.Views.UserShow = Backbone.ModalView.extend({
 			}.bind(this)
 		});
 	},
+	message: function (event) {
+		event.preventDefault();
+		var id = this.model.id;
+		var params = $(event.currentTarget).serializeJSON();
+		$.ajax({
+			method: "POST",
+			url: '/api/users/' + id + '/message',
+			data: params,
+			success: function (data) {
+				$("#message-box").html("Message sent.");
+			}
+		})
+	}
 });
