@@ -149,4 +149,21 @@ h3 {
 	max-height: 350px;
 }
 
+/* shared */
+.text-link {
+	margin-left: 20px;
+	color: #2d8;
+	text-decoration: underline;
+}
+
+.text-link:hover {
+	color: blue;
+}
+
+.like-stat {
+	padding: 3px 6px;
+	border: 1px solid green;
+	margin-left: 20px;
+}
+
 

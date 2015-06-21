@@ -30,13 +30,13 @@
 </form>
 <% if (fromAuth){ %>
 <section class="buttons group">
-Likes: <%= likesCount %>
+<span class="like-stat">Likes: <%= likesCount %></span>
 <button class="delete-book form-button" data-id="<%= book.id %>">Delete Book</button>
 <button class="edit-book form-button" data-id="<%= book.id %>">Edit Book</button>
 </section>
 <% } else { %>
 <section class="buttons group">
-Likes: <%= likesCount %>
+<span class="like-stat">Likes: <%= likesCount %></span>
 	<% if (isLiked) { %>
 		<button class="form-button" id="unlike">Unlike</button>
 	<% } else { %>

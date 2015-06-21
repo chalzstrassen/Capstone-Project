@@ -1,7 +1,7 @@
 <% if logged_in? %>
 	<% if current_user.id == @user.id %>
 		<h1>Hi, this is your profile</h1>
-		<a href="<%= edit_user_url(@user) %>">Edit</a>
+		<a href="<%= edit_user_url(@user) %>" class="text-link">Edit</a>
 		<h2>Received messages</h2>
 		<% unless @user.received_messages.empty? %>
 		<ul class="search-results">
@@ -37,7 +37,7 @@
 	<% end %>
 <% end %>
 
-<p>Likes: <%= @user.likes_count %></p>
+<span class="like-stat">Likes: <%= @user.likes_count %></span>
 <h2>Comments on this profile</h2>
 <ul class="search-results">
 	<% @user.comments_on.each do |comment| %>
