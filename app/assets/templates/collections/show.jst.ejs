@@ -7,7 +7,7 @@
 <ul class="collection-books">
 	<% books.each(function(book) { %>
 		<li class="group">
-			Title: <%- book.title %>, Author: <%- book.author_name %>
+			Title: <%= book.escape("title") %>, Author: <%= book.escape("author_name") %>
 	    	<button data-id="<%- book.id %>" class="remove-book">Remove</button>
     	</li>
 	<% }) %>
