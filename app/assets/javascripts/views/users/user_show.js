@@ -17,7 +17,8 @@ Enwritt.Views.UserShow = Backbone.ModalView.extend({
 			isLiked: this._isLiked,
 			isCurrentUser: this._isCurrentUser,
 			comments: this.model.comments(),
-			likesCount: this._likesCount
+			likesCount: this._likesCount,
+			books: this.model.books()
 		});
 		
 		this.$el.html(content);

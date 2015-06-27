@@ -162,8 +162,16 @@ h3 {
 
 .like-stat {
 	padding: 3px 6px;
-	border: 1px solid green;
-	margin-left: 20px;
+	float: right;
+	margin-right: 20px;
+}
+
+.image-link {
+	cursor: pointer;
+}
+
+.image-link:hover {
+	opacity: 0.7;
 }
 
 

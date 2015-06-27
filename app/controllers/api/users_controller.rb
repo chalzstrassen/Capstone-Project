@@ -2,6 +2,7 @@ module Api
 	class UsersController < ApiController
 		def show
 			@user = User.find(params[:id])
+			@books = @user.authored_books
 			@comments = @user.comments_on
 
 			render :show

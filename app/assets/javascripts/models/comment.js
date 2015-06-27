@@ -18,6 +18,12 @@ Enwritt.Models.User = Backbone.Model.extend({
 			delete resp.comments;
 		}
 
+		if (resp.books) {
+			var books = resp.books;
+			this._books = new Enwritt.Collections.Books(books);
+			delete resp.books;
+		}
+
 		return resp;
 	},
 
@@ -27,5 +33,13 @@ Enwritt.Models.User = Backbone.Model.extend({
 	    }
 
 	    return this._comments;
+   },
+
+   books: function () {
+   		if (!this._books) {
+   			this._books = new Enwritt.Collections.Books([]);
+   		}
+
+   		return this._books;
    }
 });

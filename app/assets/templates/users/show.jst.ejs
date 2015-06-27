@@ -9,12 +9,13 @@
 			<%= "Anonymous" %>
 		<% } %>
 		</h3>
-		<span class="like-stat">Likes: <%= likesCount %></span>
+		<span class="like-stat">Likes: <%= likesCount %>
 		<% if (isLiked) { %>
 			<button class="form-button" id="unlike">Unlike</button>
 		<% } else { %>
 			<button class="form-button" id="like">Like</button>
 		<% } %>
+		</span>
 <% } %>
 
 <ul class="search-results"><h3>Comments</h3>
@@ -47,3 +48,16 @@
 	</form>
 </div>
 <% } %>
+
+<ul class="search-results group"><h3>Authored Books</h3>
+	<% books.each(function (book) { %>
+		<li>
+			<strong class="form-label"><%= book.escape("title") %></strong>
+			<strong class="form-label"><%= book.escape("genre") %></strong>
+			<img class="image-link" 
+				data-id="<%= book.escape("id") %>" 
+				src="<%= book.get("coverUrl") %>" 
+				width="100">
+		</li>
+	<% }) %>
+</ul>
