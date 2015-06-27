@@ -4,7 +4,8 @@ Enwritt.Views.UserShow = Backbone.ModalView.extend({
 		"click #like"          : "like",
 		"click #unlike"        : "unlike",
 		"submit #comment-form" : "comment",
-		"submit #message-form" : "message"
+		"submit #message-form" : "message",
+		"click .image-link"    : "showBook"
 	},
 	initialize: function () {
 		this._isLiked = this.model.get("isLiked");
@@ -79,5 +80,26 @@ Enwritt.Views.UserShow = Backbone.ModalView.extend({
 				$("#message-box").html("Message sent.");
 			}
 		})
+	},
+	showBook: function (event) {
+		var bookId = $(event.currentTarget).data("id");
+		var bookModel = new Enwritt.Models.Book({id: bookId});
+		var that = this;
+		bookModel.fetch({
+			success: function () {
+				var bookShow = new Enwritt.Views.BookShow({
+					model: bookModel,
+					collection: that.model.books(),
+					_fromAuth: false,
+				});
+	       		that.hideModal();
+				bookShow.render().showModal({
+		          closeImageUrl: "//:0",
+		          closeImageHoverUrl: "//:0"
+	       		});
+			}
+		});
+
+
 	}
 });
