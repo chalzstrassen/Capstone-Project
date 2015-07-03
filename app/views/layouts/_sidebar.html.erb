@@ -1,0 +1,19 @@
+<section class="sidebar">
+	Top 10 Books
+	<ol>
+		<% book_rankings.each do |book| %>
+			<li>
+				<a href="<%= book_url(book) %>"><%= book.title %></a>
+				by
+				<a href="<%= user_url(book.author) %>">
+					<% if book.author.fname.nil? || book.author.lname.nil? %>
+						Anonymous
+					<% else %>
+						<%= book.author.fname + " " + book.author.lname %> 
+					<% end %>
+				</a>
+			</li>
+		<% end %>
+	</ol>
+
+</section>
