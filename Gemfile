@@ -29,6 +29,7 @@ gem 'pg_search'
 gem 'kaminari'
 gem 'omniauth-facebook'
 gem 'faker'
+gem 'newrelic_rpm'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
