@@ -1,0 +1,12 @@
+.sidebar {
+	float: left;
+	margin-top: 20px;
+}
+.sidebar-link {
+	color: red;
+	text-decoration: underline;
+}
+
+.sidebar-link:hover {
+	color: blue;
+}

@@ -1,11 +1,11 @@
 <section class="sidebar">
-	Top 10 Books
+	<strong class="form-label">Top 10 Books</strong><br>
 	<ol>
 		<% book_rankings.each do |book| %>
 			<li>
-				<a href="<%= book_url(book) %>"><%= book.title %></a>
+				<a class="sidebar-link" href="<%= book_url(book) %>"><%= book.title %></a>
 				by
-				<a href="<%= user_url(book.author) %>">
+				<a class="sidebar-link" href="<%= user_url(book.author) %>">
 					<% if book.author.fname.nil? || book.author.lname.nil? %>
 						Anonymous
 					<% else %>
