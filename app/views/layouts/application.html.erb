@@ -18,7 +18,9 @@
     <p class="error"><%= error %></p>
   <% end %>
 <% end %>
+<% unless logged_in? %>
 <%= render "layouts/sidebar" %>
+<% end %>
 <%= yield %>
 
 </body>
