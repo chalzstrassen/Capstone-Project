@@ -1,29 +1,29 @@
 <h1>Top Ten Liked Books</h1>
-<ol class="search-results">
+<ol class="rankings-list">
 	<% @books.each do |book| %>
 		<li><a href="<%= book_url(book) %>"><%= book.title %></a>. 
 			Author: 
 			<% if book.author.fname && book.author.lname %>
-				<%= book.author.fname + " " +book.author.lname %>
+				<%= book.author.fname + " " +book.author.lname %>.
 			<% else %>
-				Anonymous
+				Anonymous.
 			<% end %>
-			. Likes: <%= book.likes_count %>
+			Likes: <%= book.likes_count %>
 		</li>
 	<% end %>
 </ol>
 
 <h1>Top Ten Liked Authors</h1>
-<ol class="search-results">
+<ol class="rankings-list">
 	<% @authors.each do |author| %>
 		<li>
 			Name: 
 			<% if author.fname && author.lname %>
-				<%= author.fname + " " + author.lname %>
+				<%= author.fname + " " + author.lname %>.
 			<% else %>
-				Anonymous
+				Anonymous.
 			<% end %>
-			. Likes: <%= author.likes_count %>
+			Likes: <%= author.likes_count %>
 		</li>
 	<% end %>
 </ol>

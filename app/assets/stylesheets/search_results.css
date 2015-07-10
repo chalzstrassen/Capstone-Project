@@ -15,11 +15,11 @@
 	background: #ece;
 }
 .search-results {
-	width: 95%;
+	width: 85%;
 	margin: auto;
 }
 .search-results li {
-	width: 100%;
+	width: 85%;
 	border-bottom: 1px solid #111;
 }
 

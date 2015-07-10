@@ -6,9 +6,9 @@
 		float: left;
 		padding-top: 20px;
 		background-color: #2d8;
-		margin-right: 10px;
-		padding-right: 10px;
+		margin-right: 40px;
 		display: block;
+		width: 20%;
 		height: 900px;
 	}
 }
@@ -20,4 +20,14 @@
 
 .sidebar-link:hover {
 	color: blue;
+}
+
+/* Rankings Page */
+
+.rankings-list {
+	width: 85%;
+	margin: auto;
+}
+.rankings-list li {
+	width: 85%;
 }
