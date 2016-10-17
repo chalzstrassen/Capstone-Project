@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root to: 'static_pages#root'
 
   resources :users, only: [:new, :create, :show, :edit, :update] do

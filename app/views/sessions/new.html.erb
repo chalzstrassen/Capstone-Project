@@ -30,7 +30,16 @@
   3. Download PDFs of books.
 </p>
 </section>
+<div id="dialog-form" title="Please enter email address">
+  <form>
+    <fieldset>
+      <label for="email">Email</label>
+      <input type="text" name="email" id="fb-email" class="text ui-widget-content ui-corner-all">
+    </fieldset>
+  </form>
+</div>
 <script>
+$(function () {
   $("#guest-login").on("click", function(event) {
     event.preventDefault();
     $("#guest-email").attr("value","guest@princeton.edu");
@@ -38,45 +47,81 @@
     $(".form-button").trigger("click");
   });
 
+  var authResponseObj;
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '<%= ENV["facebook_app_id"] %>',
       xfbml      : true,
       status     : true,
-      version    : 'v2.7',
+      version    : 'v2.5',
       cookie     : true
     });
-
-    (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
+    $(".fb-btn").on("click", function (event) {
+      event.preventDefault();
+      authResponseObj = FB.getAuthResponse();
+      if (authResponseObj){
+        window.location.replace("<%= root_url%>");
+      } else {
+        FB.login(function (response) {
+          if (response.authResponse) {
+              redirect(response);
+          } 
+        }, {scope: "email, public_profile", return_scopes: true});
+      }
+    });
+  }
+  var dialogForm, form,
+  emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
+  email = $("#fb-email");
+  
+  function redirect (response) {
+    var code = response.authResponse.signedRequest.split(".")[1];
+    $.getJSON('/auth/facebook/callback', { code: code, 
+      signed_request: response.authResponse.signedRequest }, function(json) {
+        window.location.replace("<%= root_url %>");
+      });
   }
 
-  $(".fb-btn").on("click", function (event) {
-    event.preventDefault();
-    if (FB.getAuthResponse()){
-      $.getJSON('/auth/facebook/callback', function(json) {
+  function generateEmailForm() {
+    dialogForm.dialog("open");
+  }
 
-      });
-      window.setTimeout(redirect, 2000);
-    } else {
-      FB.login(function (response) {
-        if (response.authResponse) {
-          $.getJSON('/auth/facebook/callback', { signed_request: response.authResponse.signedRequest }, function(json) {
-          });
-          window.setTimeout(redirect, 2000);
+  function sendRequest() {
+    $.ajax({
+      url:"/auth/facebook/callback",
+      dataType: "json",
+      data: { email: email.val(),
+            signed_request: authResponseObj.signedRequest },
+      success: function (resp) {
+        if (resp) {
+          window.location.replace("<%= root_url %>");
         }
-      }, {scope: "email, public_profile"});
+      },
+      error: function (resp) {
+        console.error("Unable to process email. Error: ", resp);
+      }
+    });
+    dialogForm.dialog("close");
+  }
+  
+  dialogForm = $("#dialog-form").dialog({
+    autoOpen: false,
+    height: 500,
+    width: 425,
+    modal: true,
+    buttons: {
+      "Done": sendRequest,
+      Cancel: function() {
+        FB.logout(function (response) {
+            dialogForm.dialog("close");
+        });
+      }
     }
   });
-  
-  function redirect () {
-    window.location.replace("<%= root_url %>")
-  }
+  form = dialogForm.find( "form" ).on( "submit", function( event ) {
+      event.preventDefault();
+      sendRequest();
+    });
 
   (function(d, s, id){
      var js, fjs = d.getElementsByTagName(s)[0];
@@ -84,6 +129,6 @@
      js = d.createElement(s); js.id = id;
      js.src = "//connect.facebook.net/en_US/sdk.js";
      fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-  
+   }(document, 'script', 'facebook-jssdk'))
+});
 </script>

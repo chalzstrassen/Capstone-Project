@@ -30,3 +30,4 @@ Enwritt is an open publishing platform inspired by Scribd built on Rails and Bac
 - Enable users to have a profile picture, provide a default if none is given.
 - Progress Bars for requests that can take a while (i.e Uploads).
 - Create a content sidebar that displays recently viewed items (Cookies mmmh!).
+- Upgrade to Rails >=5 and Ruby >=2.3

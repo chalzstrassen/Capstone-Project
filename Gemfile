@@ -31,6 +31,7 @@ gem 'kaminari'
 gem 'omniauth-facebook'
 gem 'faker'
 gem 'newrelic_rpm'
+gem 'devise'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -42,7 +43,6 @@ end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
   gem 'annotate'
   gem 'pry-rails'
   gem 'better_errors'

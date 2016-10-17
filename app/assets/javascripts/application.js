@@ -18,6 +18,7 @@
 //= require backbone.modaldialog
 //= require Cocktail
 //= require enwritt_app
+//= require jquery-ui.min
 //= require_tree ../templates
 //= require_tree ./models
 //= require_tree ./utils

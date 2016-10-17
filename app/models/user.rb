@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :omniauthable
+
   include PgSearch
   after_initialize :ensure_session_token
 
@@ -73,17 +77,16 @@ class User < ActiveRecord::Base
     user = User.find_by(
             provider: auth_hash[:provider],
             uid: auth_hash[:uid])
-
+    email = "#{auth_hash[:uid]}@fbpea.com"
     unless user
       user = User.create!(
             provider: auth_hash[:provider],
             uid: auth_hash[:uid],
-            email: auth_hash[:info][:email], 
+            email: email, 
             fname: auth_hash[:info][:first_name],
             lname: auth_hash[:info][:last_name],
             password: SecureRandom::urlsafe_base64)
     end
-
     user
   end
 
