@@ -26,15 +26,24 @@ class SessionsController < ApplicationController
     redirect_to new_session_url
   end
 
+  def email_required
+    render :email
+  end
+
+  def save_email
+    authorization_hash = {:provider => cookies[:provider], :uid => cookies[:uid], :name => cookies[:name]}
+    user = User.create_by_auth_hash_and_email(params[:user][:email], authorization_hash)
+    login!(user)
+    redirect_to root_url
+  end
+
   def omniauth
     user = User.find_or_create_by_auth_hash(auth_hash)
-    puts user.name
     login!(user)
     redirect_to root_url
   end
 
   private
-
     def auth_hash
       request.env["omniauth.auth"]
     end

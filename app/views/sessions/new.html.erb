@@ -12,9 +12,12 @@
   </label>
   <button class="form-button">Sign in!</button>
   <button id="guest-login" class="form-button">Guest Login</button>
-  <button class="fb-btn">
-    <img src="<%= image_url("facebook.png") %>"><b class="fb-banner">Login with Facebook</b>
-  </button>
+  <%= link_to user_facebook_omniauth_authorize_path, 
+    class: "fb-btn" do %>
+    <img src="<%= image_url("facebook.png") %>"><b class="fb-banner">
+     Log in with Facebook
+    </b>
+  <% end %>
 </form>
 </section>
 <section class="login-form">
@@ -56,7 +59,7 @@ $(function () {
       version    : 'v2.5',
       cookie     : true
     });
-    $(".fb-btn").on("click", function (event) {
+    $("button.fb-btn").on("click", function (event) {
       event.preventDefault();
       authResponseObj = FB.getAuthResponse();
       if (authResponseObj){
@@ -75,9 +78,9 @@ $(function () {
   email = $("#fb-email");
   
   function redirect (response) {
-    var code = response.authResponse.signedRequest.split(".")[1];
-    $.getJSON('/auth/facebook/callback', { code: code, 
-      signed_request: response.authResponse.signedRequest }, function(json) {
+   // var code = response.authResponse.signedRequest.split(".")[1];
+    $.getJSON('/auth/facebook/callback', 
+    { signed_request: response.authResponse.signedRequest }, function(json) {
         window.location.replace("<%= root_url %>");
       });
   }

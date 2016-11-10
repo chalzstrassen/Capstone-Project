@@ -69,8 +69,8 @@
   border-right: 1px solid #ddd;
 }
 .fb-btn .fb-banner {
-  float: left;
-  padding: 7px 0;
+  text-align: center;
+  padding: 6px 0;
   margin-left: 5px;
   display: block;
 }

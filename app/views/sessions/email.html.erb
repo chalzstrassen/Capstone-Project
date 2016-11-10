@@ -1,0 +1,10 @@
+<section class="login-form">
+	<form action="<%= auth_email_url %>" method="POST">
+	<%= csrf_token %>
+    <fieldset>
+      <label for="email">Email</label>
+      <input type="text" name="user[email]" id="fb-email" class="text ui-widget-content ui-corner-all">
+    </fieldset>
+    <button>Submit</button>
+  </form>
+</section>

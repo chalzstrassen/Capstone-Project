@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :omniauthable
+  devise :omniauthable, :omniauth_providers => [:facebook]
 
   include PgSearch
   after_initialize :ensure_session_token
@@ -74,20 +74,23 @@ class User < ActiveRecord::Base
   end
 
   def self.find_or_create_by_auth_hash(auth_hash)
-    user = User.find_by(
-            provider: auth_hash[:provider],
-            uid: auth_hash[:uid])
-    email = "#{auth_hash[:uid]}@fbpea.com"
-    unless user
-      user = User.create!(
-            provider: auth_hash[:provider],
-            uid: auth_hash[:uid],
-            email: email, 
-            fname: auth_hash[:info][:first_name],
-            lname: auth_hash[:info][:last_name],
-            password: SecureRandom::urlsafe_base64)
+    where(provider: auth_hash.provider, uid: auth_hash.uid).first_or_create do |user|
+      user.email = auth_hash.info.email
+      user.password_digest = Devise.friendly_token[0, 20]
+      full_name_arr =  auth_hash.info.name.split " "
+      user.fname = full_name_arr.first
+      user.lname = full_name_arr.last
     end
-    user
+  end
+
+  def self.create_by_auth_hash_and_email(email, auth_hash)
+    where(provider: auth_hash[:provider], uid: auth_hash[:uid]).first_or_create do |user|
+      user.email = email
+      user.password_digest = Devise.friendly_token[0, 20]
+      full_name_arr =  auth_hash[:name].split " "
+      user.fname = full_name_arr.first
+      user.lname = full_name_arr.last
+    end
   end
 
   def likes?(user)
@@ -123,6 +126,4 @@ class User < ActiveRecord::Base
     self.save!
     self.session_token
   end
-
-
 end
