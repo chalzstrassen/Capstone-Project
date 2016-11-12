@@ -4,6 +4,7 @@ Enwritt.Routers.Router = Backbone.Router.extend({
   },
   routes: {
     ''          : 'libraryLayout',
+    '_=_'       : 'libraryLayout',
     'books/:id' : 'showBook'
   },
 
